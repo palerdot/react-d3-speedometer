@@ -27,8 +27,8 @@ cd .out
 git init
 
 # inside this git repo we'll pretend to be a new user
-git config user.name "GH Pages Bot"
-git config user.email "hello@ghbot.com"
+git config user.name "palerdot GH Pages Bot"
+git config user.email "ghpages-bot@palerdot.in"
 
 # The first and only commit to this new Git repo contains all the
 # files present with the commit message "Deploy to GitHub Pages".
