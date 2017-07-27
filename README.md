@@ -23,7 +23,7 @@ import ReactSpeedometer from "react-d3-speedometer";
 
 | prop        | type           | default  | comments |
 | ------------|:--------------:| --------:| ---------|
-| value       | number         | 0        |          |
+| value       | number         | 0        |   Make sure your value is between your `minValue` and `maxValue`       |
 | minValue    | number         | 0        |          |
 | maxValue    | number         | 1000     |          |
 | segments    | number         | 5        | Number of segments in the speedometer         |
