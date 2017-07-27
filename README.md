@@ -6,7 +6,11 @@
 
 ## Usage:
 
+**NPM:**
 `npm install --save react-d3-speedometer` 
+
+**Yarn:**
+`yarn add react-d3-speedometer` 
 
 ```javascript
 // import the component
@@ -72,6 +76,13 @@ You can view [Live Examples here](http://palerdot.in/react-d3-speedometer/?selec
     />
 </div>
 ```
+
+---
+
+### Todos:
+
+- [ ] Test coverage
+- [ ] Configuring speedometer ring width
 
 ---
 
