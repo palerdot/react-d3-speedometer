@@ -1,10 +1,13 @@
 // React port of - http://bl.ocks.org/msqr/3202712
 import React from "react";
+import PropTypes from 'prop-types';
 
 // TODO: selectively import d3 components
 import * as d3 from "d3";
 
 class ReactSpeedometer extends React.Component {
+
+    static displayName = 'ReactSpeedometer';
 
     constructor(props) {
         super(props);
@@ -14,21 +17,21 @@ class ReactSpeedometer extends React.Component {
             powerGauge: false
         };
 
-        console.log("porumai constructor ", props, d3, d3.layout);
+        // the initial value is 0;
+        // on subsequent renders we will update the initial value with previous value for animating
+        this.initialValue = 0;
     };
 
     componentWillMount() {
-        console.log("porumai componentWillMount ");
+
     };
 
     componentDidMount() {
-        console.log("porumai componentDidMount ");
         // render the gauge here
         this.renderGauge();
     };
 
     render = () => {
-        console.log("porumai! rendering ", this.props);
         return (
             <div ref={ref => this.gaugeDiv = ref}>
             </div>
@@ -37,12 +40,13 @@ class ReactSpeedometer extends React.Component {
     };
 
     componentWillReceiveProps() {
-        console.log("porumai componentWillReceiveProps ", this.props);
+        // update the initial value
+        this.initialValue = this.props.value || 0;
     }
 
     shouldComponentUpdate (new_props) {
-
-        console.log("Porumai! shouldComponentUpdate ", this.props, new_props, arguments);
+        return true;
+        // NOTE: following logic for 'stopRerender'
         // update the props
         this.props = new_props;
         // just update our readings
@@ -52,16 +56,13 @@ class ReactSpeedometer extends React.Component {
     }
 
     componentWillUpdate() {
-        console.log("porumai componentWillUpdate");
+
     }
 
     componentDidUpdate() {
-        console.log("porumai componentDidUpdate");
+        // on update; just update the readings; rendering already done
+        this.updateReadings();
     }
-
-    // ---------------------------------------------------------------------
-    // d3 gauge specific code; wild play; might may want to remove in future
-    // ---------------------------------------------------------------------
 
     getGauge () {
 
@@ -69,12 +70,15 @@ class ReactSpeedometer extends React.Component {
 
         var PROPS = this.props;
 
-        var gauge = function (container) {
+        // main gauge function;
+        // takes a container inside which we will display the speedometer
+        // here container is our gaugeDiv ref
+        return function (container) {
 
-            var config = {
-                size: 300,
-                clipWidth: 300,
-                clipHeight: 300,
+            var default_config = {
+                // size: 300,
+                width: 300,
+                height: 300,
                 ringInset: 20,
                 ringWidth: 60,
 
@@ -90,18 +94,32 @@ class ReactSpeedometer extends React.Component {
                 labelFormat: d3.format('d'),
                 labelInset: 10,
 
-                // START: Configurable values
+                // calculate the ReactSpeedometer 'parentNode' width/height; it might be used if fluidWidth: true
+                parentWidth: self.gaugeDiv.parentNode.clientWidth,
+                parentHeight: self.gaugeDiv.parentNode.clientHeight
+            };
+
+            // START: Configurable values
+            var config = {
+                // width/height config
+                // if fluidWidth; width/height taken from the parent of the ReactSpeedometer
+                // else if width/height given it is used; else our default
+                width: PROPS.fluidWidth ? default_config.parentWidth : ( PROPS.width || default_config.width ),
+                height: PROPS.fluidWidth ? default_config.parentHeight : ( PROPS.height || default_config.height ),
                 // min/max values
                 minValue: PROPS.minValue || 0,
                 maxValue: PROPS.maxValue || 1000,
                 // color of the speedometer needle
-                needleColor: PROPS.needleColor || "yellow",
+                needleColor: PROPS.needleColor || "steelblue",
                 // sections in the speedometer
                 majorTicks: PROPS.sections || 5,
                 // color range for the sections
-                arcColorFn: d3.interpolateHsl( d3.rgb( PROPS.startColor || '#FF471A' ), d3.rgb( PROPS.endColor || '#33CC33') ),
-                // END: Configurable values
+                arcColorFn: d3.interpolateHsl( d3.rgb( PROPS.startColor || '#FF471A' ), d3.rgb( PROPS.endColor || '#33CC33') )
             };
+            // END: Configurable values
+
+            // merge default config with the config
+            config = Object.assign( {}, default_config, config );
 
             var range = undefined,
                 r = undefined,
@@ -134,7 +152,8 @@ class ReactSpeedometer extends React.Component {
                 // config = Object.assign( {}, config, configuration );
 
                 range = config.maxAngle - config.minAngle;
-                r = config.size / 2;
+                // r = config.size / 2;
+                r = config.width / 2;
                 pointerHeadLength = Math.round(r * config.pointerHeadLengthPercent);
 
                 // a linear scale that maps domain values to a percent from 0..1
@@ -162,7 +181,6 @@ class ReactSpeedometer extends React.Component {
             }
 
             function centerTranslation() {
-                console.log("center translation ? ", r, arguments);
                 return 'translate(' + r + ',' + r + ')';
             }
 
@@ -175,8 +193,8 @@ class ReactSpeedometer extends React.Component {
                 svg = d3.select(container)
                         .append('svg:svg')
                         .attr('class', 'gauge')
-                        .attr('width', config.clipWidth)
-                        .attr('height', config.clipHeight);
+                        .attr('width', config.width)
+                        .attr('height', config.height);
 
                 var centerTx = centerTranslation();
 
@@ -213,7 +231,7 @@ class ReactSpeedometer extends React.Component {
 
                 // save current value reference
                 self._d3_refs.current_value_text = svg.append("g")
-                    .attr("transform","translate(" + config.clipWidth/2 + "," + config.clipHeight/1.77 + ")")
+                    .attr("transform","translate(" + config.width/2 + "," + config.height/1.77 + ")")
                     .append("text")
                     .attr("text-anchor", "middle")
                     .text( config.currentValue || "" )
@@ -237,7 +255,7 @@ class ReactSpeedometer extends React.Component {
                             .attr('class', 'pointer')
                             .attr('transform', centerTx)
                             .style("fill", config.needleColor)
-                            .style("stroke", "green");
+                            // .style("stroke", "green");
 
                 self._d3_refs.pointer = pg.append('path')
                                             .attr('d', pointerLine )
@@ -274,15 +292,18 @@ class ReactSpeedometer extends React.Component {
                 update: update
             };
         };
-
-        return gauge;
     }
 
     renderGauge () {
+        console.log("rendering gauge ");
+        // before rendering remove the existing gauge?
+        d3.select( this.gaugeDiv )
+            .select("svg")
+            .remove();
         // store the gauge in our d3_refs
         this._d3_refs.powerGauge = this.getGauge()( this.gaugeDiv );
         // render for first time; no value means initializes with 0
-        this._d3_refs.powerGauge.render();
+        this._d3_refs.powerGauge.render( this.initialValue );
         // update readings for the first time
         this.updateReadings();
     };
@@ -290,9 +311,28 @@ class ReactSpeedometer extends React.Component {
     updateReadings () {
         // updates the readings of the gauge with the current prop value
         // animates between old prop value and current prop value
-        this._d3_refs.powerGauge.update( this.props.value );
+        this._d3_refs.powerGauge.update( this.props.value || 0 );
     }
 
+};
+
+// define the proptypes
+ReactSpeedometer.propTypes = {
+    value: PropTypes.number,
+    minValue: PropTypes.number,
+    maxValue: PropTypes.number,
+
+    width: PropTypes.number,
+    height: PropTypes.number,
+    fluidWidth: PropTypes.bool,
+
+    // segments to show in the speedometer
+    segments: PropTypes.number,
+
+    // color strings
+    needleColor: PropTypes.string,
+    startColor: PropTypes.string,
+    endColor: PropTypes.string,
 };
 
 export default ReactSpeedometer;

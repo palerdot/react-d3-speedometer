@@ -1,3 +1,11 @@
 {
-  "presets": ["react-app"]
+  "presets": ["react-app", "babili"],
+  "env": {
+    "production": {
+        "plugins": [
+            "transform-remove-console",
+            "transform-runtime"
+        ]  
+    }
+  }
 }
