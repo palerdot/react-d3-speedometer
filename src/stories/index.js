@@ -24,13 +24,20 @@ storiesOf('React d3 Speedometer', module)
         <ReactSpeedometer />
     ))
     // configuring values
-    .add('Configuring values', () => (
-        <ReactSpeedometer
-            maxValue={500}
-            value={473}
-            needleColor="steelblue"
-        />
-    ))
+    .addWithInfo(
+        'Configuring values', 
+        () => (
+            <ReactSpeedometer
+                maxValue={500}
+                value={473}
+                needleColor="red"
+                startColor="green"
+                segments={10}
+                endColor="blue"
+            />
+        ),
+        { source: true, inline: true, header: false }
+    )
     // fluid display view
     .addWithInfo(
         'Fluid Width view', 

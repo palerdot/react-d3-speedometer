@@ -125,9 +125,9 @@ class ReactSpeedometer extends React.Component {
                 maxValue: PROPS.maxValue || 1000,
                 // color of the speedometer needle
                 needleColor: PROPS.needleColor || "steelblue",
-                // sections in the speedometer
-                majorTicks: PROPS.sections || 5,
-                // color range for the sections
+                // segments in the speedometer
+                majorTicks: PROPS.segments || 5,
+                // color range for the segments
                 arcColorFn: d3InterpolateHsl( 
                                 d3Rgb( PROPS.startColor || '#FF471A' ), 
                                 d3Rgb( PROPS.endColor || '#33CC33') 
