@@ -2,11 +2,20 @@
   "name": "react-d3-speedometer",
   "version": "0.1.2",
   "description": "React D3 Speedometer Component",
+  "author": {
+    "name": "palerdot",
+    "email": "palerdot@gmail.com"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/palerdot/react-d3-speedometer.git"
   },
-  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/palerdot/react-d3-speedometer/issues"
+  },
+  "homepage": "https://github.com/palerdot/react-d3-speedometer",
+  "keywords": ["react", "d3", "speedometer", "gauge", "component", "odometer"],
+  "license": "GPL",
   "scripts": {
     "prepublish": ". ./.scripts/prepublish.sh",
     "lint": "eslint src",
