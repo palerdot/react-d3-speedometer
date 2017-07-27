@@ -1,5 +1,7 @@
 import React from 'react';
-import { storiesOf, action, setAddon } from '@kadira/storybook';
+// import { storiesOf, action, setAddon } from '@kadira/storybook';
+// disable action logger for production
+import { storiesOf, setAddon } from '@kadira/storybook';
 import infoAddon, { setDefaults } from '@storybook/addon-info';
 
 // addon-info
