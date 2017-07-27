@@ -1,7 +1,5 @@
 import React from 'react';
-// import { storiesOf, action, setAddon } from '@kadira/storybook';
-// disable action logger for production
-import { storiesOf, setAddon } from '@kadira/storybook';
+import { storiesOf, action, setAddon } from '@kadira/storybook';
 import infoAddon, { setDefaults } from '@storybook/addon-info';
 
 // addon-info
@@ -22,7 +20,7 @@ import ReactSpeedometer from '../index';
 
 storiesOf('React d3 Speedometer', module)
     // default view with no configuration
-    .add('Default with no config!', () => (
+    .add('Default with no config', () => (
         <ReactSpeedometer />
     ))
     // configuring values
