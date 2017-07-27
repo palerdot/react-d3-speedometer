@@ -87,4 +87,4 @@ You can view [Live Examples here](http://palerdot.in/react-d3-speedometer/?selec
 ---
 
 #### Credits:
-`react-d3-speedometer` was started as react port of the following d3 snippet - [http://bl.ocks.org/msqr/3202712](http://bl.ocks.org/msqr/3202712)
+`react-d3-speedometer` was started as a react port of the following d3 snippet - [http://bl.ocks.org/msqr/3202712](http://bl.ocks.org/msqr/3202712). Component template bootstrapped with [React CDK](https://github.com/storybooks/react-cdk). Also, many thanks to `d3` and `react` ecosystem contributors.
