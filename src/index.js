@@ -231,7 +231,7 @@ class ReactSpeedometer extends React.Component {
 
                 // save current value reference
                 self._d3_refs.current_value_text = svg.append("g")
-                    .attr("transform","translate(" + config.width/2 + "," + config.height/1.77 + ")")
+                    .attr("transform","translate(" + config.width/2 + "," + (config.width/2) * 1.11 + ")")
                     .append("text")
                     .attr("text-anchor", "middle")
                     .text( config.currentValue || "" )

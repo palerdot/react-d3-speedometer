@@ -37,7 +37,7 @@ storiesOf('React d3 Speedometer', module)
         () => (
             <div style={{
                 width: "500px",
-                height: "270px",
+                height: "300px",
                 background: "#EFEFEF"
             }}>
                 <ReactSpeedometer
