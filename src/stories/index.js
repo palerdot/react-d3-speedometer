@@ -57,5 +57,18 @@ storiesOf('React d3 Speedometer', module)
             </div>
         ),
         { source: true, inline: true, header: false }
+    )
+    // needle transition duration
+    .addWithInfo(
+        'Needle Transition Duration',
+        () => (
+            <ReactSpeedometer
+                value={333}
+                needleColor="steelblue"
+                needleTransitionDuration={4000}
+                needleTransition="easeElastic"
+            />
+        ),
+        { source: true, inline: true, header: false }
     );
 

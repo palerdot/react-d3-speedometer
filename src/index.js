@@ -15,7 +15,36 @@ import {
     pie as d3Pie,
     rgb as d3Rgb,
     interpolateHsl as d3InterpolateHsl,
-    easeElastic as d3EaseElastic 
+    // importing all the easing functions
+    easeLinear as d3EaseLinear,
+    easeQuadIn as d3EaseQuadIn,
+    easeQuadOut as d3EaseQuadOut,
+    easeQuadInOut as d3EaseQuadInOut,
+    easeCubicIn as d3EaseCubicIn,
+    easeCubicOut as d3EaseCubicOut,
+    easeCubicInOut as d3EaseCubicInOut,
+    easePolyIn as d3EasePolyIn,
+    easePolyOut as d3EasePolyOut,
+    easePolyInOut as d3EasePolyInOut,
+    easeSinIn as d3EaseSinIn,
+    easeSinOut as d3EaseSinOut,
+    easeSinInOut as d3EaseSinInOut,
+    easeExpIn as d3EaseExpIn,
+    easeExpOut as d3EaseExpOut,
+    easeExpInOut as d3EaseExpInOut,
+    easeCircleIn as d3EaseCircleIn,
+    easeCircleOut as d3EaseCircleOut,
+    easeCircleInOut as d3EaseCircleInOut,
+    easeBounceIn as d3EaseBounceIn,
+    easeBounceOut as d3EaseBounceOut,
+    easeBounceInOut as d3EaseBounceInOut,
+    easeBackIn as d3EaseBackIn,
+    easeBackOut as d3EaseBackOut,
+    easeBackInOut as d3EaseBackInOut,
+    easeElasticIn as d3EaseElasticIn,
+    easeElasticOut as d3EaseElasticOut,
+    easeElasticInOut as d3EaseElasticInOut,
+    easeElastic as d3EaseElastic
 } from "d3";
 
 class ReactSpeedometer extends React.Component {
@@ -50,7 +79,6 @@ class ReactSpeedometer extends React.Component {
             <div ref={ref => this.gaugeDiv = ref}>
             </div>
         );
-        // Porumai! Arun react d3 speedo component {this.props.value}
     };
 
     componentWillReceiveProps() {
@@ -87,12 +115,15 @@ class ReactSpeedometer extends React.Component {
         // main gauge function;
         // takes a container inside which we will display the speedometer
         // here container is our gaugeDiv ref
-        return function (container) {
+        // return function (container) {
+        return (container) => {
 
+            // NOTE: when all the values are configurable, this can be moved to defaultProps
             var default_config = {
                 // size: 300,
                 width: 300,
                 height: 300,
+
                 ringInset: 20,
                 ringWidth: 60,
 
@@ -103,7 +134,8 @@ class ReactSpeedometer extends React.Component {
                 minAngle: -90,
                 maxAngle: 90,
 
-                transitionMs: 4000,
+                needleTransition: "easeQuadInOut",
+                needleTransitionDuration: 500,
                 
                 labelFormat: d3Format('d'),
                 labelInset: 10,
@@ -120,6 +152,8 @@ class ReactSpeedometer extends React.Component {
                 // else if width/height given it is used; else our default
                 width: PROPS.fluidWidth ? default_config.parentWidth : ( PROPS.width || default_config.width ),
                 height: PROPS.fluidWidth ? default_config.parentHeight : ( PROPS.height || default_config.height ),
+                // ring width should be 1/4 th of width
+                ringWidth: PROPS.ringWidth || default_config.ringWidth,
                 // min/max values
                 minValue: PROPS.minValue || 0,
                 maxValue: PROPS.maxValue || 1000,
@@ -131,12 +165,10 @@ class ReactSpeedometer extends React.Component {
                 arcColorFn: d3InterpolateHsl( 
                                 d3Rgb( PROPS.startColor || '#FF471A' ), 
                                 d3Rgb( PROPS.endColor || '#33CC33') 
-                            )
-                // arcColorFn: d3.interpolateHsl( 
-                //                 d3.rgb( PROPS.startColor || '#FF471A' ), 
-                //                 d3.rgb( PROPS.endColor || '#33CC33') 
-                //             ),
-
+                            ),
+                // needle configuration
+                needleTransition: PROPS.needleTransition || default_config.needleTransition,
+                needleTransitionDuration: PROPS.needleTransitionDuration || default_config.needleTransitionDuration
             };
             // END: Configurable values
 
@@ -304,9 +336,10 @@ class ReactSpeedometer extends React.Component {
                 var newAngle = config.minAngle + (ratio * range);
                 // update the pointer
                 self._d3_refs.pointer.transition()
-                    .duration(config.transitionMs)
-                    // .ease( d3.easeElastic )
-                    .ease( d3EaseElastic )
+                    .duration( config.needleTransitionDuration )
+                    // .ease( d3EaseLinear )
+                    .ease( self.getTransitionMethod( config.needleTransition ) )
+                    // .ease( d3EaseElastic )
                     .attr('transform', 'rotate(' + newAngle + ')');
                 // update the current value
                 self._d3_refs.current_value_text.text( config.labelFormat( newValue ) );
@@ -324,7 +357,7 @@ class ReactSpeedometer extends React.Component {
                 update: update
             };
         };
-    }
+    };
 
     renderGauge () {
         console.log("rendering gauge ");
@@ -345,7 +378,137 @@ class ReactSpeedometer extends React.Component {
         // updates the readings of the gauge with the current prop value
         // animates between old prop value and current prop value
         this._d3_refs.powerGauge.update( this.props.value || 0 );
-    }
+    };
+
+    // takes a 'transition string' and returns a d3 transition method
+    // default is easeLinear
+    getTransitionMethod (transition) {
+
+        switch (transition) {
+            // ease linear
+            case "easeLinear":
+                return d3EaseLinear; 
+                break;
+            // easeQuadIn as d3EaseQuadIn,
+            case "easeQuadIn":
+                return d3EaseQuadIn;
+                break;
+            // easeQuadOut as d3EaseQuadOut
+            case "easeQuadOut":
+                return d3EaseQuadOut;
+                break;
+            // easeQuadInOut as d3EaseQuadInOut
+            case "easeQuadInOut":
+                return d3EaseQuadInOut;
+                break;
+            // easeCubicIn as d3EaseCubicIn
+            case "easeCubicIn":
+                return d3EaseCubicIn;
+                break;
+            // easeCubicOut as d3EaseCubicOut,
+            case "easeCubicOut":
+                return d3EaseCubicOut;
+                break;
+            // easeCubicInOut as d3EaseCubicInOut,
+            case "easeCubicInOut":
+                return d3EaseCubicInOut;
+                break;
+            // easePolyIn as d3EasePolyIn,
+            case "easePolyIn":
+                return d3EasePolyIn;
+                break;
+            // easePolyOut as d3EasePolyOut,
+            case "easePolyOut":
+                return d3EasePolyOut;
+                break;
+            // easePolyInOut as d3EasePolyInOut,
+            case "easePolyInOut":
+                return d3EasePolyInOut;
+                break;
+            // easeSinIn as d3EaseSinIn,
+            case "easeSinIn":
+                return d3EaseSinIn;
+                break;
+            // easeSinOut as d3EaseSinOut,
+            case "easeSinOut":
+                return d3EaseSinOut;
+                break;
+            // easeSinInOut as d3EaseSinInOut,
+            case "easeSinInOut":
+                return d3EaseSinInOut;
+                break;
+            // easeExpIn as d3EaseExpIn,
+            case "easeExpIn":
+                return d3EaseExpIn;
+                break;
+            // easeExpOut as d3EaseExpOut,
+            case "easeExpOut":
+                return d3EaseExpOut;
+                break;
+            // easeExpInOut as d3EaseExpInOut,
+            case "easeExpInOut":
+                return d3EaseExpInOut;
+                break;
+            // easeCircleIn as d3EaseCircleIn,
+            case "easeCircleIn":
+                return d3EaseCircleIn;
+                break;
+            // easeCircleOut as d3EaseCircleOut,
+            case "easeCircleOut":
+                return d3EaseCircleOut;
+                break;
+            // easeCircleInOut as d3EaseCircleInOut,
+            case "easeCircleInOut":
+                return d3EaseCircleInOut;
+                break;
+            // easeBounceIn as d3EaseBounceIn,
+            case "easeBounceIn":
+                return d3EaseBounceIn;
+                break;
+            // easeBounceOut as d3EaseBounceOut,
+            case "easeBounceOut":
+                return d3EaseBounceOut;
+                break;
+            // easeBounceInOut as d3EaseBounceInOut,
+            case "easeBounceInOut":
+                return d3EaseBounceInOut;
+                break;
+            // easeBackIn as d3EaseBackIn,
+            case "easeBackIn":
+                return d3EaseBackIn;
+                break;
+            // easeBackOut as d3EaseBackOut,
+            case "easeBackOut":
+                return d3EaseBackOut;
+                break;
+            // easeBackInOut as d3EaseBackInOut,
+            case "easeBackInOut":
+                return d3EaseBackInOut;
+                break;
+            // easeElasticIn as d3EaseElasticIn,
+            case "easeElasticIn":
+                return d3EaseElasticIn;
+                break;
+            // easeElasticOut as d3EaseElasticOut,
+            case "easeElasticOut":
+                return d3EaseElasticOut;
+                break;
+            // easeElasticInOut as d3EaseElasticInOut,
+            case "easeElasticInOut":
+                return d3EaseElasticInOut;
+                break;
+            // easeElastic as d3EaseElastic,
+            case "easeElastic":
+                return d3EaseElastic;
+                break;
+
+            // ease elastic transition
+            case "easeElastic":
+                return d3EaseElastic; 
+                break;
+        };
+
+    };
 
 };
 
@@ -366,6 +529,10 @@ ReactSpeedometer.propTypes = {
     needleColor: PropTypes.string,
     startColor: PropTypes.string,
     endColor: PropTypes.string,
+
+    // needle transition type and duration
+    needleTransition: PropTypes.string,
+    needleTransitionDuration: PropTypes.number
 };
 
 export default ReactSpeedometer;
