@@ -2,6 +2,8 @@
 
 **react-d3-speedometer** is a react component for showing speedometer like gauge using d3.
 
+[![NPM](https://nodei.co/npm/react-d3-speedometer.png)](https://npmjs.org/package/react-d3-speedometer)
+
 ![react-d3-speedometer](speedo.gif)
 
 ## Usage:
