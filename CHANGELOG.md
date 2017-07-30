@@ -1,6 +1,6 @@
 # Change Log
 
-## 0.14
+## 0.1.4
 
 - Make `needleTransitionDuration` configurable
 - Make `needleTransition` configurable
