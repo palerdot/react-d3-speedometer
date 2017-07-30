@@ -118,14 +118,9 @@ class ReactSpeedometer extends React.Component {
         // return function (container) {
         return (container) => {
 
-            // NOTE: when all the values are configurable, this can be moved to defaultProps
+            // default config that are 'not' configurable
             var default_config = {
-                // size: 300,
-                width: 300,
-                height: 300,
-
                 ringInset: 20,
-                ringWidth: 60,
 
                 pointerWidth: 10,
                 pointerTailLength: 5,
@@ -133,9 +128,6 @@ class ReactSpeedometer extends React.Component {
 
                 minAngle: -90,
                 maxAngle: 90,
-
-                needleTransition: "easeQuadInOut",
-                needleTransitionDuration: 500,
                 
                 labelFormat: d3Format('d'),
                 labelInset: 10,
@@ -150,25 +142,25 @@ class ReactSpeedometer extends React.Component {
                 // width/height config
                 // if fluidWidth; width/height taken from the parent of the ReactSpeedometer
                 // else if width/height given it is used; else our default
-                width: PROPS.fluidWidth ? default_config.parentWidth : ( PROPS.width || default_config.width ),
-                height: PROPS.fluidWidth ? default_config.parentHeight : ( PROPS.height || default_config.height ),
+                width: PROPS.fluidWidth ? default_config.parentWidth : ( PROPS.width ),
+                height: PROPS.fluidWidth ? default_config.parentHeight : ( PROPS.height ),
                 // ring width should be 1/4 th of width
-                ringWidth: PROPS.ringWidth || default_config.ringWidth,
+                ringWidth: PROPS.ringWidth,
                 // min/max values
-                minValue: PROPS.minValue || 0,
-                maxValue: PROPS.maxValue || 1000,
+                minValue: PROPS.minValue,
+                maxValue: PROPS.maxValue,
                 // color of the speedometer needle
-                needleColor: PROPS.needleColor || "steelblue",
+                needleColor: PROPS.needleColor,
                 // segments in the speedometer
-                majorTicks: PROPS.segments || 5,
+                majorTicks: PROPS.segments,
                 // color range for the segments
                 arcColorFn: d3InterpolateHsl( 
-                                d3Rgb( PROPS.startColor || '#FF471A' ), 
-                                d3Rgb( PROPS.endColor || '#33CC33') 
+                                d3Rgb( PROPS.startColor ), 
+                                d3Rgb( PROPS.endColor ) 
                             ),
                 // needle configuration
-                needleTransition: PROPS.needleTransition || default_config.needleTransition,
-                needleTransitionDuration: PROPS.needleTransitionDuration || default_config.needleTransitionDuration
+                needleTransition: PROPS.needleTransition,
+                needleTransitionDuration: PROPS.needleTransitionDuration
             };
             // END: Configurable values
 
@@ -512,27 +504,56 @@ class ReactSpeedometer extends React.Component {
 
 };
 
-// define the proptypes
-ReactSpeedometer.propTypes = {
-    value: PropTypes.number,
-    minValue: PropTypes.number,
-    maxValue: PropTypes.number,
 
-    width: PropTypes.number,
-    height: PropTypes.number,
-    fluidWidth: PropTypes.bool,
+// define the proptypes
+// make all the props and 'required' and provide sensible default in the 'defaultProps'
+ReactSpeedometer.propTypes = {
+    value: PropTypes.number.isRequired,
+    minValue: PropTypes.number.isRequired,
+    maxValue: PropTypes.number.isRequired,
+
+    width: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired,
+    fluidWidth: PropTypes.bool.isRequired,
 
     // segments to show in the speedometer
-    segments: PropTypes.number,
+    segments: PropTypes.number.isRequired,
 
     // color strings
-    needleColor: PropTypes.string,
-    startColor: PropTypes.string,
-    endColor: PropTypes.string,
+    needleColor: PropTypes.string.isRequired,
+    startColor: PropTypes.string.isRequired,
+    endColor: PropTypes.string.isRequired,
 
     // needle transition type and duration
-    needleTransition: PropTypes.string,
-    needleTransitionDuration: PropTypes.number
+    needleTransition: PropTypes.string.isRequired,
+    needleTransitionDuration: PropTypes.number.isRequired,
+
+    ringWidth: PropTypes.number.isRequired
+};
+
+// define the default proptypes
+ReactSpeedometer.defaultProps = {
+    value: 0,
+    minValue: 0,
+    maxValue: 1000,
+
+    width: 300,
+    height: 300,
+    fluidWidth: false,
+
+    // segments to show in the speedometer
+    segments: 5,
+
+    // color strings
+    needleColor: "steelblue",
+    startColor: "#FF471A",
+    endColor: "#33CC33",
+
+    // needle transition type and duration
+    needleTransition: "easeQuadInOut",
+    needleTransitionDuration: 500,
+
+    ringWidth: 60
 };
 
 export default ReactSpeedometer;
