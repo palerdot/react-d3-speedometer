@@ -103,6 +103,12 @@ _This is the sample needle transition shown in the sample image_
 
 ---
 
+#### Changelog:
+
+[View Changelog](CHANGELOG.md)
+
+---
+
 #### Credits:
 `react-d3-speedometer` was started as a react port of the following d3 snippet - [http://bl.ocks.org/msqr/3202712](http://bl.ocks.org/msqr/3202712). Component template bootstrapped with [React CDK](https://github.com/storybooks/react-cdk). Also, many thanks to `d3` and `react` ecosystem contributors.
 
