@@ -37,6 +37,7 @@ import ReactSpeedometer from "react-d3-speedometer";
 | endColor | string         | "#33CC33"| Should be a valid color code - colorname, hexadecimal name or rgb value. Should be a valid input for [d3.interpolateHsl](https://github.com/d3/d3-interpolate#interpolateHsl)   |
 | needleTransition | string         | "easeQuadInOut"  | [d3-easing-identifiers](https://github.com/d3/d3-ease) - easeLinear, easeQuadIn, easeQuadOut, easeQuadInOut, easeCubicIn, easeCubicOut, easeCubicInOut, easePolyIn, easePolyOut, easePolyInOut, easeSinIn, easeSinOut, easeSinInOut, easeExpIn, easeExpOut, easeExpInOut, easeCircleIn, easeCircleOut, easeCircleInOut, easeBounceIn, easeBounceOut, easeBounceInOut, easeBackIn, easeBackOut, easeBackInOut, easeElasticIn, easeElasticOut, easeElasticInOut, easeElastic |
 | needleTransitionDuration | number         | 500     | Time in milliseconds. |
+| ringWidth | number         | 60     | Width of the speedometer ring. |
 
 ## Examples
 

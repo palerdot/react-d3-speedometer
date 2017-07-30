@@ -4,3 +4,4 @@
 
 - Make `needleTransitionDuration` configurable
 - Make `needleTransition` configurable
+- make `ringWidth` configurable
