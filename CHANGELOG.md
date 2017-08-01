@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.5
+
+- Moving to `MIT` license
+
 ## 0.1.4
 
 - Make `needleTransitionDuration` configurable
