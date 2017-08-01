@@ -117,4 +117,4 @@ _This is the needle transition used in the sample image_
 
 #### License:
 
-GPL-3.0
+[MIT](LICENSE)
