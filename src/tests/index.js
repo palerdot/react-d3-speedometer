@@ -1,28 +1,34 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
-import Button from '../index';
+import { shallow, mount, render } from 'enzyme';
+
 import { expect } from 'chai';
 import sinon from 'sinon';
+
+// import Button from '../index';
+import ReactSpeedometer from "../index"
+
 const { describe, it } = global;
 
-describe('Button', () => {
-  it('should show the given text', () => {
-    const text = 'The Text';
-    const wrapper = shallow(<Button>{text}</Button>);
-    expect(wrapper.text()).to.be.equal(text);
-  });
-
-  it('should handle the click event', () => {
-    const clickMe = sinon.stub();
-    // Here we do a JSDOM render. So, that's why we need to
-    // wrap this with a div.
-    const wrapper = mount(
-      <div>
-        <Button onClick={clickMe}>ClickMe</Button>
-      </div>
-    );
-
-    wrapper.find('button').simulate('click');
-    expect(clickMe.callCount).to.be.equal(1);
-  });
+describe("<ReactSpeedometer />", () => {
+    // test if it has the parent div component for the "svg"
+    it('should render one parent div component', () => {
+        // a wrapper that does not render the child components
+        // ref: http://airbnb.io/enzyme/
+        const wrapper = shallow(<ReactSpeedometer />);
+        expect( wrapper.find('div') ).to.have.length(1);
+    });
+    // test if we component did mount is called
+    it('componentDidMount => called once', () => {
+        // ref: http://airbnb.io/enzyme/
+        sinon.spy( ReactSpeedometer.prototype, 'componentDidMount' );
+        const wrapper = mount( <ReactSpeedometer /> );
+        // expect( wrapper.find('svg') ).to.have.length(1);
+        expect(ReactSpeedometer.prototype.componentDidMount.calledOnce).to.equal(true);
+    });
+    // test if we have the 'svg.gauge'
+    it('svg.gauge is present', () => {
+        // ref: http://airbnb.io/enzyme/
+        const full_dom_wrapper = mount( <ReactSpeedometer /> ).render();
+        expect( full_dom_wrapper.find('svg.gauge').length ).to.equal(1);
+    });
 });

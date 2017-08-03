@@ -4,11 +4,11 @@ import infoAddon, { setDefaults } from '@storybook/addon-info';
 
 // addon-info
 setDefaults({
-  inline: true,
-  maxPropsIntoLine: 1,
-  maxPropObjectKeys: 10,
-  maxPropArrayLength: 10,
-  maxPropStringLength: 100,
+    inline: true,
+    maxPropsIntoLine: 1,
+    maxPropObjectKeys: 10,
+    maxPropArrayLength: 10,
+    maxPropStringLength: 100,
 });
 
 // set the info addon for storybook!

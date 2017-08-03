@@ -99,7 +99,7 @@ _This is the needle transition used in the sample image_
 
 ### Todos:
 
-- [ ] Test coverage
+- [*] Basic Test coverage (with enzyme)
 - [ ] Convert entire code base to ES6
 
 ---

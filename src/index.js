@@ -73,7 +73,7 @@ class ReactSpeedometer extends React.Component {
         // render the gauge here
         this.renderGauge();
     };
-
+    
     render = () => {
         return (
             <div ref={ref => this.gaugeDiv = ref}>
