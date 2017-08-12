@@ -34,6 +34,7 @@ storiesOf('React d3 Speedometer', module)
                 startColor="green"
                 segments={10}
                 endColor="blue"
+                textColor="grey"
             />
         ),
         { source: true, inline: true, header: false }

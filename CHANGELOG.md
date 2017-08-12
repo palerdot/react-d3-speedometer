@@ -1,5 +1,8 @@
 # Change Log
 
+## 0.1.8
+- configuring 'textColor'
+
 ## 0.1.7
 - Basic test coverage using enzyme
 

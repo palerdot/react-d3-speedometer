@@ -160,7 +160,9 @@ class ReactSpeedometer extends React.Component {
                             ),
                 // needle configuration
                 needleTransition: PROPS.needleTransition,
-                needleTransitionDuration: PROPS.needleTransitionDuration
+                needleTransitionDuration: PROPS.needleTransitionDuration,
+                // text color
+                textColor: PROPS.textColor
             };
             // END: Configurable values
 
@@ -279,17 +281,19 @@ class ReactSpeedometer extends React.Component {
                     .style("text-anchor", "middle")
                     .style("font-size", "14px")
                     .style("font-weight", "bold")
-                    .style("fill", "#666");
+                    // .style("fill", "#666");
+                    .style("fill", config.textColor);
 
                 // save current value reference
                 self._d3_refs.current_value_text = svg.append("g")
                     .attr("transform","translate(" + config.width/2 + "," + (config.width/2) * 1.11 + ")")
-                    .append("text")
+                        .append("text")
                     .attr("text-anchor", "middle")
                     .text( config.currentValue || "" )
                     .style("font-size", "16px")
                     .style("font-weight", "bold")
-                    .style("fill", "#666");
+                    // .style("fill", "#666");
+                    .style("fill", config.textColor);
 
 
                 var lineData = [
@@ -528,7 +532,8 @@ ReactSpeedometer.propTypes = {
     needleTransition: PropTypes.string.isRequired,
     needleTransitionDuration: PropTypes.number.isRequired,
 
-    ringWidth: PropTypes.number.isRequired
+    ringWidth: PropTypes.number.isRequired,
+    textColor: PropTypes.string.isRequired
 };
 
 // define the default proptypes
@@ -553,7 +558,10 @@ ReactSpeedometer.defaultProps = {
     needleTransition: "easeQuadInOut",
     needleTransitionDuration: 500,
 
-    ringWidth: 60
+    ringWidth: 60,
+
+    // text color (for both showing current value and segment values)
+    textColor: "#666"
 };
 
 export default ReactSpeedometer;
