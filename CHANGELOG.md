@@ -1,7 +1,10 @@
 # Change Log
 
+## 0.1.9
+- new test case for checking number of segments
+
 ## 0.1.8
-- configuring 'textColor'
+- configuring `textColor`
 
 ## 0.1.7
 - Basic test coverage using enzyme

@@ -40,7 +40,7 @@ import ReactSpeedometer from "react-d3-speedometer";
 | needleTransition | string         | easeQuadInOut | [d3-easing-identifiers](https://github.com/d3/d3-ease) - easeLinear, easeQuadIn, easeQuadOut, easeQuadInOut, easeCubicIn, easeCubicOut, easeCubicInOut, easePolyIn, easePolyOut, easePolyInOut, easeSinIn, easeSinOut, easeSinInOut, easeExpIn, easeExpOut, easeExpInOut, easeCircleIn, easeCircleOut, easeCircleInOut, easeBounceIn, easeBounceOut, easeBounceInOut, easeBackIn, easeBackOut, easeBackInOut, easeElasticIn, easeElasticOut, easeElasticInOut, easeElastic |
 | needleTransitionDuration | number         | 500     | Time in milliseconds. |
 | ringWidth | number         | 60     | Width of the speedometer ring. |
-| textColor | string         | "#666"     | Should be a valid color code - colorname, hexadecimal name or rgb value. Used for both showing the current value and the segment values |
+| textColor | string         | #666     | Should be a valid color code - colorname, hexadecimal name or rgb value. Used for both showing the current value and the segment values |
 
 ## Examples
 
@@ -102,8 +102,20 @@ _This is the needle transition used in the sample image_
 
 ### Todos:
 
-- [x] Basic Test coverage (with enzyme)
+- [x] Test coverage (with enzyme)
 - [ ] Convert entire code base to ES6
+
+---
+
+### Tests:
+
+`react-d3-speedometer` comes with a test suite using [enzyme](https://github.com/airbnb/enzyme).
+
+```javascript
+// navigate to root folder and run
+npm test
+// or 'yarn test' if you are using yarn
+```
 
 ---
 

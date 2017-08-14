@@ -246,7 +246,9 @@ class ReactSpeedometer extends React.Component {
                 // svg = d3.select(container)
                 svg = d3Select( container )
                         .append('svg:svg')
-                        .attr('class', 'gauge')
+                        // .attr('class', 'gauge')
+                        // adding class 'speedometer' for the main svg holder
+                        .attr('class', 'speedometer')
                         .attr('width', config.width)
                         .attr('height', config.height);
 
@@ -258,7 +260,9 @@ class ReactSpeedometer extends React.Component {
 
                 arcs.selectAll('path')
                         .data(tickData)
-                            .enter().append('path')
+                            .enter()
+                        .append('path')
+                        .attr('class', 'speedo-segment')
                         .attr('fill', function(d, i) {
                             return config.arcColorFn(d * i);
                         })
