@@ -41,4 +41,10 @@ describe("<ReactSpeedometer />", () => {
         expect( full_dom_wrapper.find('path.speedo-segment').length ).to.equal(5);
     });
 
+    // check the text color of the current value is the default (#666)
+    it('should have the default text color for current value', () => {
+        const full_dom_wrapper = mount( <ReactSpeedometer /> ).render();
+        expect( full_dom_wrapper.find('text.current-value').css("fill") ).to.equal("#666");
+    });
+
 });

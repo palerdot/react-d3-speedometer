@@ -1,5 +1,8 @@
 # Change Log
 
+## 0.1.10
+- new test case for validating default color
+
 ## 0.1.9
 - new test case for checking number of segments
 

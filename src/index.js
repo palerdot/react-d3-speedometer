@@ -281,6 +281,8 @@ class ReactSpeedometer extends React.Component {
                         return 'rotate(' + newAngle + ') translate(0,' + (config.labelInset - r) + ')';
                     })
                     .text(config.labelFormat)
+                    // add class for text label
+                    .attr('class', 'segment-value')
                     // styling stuffs
                     .style("text-anchor", "middle")
                     .style("font-size", "14px")
@@ -292,6 +294,8 @@ class ReactSpeedometer extends React.Component {
                 self._d3_refs.current_value_text = svg.append("g")
                     .attr("transform","translate(" + config.width/2 + "," + (config.width/2) * 1.11 + ")")
                         .append("text")
+                    // add class for the text
+                    .attr("class", 'current-value')
                     .attr("text-anchor", "middle")
                     .text( config.currentValue || "" )
                     .style("font-size", "16px")
