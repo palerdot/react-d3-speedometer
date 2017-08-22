@@ -47,4 +47,14 @@ describe("<ReactSpeedometer />", () => {
         expect( full_dom_wrapper.find('text.current-value').css("fill") ).to.equal("#666");
     });
 
+    // should take the color given by us in 'textColor'
+    it('should have the text color given by us => steelblue ', () => {
+        const full_dom_wrapper = mount( 
+                                    <ReactSpeedometer 
+                                        textColor="steelblue"
+                                    /> 
+                                ).render();
+        expect( full_dom_wrapper.find('text.current-value').css("fill") ).to.equal("steelblue");
+    });    
+
 });
