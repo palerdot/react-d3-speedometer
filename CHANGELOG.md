@@ -1,5 +1,8 @@
 # Change Log
 
+## 0.1.11
+- new test case for custom `textColor` prop
+
 ## 0.1.10
 - new test case for validating default color
 
