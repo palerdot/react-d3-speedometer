@@ -1,6 +1,8 @@
 import React from 'react';
 import { storiesOf, action, setAddon } from '@kadira/storybook';
 import infoAddon, { setDefaults } from '@storybook/addon-info';
+// knobs for showing dynamic props
+// import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
 // addon-info
 setDefaults({
@@ -18,7 +20,10 @@ import ReactSpeedometer from '../index';
 // NOTE: switch to dist for checking production version
 // import ReactSpeedometer from '../../dist/index';
 
-storiesOf('React d3 Speedometer', module)
+storiesOf('react-d3-speedometer', module)
+    // Add the `withKnobs` decorator to add knobs support to your stories.
+    // You can also configure `withKnobs` as a global decorator.
+    // .addDecorator(withKnobs)
     // default view with no configuration
     .add('Default with no config', () => (
         <ReactSpeedometer />
@@ -69,6 +74,14 @@ storiesOf('React d3 Speedometer', module)
                 needleTransitionDuration={4000}
                 needleTransition="easeElastic"
             />
+        ),
+        { source: true, inline: true, header: false }
+    )
+    // knobs for demonstrating force render
+    .addWithInfo(
+        'forceRender the speedometer on props change',
+        () => (
+            <ReactSpeedometer />
         ),
         { source: true, inline: true, header: false }
     );

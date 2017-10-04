@@ -55,6 +55,31 @@ describe("<ReactSpeedometer />", () => {
                                     /> 
                                 ).render();
         expect( full_dom_wrapper.find('text.current-value').css("fill") ).to.equal("steelblue");
+    });
+
+    // make sure 'componentDidUpdate' is called
+    it('should call componentDidUpdate', () => {
+        const full_dom_wrapper = mount( <ReactSpeedometer /> );
+        const spy = sinon.spy(ReactSpeedometer.prototype, 'componentDidUpdate');
+        // set some props
+        full_dom_wrapper.setProps({
+            segments: 11
+        });
+        // check if 'componentDidUpdate' gets called
+        expect( spy.calledOnce ).to.equal(true);
+    });
+
+    // if force render is present, it should re render the whole component
+    it('should rerender the whole component when "forceRender: true" ', () => {
+        const full_dom_wrapper = mount( <ReactSpeedometer /> );
+        expect( full_dom_wrapper.render().find('path.speedo-segment').length ).to.equal(5);
+        // change the props and give 'rerender' true
+        full_dom_wrapper.setProps({
+            segments: 10,
+            // set force render to true so that we should get 10 segments
+            forceRender: true
+        });
+        expect( full_dom_wrapper.render().find('path.speedo-segment').length ).to.equal(10);
     });    
 
 });

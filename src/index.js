@@ -102,8 +102,13 @@ class ReactSpeedometer extends React.Component {
     }
 
     componentDidUpdate() {
-        // on update; just update the readings; rendering already done
-        this.updateReadings();
+        // on update, check if 'forceRender' option is present;
+        if (this.props.forceRender) {
+            this.renderGauge();
+        } else {
+            // let us just animate the value of the speedometer
+            this.updateReadings();    
+        }
     }
 
     getGauge () {
@@ -524,6 +529,10 @@ ReactSpeedometer.propTypes = {
     minValue: PropTypes.number.isRequired,
     maxValue: PropTypes.number.isRequired,
 
+    // tracks if the component should update as the whole or just animate the value
+    // default will just animate the value after initialization/mounting
+    forceRender: PropTypes.bool.isRequired,
+
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
     fluidWidth: PropTypes.bool.isRequired,
@@ -549,6 +558,8 @@ ReactSpeedometer.defaultProps = {
     value: 0,
     minValue: 0,
     maxValue: 1000,
+
+    forceRender: false,
 
     width: 300,
     height: 300,
