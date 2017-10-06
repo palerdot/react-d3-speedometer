@@ -56,7 +56,11 @@ class SpeedoButton extends React.Component {
     render() {
         return(
             <div>
-                <h4>Click the below button to force rerendering the whole component on props change. By default, only the speedometer value/needle value will be updated and animated for smooth visualization. Below button will toggle between two sets of totally different appearances.</h4>
+                <h4>
+                    Click the below button to force rerendering the whole component on props change. 
+                    By default, on props change, only the speedometer value/needle value will be updated and animated for smooth visualization. 
+                    Below button will toggle between two sets of totally different appearances, when forceRender option is given true.
+                </h4>
 
                 <button onClick={ () => {
                     // change the toggle status

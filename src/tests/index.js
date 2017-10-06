@@ -80,6 +80,14 @@ describe("<ReactSpeedometer />", () => {
             forceRender: true
         });
         expect( full_dom_wrapper.render().find('path.speedo-segment').length ).to.equal(10);
+        // now change the forceRender option to false
+        full_dom_wrapper.setProps({
+            segments: 15,
+            // set force render to true so that we should get 10 segments
+            forceRender: false
+        });
+        // the segments should remain in 10
+        expect( full_dom_wrapper.render().find('path.speedo-segment').length ).to.equal(10);
     });    
 
 });
