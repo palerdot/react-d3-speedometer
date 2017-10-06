@@ -1,5 +1,8 @@
 # Change Log
 
+# 0.2.0
+- `forceRender` config option, to rerender the whole component on props change. Previously, only the values are updated and animated.
+
 ## 0.1.11
 - new test case for custom `textColor` prop
 

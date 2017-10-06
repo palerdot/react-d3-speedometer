@@ -31,6 +31,7 @@ import ReactSpeedometer from "react-d3-speedometer";
 | minValue    | number         | 0        |          |
 | maxValue    | number         | 1000     |          |
 | segments    | number         | 5        | Number of segments in the speedometer         |
+| forceRender | boolean        | false    | After initial rendering/mounting, when props change, only the `value` is changed and animated to maintain smooth visualization. But, if you want to force rerender the whole component like change in segments, colors, dimensions etc, you can use this option to force rerender of the whole component on props change.         |
 | width       | number         | 300      | **diameter** of the speedometer and the **width** of the svg element |
 | height      | number         | 300      | height of the svg element. Height of the speedometer is always half the width since it is a **semi-circle**. For fluid width, please refere to `fluidWidth` config |
 | fluidWidth  | boolean        | false    | If `true` takes the width of the parent component. See [Live Example](http://palerdot.in/react-d3-speedometer/?selectedKind=React%20d3%20Speedometer&selectedStory=Fluid%20Width%20view&full=0&down=0&left=1&panelRight=0&downPanel=kadirahq%2Fstorybook-addon-actions%2Factions-panel) for more details |
@@ -97,6 +98,28 @@ You can view [Live Examples here](http://palerdot.in/react-d3-speedometer/?selec
 ```
 
 _This is the needle transition used in the sample image_
+
+##### Force Render component on props change - [Live Example](http://palerdot.in/react-d3-speedometer/?selectedKind=react-d3-speedometer&selectedStory=force%20render%20the%20component&full=0&down=1&left=1&panelRight=0)
+
+```javascript
+// By default, when props change, only the value prop is updated and animated. 
+// This is to maintain smooth visualization and to ignore breaking appearance changes like segments, colors etc. 
+// You can override this behaviour by giving forceRender: true
+
+// render a component initially
+<ReactSpeedometer
+  width={200}
+  height={200}
+/>
+// Now, if given forceRender: true, and change the appearance all together, the component will rerender completely on props change
+<ReactSpeedometer
+  forceRender={true}
+  segments={15}
+  width={500}
+  height={500}
+/>
+```
+
 
 ---
 
