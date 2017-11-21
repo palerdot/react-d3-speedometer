@@ -91,6 +91,7 @@ storiesOf('react-d3-speedometer', module)
     // Add the `withKnobs` decorator to add knobs support to your stories.
     // You can also configure `withKnobs` as a global decorator.
     // .addDecorator(withKnobs)
+    
     // default view with no configuration
     .add('Default with no config', () => (
         <ReactSpeedometer />
