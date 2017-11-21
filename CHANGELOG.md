@@ -1,6 +1,9 @@
 # Change Log
 
-# 0.2.0
+## 0.2.1
+- Tweaked the positioning of current value element to be below 22 points so that it is legible in smaller speedometers.
+
+## 0.2.0
 - `forceRender` config option, to rerender the whole component on props change. Previously, only the values are updated and animated.
 
 ## 0.1.11
