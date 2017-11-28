@@ -88,6 +88,27 @@ describe("<ReactSpeedometer />", () => {
         });
         // the segments should remain in 10
         expect( full_dom_wrapper.render().find('path.speedo-segment').length ).to.equal(10);
+    });
+
+    // check the format of the values
+    it('should display the format of the values correctly', () => {
+        // checking the default value
+        const full_dom_wrapper = mount( 
+                                    <ReactSpeedometer
+                                        value={0}
+                                    /> 
+                                );
+        expect( full_dom_wrapper.render().find('text.current-value').text() ).to.equal("0");
+        // setting label format to "d" and verifying the resulting value
+        let passed_value = 477.7,
+            transformed_value = "478";
+        // change the props
+        full_dom_wrapper.setProps({
+            value: passed_value,
+            valueFormat: "d"
+        });
+        // test if the formatting reflects the expected value
+        expect( full_dom_wrapper.render().find('text.current-value').text() ).to.equal(transformed_value);
     });    
 
 });

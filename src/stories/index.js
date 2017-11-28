@@ -152,5 +152,20 @@ storiesOf('react-d3-speedometer', module)
                 <SpeedoButton />
             )
         } )
+    )
+    // configuring format of the value
+    .add('Configuring the format for values displayed',
+        withInfo({
+            source: true,
+            text: "converting decimal to integer using 'd' identifier of 'd3 format'. For more details on formatting, please refer - https://github.com/d3/d3-format#locale_format",
+            inline: true,
+            header: false
+        })( () => (
+            <ReactSpeedometer
+                maxValue={150}
+                value={70.7}
+                valueFormat={"d"}
+            />
+        ) )
     );
 

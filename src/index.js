@@ -133,8 +133,7 @@ class ReactSpeedometer extends React.Component {
 
                 minAngle: -90,
                 maxAngle: 90,
-                
-                labelFormat: d3Format('d'),
+
                 labelInset: 10,
 
                 // calculate the ReactSpeedometer 'parentNode' width/height; it might be used if fluidWidth: true
@@ -167,7 +166,9 @@ class ReactSpeedometer extends React.Component {
                 needleTransition: PROPS.needleTransition,
                 needleTransitionDuration: PROPS.needleTransitionDuration,
                 // text color
-                textColor: PROPS.textColor
+                textColor: PROPS.textColor,
+                // label format
+                labelFormat: d3Format( PROPS.valueFormat )
             };
             // END: Configurable values
 
@@ -341,7 +342,6 @@ class ReactSpeedometer extends React.Component {
 
 
             function update (newValue) {
-
                 var ratio = scale(newValue);
 
                 var newAngle = config.minAngle + (ratio * range);
@@ -360,12 +360,15 @@ class ReactSpeedometer extends React.Component {
             // configure for first time !?
             configure();
 
-            // return a object with all our functions
+            // return a object with all our functions; 
+            // also expose the 'config' object; for now, we will update the 'labelFormat' while updating
             return {
                 configure: configure,
                 isRendered: isRendered,
                 render: render,
-                update: update
+                update: update,
+                // exposing the config object
+                config: config
             };
         };
     };
@@ -386,6 +389,8 @@ class ReactSpeedometer extends React.Component {
     };
 
     updateReadings () {
+        // refresh the config of 'labelFormat'
+        this._d3_refs.powerGauge.config.labelFormat = d3Format( this.props.valueFormat || "" );
         // updates the readings of the gauge with the current prop value
         // animates between old prop value and current prop value
         this._d3_refs.powerGauge.update( this.props.value || 0 );
@@ -552,7 +557,10 @@ ReactSpeedometer.propTypes = {
     needleTransitionDuration: PropTypes.number.isRequired,
 
     ringWidth: PropTypes.number.isRequired,
-    textColor: PropTypes.string.isRequired
+    textColor: PropTypes.string.isRequired,
+
+    // d3 format identifier is generally a string; default "" (empty string)
+    valueFormat: PropTypes.string.isRequired
 };
 
 // define the default proptypes
@@ -582,7 +590,11 @@ ReactSpeedometer.defaultProps = {
     ringWidth: 60,
 
     // text color (for both showing current value and segment values)
-    textColor: "#666"
+    textColor: "#666",
+
+    // label format => https://github.com/d3/d3-format
+    // by default ""; takes valid input for d3 format
+    valueFormat: ""
 };
 
 export default ReactSpeedometer;

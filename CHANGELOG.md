@@ -1,5 +1,8 @@
 # Change Log
 
+## 0.2.2
+- `valueFormat` option for formatting the values. Should be a valid input for - https://github.com/d3/d3-format#locale_format
+
 ## 0.2.1
 - Tweaked the positioning of current value element to be 23 points below so that it is legible in smaller speedometers.
 
