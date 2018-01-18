@@ -1,5 +1,8 @@
 # Change Log
 
+## 0.2.3
+- `currentValueText` configuration to display custom current value text.
+
 ## 0.2.2
 - `valueFormat` option for formatting the values. Should be a valid input for - https://github.com/d3/d3-format#locale_format
 
