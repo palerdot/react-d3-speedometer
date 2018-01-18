@@ -168,7 +168,9 @@ class ReactSpeedometer extends React.Component {
                 // text color
                 textColor: PROPS.textColor,
                 // label format
-                labelFormat: d3Format( PROPS.valueFormat )
+                labelFormat: d3Format( PROPS.valueFormat ),
+                // value text string (template string)
+                currentValueText: PROPS.currentValueText
             };
             // END: Configurable values
 
@@ -305,7 +307,8 @@ class ReactSpeedometer extends React.Component {
                     .attr("text-anchor", "middle")
                     // position the text 23pt below
                     .attr("y", 23)
-                    .text( config.currentValue || "" )
+                        // add text
+                        .text( config.currentValue || "" )
                     .style("font-size", "16px")
                     .style("font-weight", "bold")
                     // .style("fill", "#666");
@@ -339,7 +342,18 @@ class ReactSpeedometer extends React.Component {
                 update(newValue === undefined ? 0 : newValue);
             }
 
-
+            // formats current value
+            // ref: https://stackoverflow.com/a/29771751/1410291
+            function formatCurrentValueText(currentValue) {
+                let value = config.labelFormat(currentValue);
+                // ref: https://stackoverflow.com/a/29771751/1410291
+                function assemble(literal, params) {
+                    // ref: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function
+                    return new Function(params, "return `"+literal+"`;");
+                }
+                var template = assemble(config.currentValueText, "value");
+                return template(value);
+            }
 
             function update (newValue) {
                 var ratio = scale(newValue);
@@ -353,7 +367,8 @@ class ReactSpeedometer extends React.Component {
                     // .ease( d3EaseElastic )
                     .attr('transform', 'rotate(' + newAngle + ')');
                 // update the current value
-                self._d3_refs.current_value_text.text( config.labelFormat( newValue ) );
+                // self._d3_refs.current_value_text.text( config.labelFormat( newValue ) );
+                self._d3_refs.current_value_text.text( formatCurrentValueText(newValue) );
             }
 
 
@@ -391,6 +406,8 @@ class ReactSpeedometer extends React.Component {
     updateReadings () {
         // refresh the config of 'labelFormat'
         this._d3_refs.powerGauge.config.labelFormat = d3Format( this.props.valueFormat || "" );
+        // refresh the current value text
+        this._d3_refs.powerGauge.config.currentValueText = this.props.currentValueText || "${value}";
         // updates the readings of the gauge with the current prop value
         // animates between old prop value and current prop value
         this._d3_refs.powerGauge.update( this.props.value || 0 );
@@ -560,7 +577,9 @@ ReactSpeedometer.propTypes = {
     textColor: PropTypes.string.isRequired,
 
     // d3 format identifier is generally a string; default "" (empty string)
-    valueFormat: PropTypes.string.isRequired
+    valueFormat: PropTypes.string.isRequired,
+    // value text format
+    currentValueText: PropTypes.string.isRequired
 };
 
 // define the default proptypes
@@ -594,7 +613,11 @@ ReactSpeedometer.defaultProps = {
 
     // label format => https://github.com/d3/d3-format
     // by default ""; takes valid input for d3 format
-    valueFormat: ""
+    valueFormat: "",
+
+    // value text string format; by default it just shows the value
+    // takes es6 template string as input with a default ${value}
+    currentValueText: "${value}"
 };
 
 export default ReactSpeedometer;

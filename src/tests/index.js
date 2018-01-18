@@ -109,6 +109,25 @@ describe("<ReactSpeedometer />", () => {
         });
         // test if the formatting reflects the expected value
         expect( full_dom_wrapper.render().find('text.current-value').text() ).to.equal(transformed_value);
-    });    
+    });
+
+    // check the custom value text
+    it('should display custom current text value', () => {
+        // checking the default value
+        const full_dom_wrapper = mount( 
+                                    <ReactSpeedometer
+                                        value={333}
+                                        currentValueText={"Porumai: ${value}"}
+                                    /> 
+                                );
+        expect( full_dom_wrapper.render().find('text.current-value').text() ).to.equal("Porumai: 333");
+        // change props to another text
+        full_dom_wrapper.setProps({
+            value: 555,
+            currentValueText: "Current Value: ${value}"
+        });
+        // test current value text reflects our new props
+        expect( full_dom_wrapper.render().find('text.current-value').text() ).to.equal("Current Value: 555");
+    })
 
 });

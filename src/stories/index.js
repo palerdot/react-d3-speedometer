@@ -167,5 +167,20 @@ storiesOf('react-d3-speedometer', module)
                 valueFormat={"d"}
             />
         ) )
-    );
+    )
+    // custom value text
+    .addWithInfo(
+        'Custom Current Value Text',
+        () => (
+            <ReactSpeedometer
+                value={333}
+                needleColor="steelblue"
+                needleTransitionDuration={4000}
+                needleTransition="easeElastic"
+                currentValueText="Current Value: ${value}"
+            />
+        ),
+        { source: true, inline: true, header: false }
+    )
+    ;
 
