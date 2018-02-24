@@ -1,4 +1,10 @@
 import React from 'react';
+
+// ref: https://github.com/airbnb/enzyme/blob/master/docs/guides/migration-from-2-to-3.md
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+Enzyme.configure({ adapter: new Adapter() });
+
 import { shallow, mount, render } from 'enzyme';
 
 import { expect } from 'chai';
@@ -15,7 +21,9 @@ describe("<ReactSpeedometer />", () => {
     it('should render one parent div component', () => {
         // a wrapper that does not render the child components
         // ref: http://airbnb.io/enzyme/
-        const wrapper = shallow(<ReactSpeedometer />);
+        // const wrapper = shallow(<ReactSpeedometer />);
+        // ref: VERSION 3 API change - https://github.com/airbnb/enzyme/blob/master/docs/guides/migration-from-2-to-3.md#lifecycle-methods
+        const wrapper = shallow(<ReactSpeedometer />, { disableLifecycleMethods: true });
         expect( wrapper.find('div') ).to.have.length(1);
     });
 
