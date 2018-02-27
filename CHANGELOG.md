@@ -1,5 +1,8 @@
 # Change Log
 
+## 0.3.0
+- `REACT 16` updating react version to 16, along with enzyme to version 3.
+
 ## 0.2.3
 - `currentValueText` configuration to display custom current value text.
 
