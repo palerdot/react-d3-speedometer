@@ -349,7 +349,9 @@ class ReactSpeedometer extends React.Component {
                 // simply replace ${value} with value to support IE9/10/11
                 return config.currentValueText.replace('${value}', value);
 
-                // NOTE: not using template string to support IE11
+                // NOTE: not using template string to support IE 9/10/11
+                // ref: https://caniuse.com/#feat=template-literals
+                
                 // if needed, maybe we can later add some polyfill support
                 // ref: https://stackoverflow.com/a/29771751/1410291
                 function assemble(literal, params) {
