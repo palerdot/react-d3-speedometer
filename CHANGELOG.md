@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.3.2
+- Using simple string replace for `currentValueText` instead of template literal for better support for IE - https://caniuse.com/#feat=template-literals
+
+## 0.3.1
+- updating `peerDependencies` with `React 16` 
+
 ## 0.3.0
 - `REACT 16` updating react version to 16, along with enzyme to version 3.
 
