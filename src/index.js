@@ -346,6 +346,11 @@ class ReactSpeedometer extends React.Component {
             // ref: https://stackoverflow.com/a/29771751/1410291
             function formatCurrentValueText(currentValue) {
                 let value = config.labelFormat(currentValue);
+                // simply replace ${value} with value to support IE9/10/11
+                return config.currentValueText.replace('${value}', value);
+
+                // NOTE: not using template string to support IE11
+                // if needed, maybe we can later add some polyfill support
                 // ref: https://stackoverflow.com/a/29771751/1410291
                 function assemble(literal, params) {
                     // ref: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function
