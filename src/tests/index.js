@@ -136,6 +136,12 @@ describe("<ReactSpeedometer />", () => {
         });
         // test current value text reflects our new props
         expect( full_dom_wrapper.render().find('text.current-value').text() ).to.equal("Current Value: 555");
-    })
+    });
+
+    // it should not break on invalid needle transition
+    it('should not break on invalid needle transition', () => {
+        const full_dom_wrapper = mount( <ReactSpeedometer needleTransition="porumaiTransition" /> );
+        expect( full_dom_wrapper.render().find('path.speedo-segment').length ).to.equal(5);
+    });
 
 });

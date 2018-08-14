@@ -339,7 +339,9 @@ class ReactSpeedometer extends React.Component {
                                             .attr('d', pointerLine )
                                             .attr('transform', 'rotate(' + config.minAngle + ')');
 
-                update(newValue === undefined ? 0 : newValue);
+                // TODO: no need to update inside render; 
+                // we will explicitly call 'update' method when needed to update
+                // update(newValue === undefined ? 0 : newValue);
             }
 
             // formats current value
@@ -396,7 +398,7 @@ class ReactSpeedometer extends React.Component {
     };
 
     renderGauge () {
-        console.log("rendering gauge ");
+        // console.log("rendering gauge ");
         // before rendering remove the existing gauge?
         // d3.select( this.gaugeDiv )
         d3Select( this.gaugeDiv )
@@ -423,7 +425,6 @@ class ReactSpeedometer extends React.Component {
     // takes a 'transition string' and returns a d3 transition method
     // default is easeLinear
     getTransitionMethod (transition) {
-
         switch (transition) {
             // ease linear
             case "easeLinear":
@@ -541,10 +542,15 @@ class ReactSpeedometer extends React.Component {
             case "easeElastic":
                 return d3EaseElastic;
                 break;
-
             // ease elastic transition
             case "easeElastic":
                 return d3EaseElastic; 
+                break;
+
+            // if not a valid transition; throw a warning and return the default transition
+            default:
+                console.warn("Invalid needle transition '", transition, "'. Switching to default transition 'easeQuadInOut'");
+                return d3EaseQuadInOut;
                 break;
         };
 
