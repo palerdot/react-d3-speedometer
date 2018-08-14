@@ -1,5 +1,8 @@
 # Change Log
 
+## 0.3.3
+- Handling invalid `needleTransition` prop. Switching to default `easeQuadInOut` by throwing a warning.
+
 ## 0.3.2
 - Using simple string replace for `currentValueText` instead of template literal for better support for IE - https://caniuse.com/#feat=template-literals
 
