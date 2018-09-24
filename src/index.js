@@ -220,6 +220,11 @@ class ReactSpeedometer extends React.Component {
                             .domain([config.minValue, config.maxValue]);
 
                 ticks = scale.ticks(config.majorTicks);
+                
+                if(config.majorTicks === 1) {
+                    ticks = [0,config.maxValue]
+                }
+
                 // tickData = d3.range(config.majorTicks)
                 tickData = d3Range(config.majorTicks)
                                 .map(function() {
