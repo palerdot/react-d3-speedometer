@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.4.0
+- Bumped d3 version to 5.x
+- Handled buggy `d3-scale` behaviour (https://github.com/d3/d3-scale/issues/149). Fixes https://github.com/palerdot/react-d3-speedometer/issues/27
+
 ## 0.3.3
 - Handling invalid `needleTransition` prop. Switching to default `easeQuadInOut` by throwing a warning.
 
