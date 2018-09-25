@@ -87,7 +87,8 @@ class SpeedoButton extends React.Component {
     }
 }
 
-class SpeedoButtons extends React.Component {
+// create multiple speedometers
+class MultiSpeedoMeters extends React.Component {
 
     constructor(props) {
         super(props);
@@ -311,7 +312,7 @@ storiesOf('react-d3-speedometer', module)
     .add('force render multiple Speedometer with a single segment',
         withInfo({ source: false, text: 'Usage: &lt;ReactSpeedometer forceRender={true} /&gt;', inline: true, header: false })(() => {
             return (
-                <SpeedoButtons />
+                <MultiSpeedoMeters />
             )
         })
     )

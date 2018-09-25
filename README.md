@@ -155,6 +155,9 @@ npm test
 
 ---
 
+#### Contributing:
+PRs are welcome. Please create a issue/bugfix/feature branch and create an issue with your branch details. Probably I will create a similar branch in the upstream repo so that PRs can be raised against that branch instead of `master`.
+
 #### License:
 
 [MIT](LICENSE)

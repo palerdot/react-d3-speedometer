@@ -144,4 +144,31 @@ describe("<ReactSpeedometer />", () => {
         expect( full_dom_wrapper.render().find('path.speedo-segment').length ).to.equal(5);
     });
 
+    // [d3-scale][bug]: https://github.com/d3/d3-scale/issues/149
+    // [fix] should render segments correctly when multiple speedometers are rendered
+    it('should correctly show the ticks when multiple speedometers are rendered', () => {
+        const full_dom_wrapper = mount(
+                                    <div>
+                                        <div>
+                                            <ReactSpeedometer
+                                                value={10}
+                                                maxValue={200}
+                                                segments={1}
+                                            />
+                                            <ReactSpeedometer
+                                                value={10}
+                                                maxValue={40}
+                                                segments={1}
+                                            />
+                                            <ReactSpeedometer
+                                                value={10}
+                                                maxValue={30}
+                                                segments={1}
+                                            />
+                                        </div>
+                                    </div>
+                                );
+        expect( full_dom_wrapper.render().find('text.segment-value').length ).to.equal(6);
+    });
+
 });
