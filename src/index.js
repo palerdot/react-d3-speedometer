@@ -221,10 +221,10 @@ class ReactSpeedometer extends React.Component {
 
                 ticks = scale.ticks(config.majorTicks);
                 
-                // [d3-scale][bug]: https://github.com/d3/d3-scale/issues/149
-                if(config.majorTicks === 1) {
-                    // fix the buggy 'd3-scale' behaviour by manually overriding ticks
-                    ticks = [0, config.maxValue];
+                // [d3-scale][issue]: https://github.com/d3/d3-scale/issues/149
+                if(ticks.length === 1) {
+                    // we have this specific `d3 ticks` behaviour stepping in a specific way
+                    ticks = [config.minValue, config.maxValue];
                 }
 
                 // tickData = d3.range(config.majorTicks)
