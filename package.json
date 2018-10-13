@@ -25,8 +25,8 @@
   "license": "MIT",
   "scripts": {
     "prepublish": ". ./.scripts/prepublish.sh",
-    "lint": "eslint src",
-    "lintfix": "eslint src --fix",
+    "lint": "prettier -l **/src/**/*.js",
+    "lintfix": "prettier --write **/src/**/*.js",
     "testonly": "mocha --require .scripts/mocha_runner src/**/tests/**/*.js",
     "test": "npm run lint && npm run testonly",
     "test-watch": "npm run testonly -- --watch --watch-extensions js",
