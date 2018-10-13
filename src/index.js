@@ -71,7 +71,7 @@ class ReactSpeedometer extends React.Component {
   }
 
   render = () => {
-    return <div ref={ref => (this.gaugeDiv = ref)} />
+    return <div ref={(ref) => (this.gaugeDiv = ref)} />
   }
 
   componentWillReceiveProps() {
@@ -111,7 +111,7 @@ class ReactSpeedometer extends React.Component {
     // takes a container inside which we will display the speedometer
     // here container is our gaugeDiv ref
     // return function (container) {
-    return container => {
+    return (container) => {
       // default config that are 'not' configurable
       var default_config = {
         ringInset: 20,
@@ -147,10 +147,7 @@ class ReactSpeedometer extends React.Component {
         // segments in the speedometer
         majorTicks: PROPS.segments,
         // color range for the segments
-        arcColorFn: d3InterpolateHsl(
-          d3Rgb(PROPS.startColor),
-          d3Rgb(PROPS.endColor)
-        ),
+        arcColorFn: d3InterpolateHsl(d3Rgb(PROPS.startColor), d3Rgb(PROPS.endColor)),
         // needle configuration
         needleTransition: PROPS.needleTransition,
         needleTransitionDuration: PROPS.needleTransitionDuration,
@@ -281,13 +278,7 @@ class ReactSpeedometer extends React.Component {
           .attr("transform", function(d) {
             var ratio = scale(d)
             var newAngle = config.minAngle + ratio * range
-            return (
-              "rotate(" +
-              newAngle +
-              ") translate(0," +
-              (config.labelInset - r) +
-              ")"
-            )
+            return "rotate(" + newAngle + ") translate(0," + (config.labelInset - r) + ")"
           })
           .text(config.labelFormat)
           // add class for text label
@@ -302,10 +293,7 @@ class ReactSpeedometer extends React.Component {
         // save current value reference
         self._d3_refs.current_value_text = svg
           .append("g")
-          .attr(
-            "transform",
-            "translate(" + config.width / 2 + "," + config.width / 2 + ")"
-          )
+          .attr("transform", "translate(" + config.width / 2 + "," + config.width / 2 + ")")
           .append("text")
           // add class for the text
           .attr("class", "current-value")
@@ -319,13 +307,7 @@ class ReactSpeedometer extends React.Component {
           // .style("fill", "#666");
           .style("fill", config.textColor)
 
-        var lineData = [
-          [config.pointerWidth / 2, 0],
-          [0, -pointerHeadLength],
-          [-(config.pointerWidth / 2), 0],
-          [0, config.pointerTailLength],
-          [config.pointerWidth / 2, 0]
-        ]
+        var lineData = [[config.pointerWidth / 2, 0], [0, -pointerHeadLength], [-(config.pointerWidth / 2), 0], [0, config.pointerTailLength], [config.pointerWidth / 2, 0]]
 
         // var pointerLine = d3.svg.line().interpolate('monotone');
         // var pointerLine = d3.line()
@@ -421,12 +403,9 @@ class ReactSpeedometer extends React.Component {
 
   updateReadings() {
     // refresh the config of 'labelFormat'
-    this._d3_refs.powerGauge.config.labelFormat = d3Format(
-      this.props.valueFormat || ""
-    )
+    this._d3_refs.powerGauge.config.labelFormat = d3Format(this.props.valueFormat || "")
     // refresh the current value text
-    this._d3_refs.powerGauge.config.currentValueText =
-      this.props.currentValueText || "${value}"
+    this._d3_refs.powerGauge.config.currentValueText = this.props.currentValueText || "${value}"
     // updates the readings of the gauge with the current prop value
     // animates between old prop value and current prop value
     this._d3_refs.powerGauge.update(this.props.value || 0)
@@ -559,11 +538,7 @@ class ReactSpeedometer extends React.Component {
 
       // if not a valid transition; throw a warning and return the default transition
       default:
-        console.warn(
-          "Invalid needle transition '",
-          transition,
-          "'. Switching to default transition 'easeQuadInOut'"
-        )
+        console.warn("Invalid needle transition '", transition, "'. Switching to default transition 'easeQuadInOut'")
         return d3EaseQuadInOut
         break
     }

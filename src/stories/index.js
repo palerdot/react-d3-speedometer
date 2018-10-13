@@ -56,11 +56,8 @@ class SpeedoButton extends React.Component {
     return (
       <div>
         <h4>
-          Click the below button to force rerendering the whole component on
-          props change. By default, on props change, only the speedometer
-          value/needle value will be updated and animated for smooth
-          visualization. Below button will toggle between two sets of totally
-          different appearances, when forceRender option is given true.
+          Click the below button to force rerendering the whole component on props change. By default, on props change, only the speedometer value/needle value will be updated and
+          animated for smooth visualization. Below button will toggle between two sets of totally different appearances, when forceRender option is given true.
         </h4>
 
         <button
@@ -70,9 +67,7 @@ class SpeedoButton extends React.Component {
               toggleStatus: !this.state.toggleStatus
             })
             // now set the new set of values
-            let new_values = this.state.toggleStatus
-              ? this.values[0]
-              : this.values[1]
+            let new_values = this.state.toggleStatus ? this.values[0] : this.values[1]
             this.setState(new_values)
           }}
         >
@@ -152,11 +147,8 @@ class MultiSpeedoMeters extends React.Component {
     return (
       <div>
         <h4>
-          Click the below button to force rerendering the whole component on
-          props change. By default, on props change, only the speedometer
-          value/needle value will be updated and animated for smooth
-          visualization. Below button will toggle between two sets of totally
-          different appearances, when forceRender option is given true.
+          Click the below button to force rerendering the whole component on props change. By default, on props change, only the speedometer value/needle value will be updated and
+          animated for smooth visualization. Below button will toggle between two sets of totally different appearances, when forceRender option is given true.
         </h4>
 
         <button
@@ -166,9 +158,7 @@ class MultiSpeedoMeters extends React.Component {
               toggleStatus: !this.state.toggleStatus
             })
             // now set the new set of values
-            let new_values = this.state.toggleStatus
-              ? this.values[0]
-              : this.values[1]
+            let new_values = this.state.toggleStatus ? this.values[0] : this.values[1]
             this.setState(new_values)
           }}
         >
@@ -205,21 +195,11 @@ storiesOf("react-d3-speedometer", module)
   // default view with no configuration
   .add("Default with no config", () => <ReactSpeedometer />)
   // configuring values
-  .addWithInfo(
-    "Configuring values",
-    () => (
-      <ReactSpeedometer
-        maxValue={500}
-        value={473}
-        needleColor="red"
-        startColor="green"
-        segments={10}
-        endColor="blue"
-        textColor="grey"
-      />
-    ),
-    { source: true, inline: true, header: false }
-  )
+  .addWithInfo("Configuring values", () => <ReactSpeedometer maxValue={500} value={473} needleColor="red" startColor="green" segments={10} endColor="blue" textColor="grey" />, {
+    source: true,
+    inline: true,
+    header: false
+  })
   // fluid display view
   .addWithInfo(
     "Fluid Width view",
@@ -231,30 +211,17 @@ storiesOf("react-d3-speedometer", module)
           background: "#EFEFEF"
         }}
       >
-        <ReactSpeedometer
-          fluidWidth={true}
-          minValue={100}
-          maxValue={500}
-          value={473}
-          needleColor="steelblue"
-        />
+        <ReactSpeedometer fluidWidth={true} minValue={100} maxValue={500} value={473} needleColor="steelblue" />
       </div>
     ),
     { source: true, inline: true, header: false }
   )
   // needle transition duration
-  .addWithInfo(
-    "Needle Transition Duration",
-    () => (
-      <ReactSpeedometer
-        value={333}
-        needleColor="steelblue"
-        needleTransitionDuration={4000}
-        needleTransition="easeElastic"
-      />
-    ),
-    { source: true, inline: true, header: false }
-  )
+  .addWithInfo("Needle Transition Duration", () => <ReactSpeedometer value={333} needleColor="steelblue" needleTransitionDuration={4000} needleTransition="easeElastic" />, {
+    source: true,
+    inline: true,
+    header: false
+  })
   // knobs for demonstrating force render
   .add(
     "force render the component",
@@ -272,8 +239,7 @@ storiesOf("react-d3-speedometer", module)
     "Configuring the format for values displayed",
     withInfo({
       source: true,
-      text:
-        "converting decimal to integer using 'd' identifier of 'd3 format'. For more details on formatting, please refer - https://github.com/d3/d3-format#locale_format",
+      text: "converting decimal to integer using 'd' identifier of 'd3 format'. For more details on formatting, please refer - https://github.com/d3/d3-format#locale_format",
       inline: true,
       header: false
     })(() => <ReactSpeedometer maxValue={150} value={70.7} valueFormat={"d"} />)
@@ -281,15 +247,7 @@ storiesOf("react-d3-speedometer", module)
   // custom value text
   .addWithInfo(
     "Custom Current Value Text",
-    () => (
-      <ReactSpeedometer
-        value={333}
-        needleColor="steelblue"
-        needleTransitionDuration={4000}
-        needleTransition="easeElastic"
-        currentValueText="Current Value: ${value}"
-      />
-    ),
+    () => <ReactSpeedometer value={333} needleColor="steelblue" needleTransitionDuration={4000} needleTransition="easeElastic" currentValueText="Current Value: ${value}" />,
     { source: true, inline: true, header: false }
   )
   // render multiple Speedometer

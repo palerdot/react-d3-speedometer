@@ -34,9 +34,7 @@ describe("<ReactSpeedometer />", () => {
     sinon.spy(ReactSpeedometer.prototype, "componentDidMount")
     const wrapper = mount(<ReactSpeedometer />)
     // expect( wrapper.find('svg') ).to.have.length(1);
-    expect(ReactSpeedometer.prototype.componentDidMount.calledOnce).to.equal(
-      true
-    )
+    expect(ReactSpeedometer.prototype.componentDidMount.calledOnce).to.equal(true)
   })
 
   // test if we have the 'svg.speedometer'
@@ -55,19 +53,13 @@ describe("<ReactSpeedometer />", () => {
   // check the text color of the current value is the default (#666)
   it("should have the default text color for current value", () => {
     const full_dom_wrapper = mount(<ReactSpeedometer />).render()
-    expect(full_dom_wrapper.find("text.current-value").css("fill")).to.equal(
-      "#666"
-    )
+    expect(full_dom_wrapper.find("text.current-value").css("fill")).to.equal("#666")
   })
 
   // should take the color given by us in 'textColor'
   it("should have the text color given by us => steelblue ", () => {
-    const full_dom_wrapper = mount(
-      <ReactSpeedometer textColor="steelblue" />
-    ).render()
-    expect(full_dom_wrapper.find("text.current-value").css("fill")).to.equal(
-      "steelblue"
-    )
+    const full_dom_wrapper = mount(<ReactSpeedometer textColor="steelblue" />).render()
+    expect(full_dom_wrapper.find("text.current-value").css("fill")).to.equal("steelblue")
   })
 
   // make sure 'componentDidUpdate' is called
@@ -85,18 +77,14 @@ describe("<ReactSpeedometer />", () => {
   // if force render is present, it should re render the whole component
   it('should rerender the whole component when "forceRender: true" ', () => {
     const full_dom_wrapper = mount(<ReactSpeedometer />)
-    expect(
-      full_dom_wrapper.render().find("path.speedo-segment").length
-    ).to.equal(5)
+    expect(full_dom_wrapper.render().find("path.speedo-segment").length).to.equal(5)
     // change the props and give 'rerender' true
     full_dom_wrapper.setProps({
       segments: 10,
       // set force render to true so that we should get 10 segments
       forceRender: true
     })
-    expect(
-      full_dom_wrapper.render().find("path.speedo-segment").length
-    ).to.equal(10)
+    expect(full_dom_wrapper.render().find("path.speedo-segment").length).to.equal(10)
     // now change the forceRender option to false
     full_dom_wrapper.setProps({
       segments: 15,
@@ -104,9 +92,7 @@ describe("<ReactSpeedometer />", () => {
       forceRender: false
     })
     // the segments should remain in 10
-    expect(
-      full_dom_wrapper.render().find("path.speedo-segment").length
-    ).to.equal(10)
+    expect(full_dom_wrapper.render().find("path.speedo-segment").length).to.equal(10)
   })
 
   // check the format of the values
@@ -139,9 +125,7 @@ describe("<ReactSpeedometer />", () => {
   // check the custom value text
   it("should display custom current text value", () => {
     // checking the default value
-    const full_dom_wrapper = mount(
-      <ReactSpeedometer value={333} currentValueText={"Porumai: ${value}"} />
-    )
+    const full_dom_wrapper = mount(<ReactSpeedometer value={333} currentValueText={"Porumai: ${value}"} />)
     expect(
       full_dom_wrapper
         .render()
@@ -164,12 +148,8 @@ describe("<ReactSpeedometer />", () => {
 
   // it should not break on invalid needle transition
   it("should not break on invalid needle transition", () => {
-    const full_dom_wrapper = mount(
-      <ReactSpeedometer needleTransition="porumaiTransition" />
-    )
-    expect(
-      full_dom_wrapper.render().find("path.speedo-segment").length
-    ).to.equal(5)
+    const full_dom_wrapper = mount(<ReactSpeedometer needleTransition="porumaiTransition" />)
+    expect(full_dom_wrapper.render().find("path.speedo-segment").length).to.equal(5)
   })
 
   // [d3-scale][bug]: https://github.com/d3/d3-scale/issues/149
@@ -184,8 +164,6 @@ describe("<ReactSpeedometer />", () => {
         </div>
       </div>
     )
-    expect(
-      full_dom_wrapper.render().find("text.segment-value").length
-    ).to.equal(6)
+    expect(full_dom_wrapper.render().find("text.segment-value").length).to.equal(6)
   })
 })
