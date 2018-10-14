@@ -1,4 +1,4 @@
-// React port of - http://bl.ocks.org/msqr/3202712
+// React Component to show speedometer like gauge with d3
 import React from "react"
 import PropTypes from "prop-types"
 
