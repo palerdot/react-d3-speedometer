@@ -19,7 +19,7 @@
 
 ```javascript
 // import the component
-import ReactSpeedometer from "react-d3-speedometer";
+import ReactSpeedometer from "react-d3-speedometer"
 // and just use it
 <ReactSpeedometer />
 ```
@@ -60,12 +60,12 @@ You can view [Live Examples here](http://palerdot.in/react-d3-speedometer/?selec
 
 ```javascript
 <ReactSpeedometer
-    maxValue={500}
-    value={473}
-    needleColor="red"
-    startColor="green"
-    segments={10}
-    endColor="blue"
+  maxValue={500}
+  value={473}
+  needleColor="red"
+  startColor="green"
+  segments={10}
+  endColor="blue"
 />
 ```
 
@@ -75,17 +75,17 @@ You can view [Live Examples here](http://palerdot.in/react-d3-speedometer/?selec
 // Speedometer will take the width of the parent div (500)
 // any width passed will be ignored
 <div style={{
-    width: "500px",
-    height: "300px",
-    background: "#EFEFEF"
+  width: "500px",
+  height: "300px",
+  background: "#EFEFEF"
 }}>
-    <ReactSpeedometer
-        fluidWidth={true}
-        minValue={100}
-        maxValue={500}
-        value={473}
-        needleColor="steelblue"
-    />
+  <ReactSpeedometer
+    fluidWidth={true}
+    minValue={100}
+    maxValue={500}
+    value={473}
+    needleColor="steelblue"
+  />
 </div>
 ```
 
@@ -93,10 +93,10 @@ You can view [Live Examples here](http://palerdot.in/react-d3-speedometer/?selec
 
 ```javascript
 <ReactSpeedometer
-    value={333}
-    needleColor="steelblue"
-    needleTransitionDuration={4000}
-    needleTransition="easeElastic"
+  value={333}
+  needleColor="steelblue"
+  needleTransitionDuration={4000}
+  needleTransition="easeElastic"
 />
 ```
 
