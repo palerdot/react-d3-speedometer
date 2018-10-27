@@ -3,17 +3,17 @@
   "version": "0.0.2",
   "description": "React D3 Speedometer Component",
   "author": {
-    "name": "palerdot",
-    "email": "palerdot@gmail.com"
+    "name": "aobyte",
+    "email": "info@aobyte.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/palerdot/react-d3-speedometer.git"
+    "url": "https://github.com/ao-tigran/react-d3-speedometer"
   },
   "bugs": {
-    "url": "https://github.com/palerdot/react-d3-speedometer/issues"
+    "url": "https://github.com/ao-tigran/react-d3-speedometer/issues"
   },
-  "homepage": "https://github.com/palerdot/react-d3-speedometer",
+  "homepage": "https://github.com/ao-tigran/react-d3-speedometer",
   "keywords": [
     "react",
     "d3",
