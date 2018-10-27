@@ -262,7 +262,7 @@ class ReactSpeedometer extends React.Component {
           .append("path")
           .attr("class", "speedo-segment")
           .attr("fill", function(d, i) {
-            return config.arcColorFn(d * i)
+            return config.arcColorFn(d, i)
           })
           .attr("d", arc)
 
