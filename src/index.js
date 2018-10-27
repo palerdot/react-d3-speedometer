@@ -147,7 +147,7 @@ class ReactSpeedometer extends React.Component {
         // segments in the speedometer
         majorTicks: PROPS.segments,
         // color range for the segments
-        arcColorFn: d3InterpolateHsl(d3Rgb(PROPS.startColor), d3Rgb(PROPS.endColor)),
+        arcColorFn: PROPS.colorFn ? PROPS.colorFn : d3InterpolateHsl(d3Rgb(PROPS.startColor), d3Rgb(PROPS.endColor)),
         // needle configuration
         needleTransition: PROPS.needleTransition,
         needleTransitionDuration: PROPS.needleTransitionDuration,
@@ -578,7 +578,9 @@ ReactSpeedometer.propTypes = {
   // d3 format identifier is generally a string; default "" (empty string)
   valueFormat: PropTypes.string.isRequired,
   // value text format
-  currentValueText: PropTypes.string.isRequired
+  currentValueText: PropTypes.string.isRequired,
+
+  colorFn: PropTypes.func
 }
 
 // define the default proptypes
