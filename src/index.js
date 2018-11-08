@@ -114,7 +114,7 @@ class ReactSpeedometer extends React.Component {
     return (container) => {
       // default config that are 'not' configurable
       var default_config = {
-        ringInset: 20,
+        ringInset: 10,
 
         pointerWidth: 10,
         pointerTailLength: 5,
@@ -194,7 +194,7 @@ class ReactSpeedometer extends React.Component {
         range = config.maxAngle - config.minAngle
         // r = config.size / 2;
         r = config.width / 2
-        pointerHeadLength = Math.round(r * config.pointerHeadLengthPercent)
+        pointerHeadLength = Math.round((r - ringInset) * config.pointerHeadLengthPercent)
 
         // a linear scale that maps domain values to a percent from 0..1
         // scale = d3.scaleLinear()
