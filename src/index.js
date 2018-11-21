@@ -48,7 +48,7 @@ import {
 } from "d3"
 
 // import validator
-import { calculateNeedleHeight } from "./util/validators"
+import { calculateNeedleHeight } from "./util/"
 
 class ReactSpeedometer extends React.Component {
   static displayName = "ReactSpeedometer"

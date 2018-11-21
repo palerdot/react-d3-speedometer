@@ -16,7 +16,7 @@ import sinon from "sinon"
 import ReactSpeedometer from "../index"
 
 // import validators
-import { calculateNeedleHeight } from "../util/validators"
+import { calculateNeedleHeight } from "../util/"
 
 const { describe, it } = global
 
