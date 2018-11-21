@@ -8,10 +8,15 @@ Enzyme.configure({ adapter: new Adapter() })
 import { shallow, mount, render } from "enzyme"
 
 import { expect } from "chai"
+// TODO: move to jest
+// import { expect } from "jest"
 import sinon from "sinon"
 
 // import Button from '../index';
 import ReactSpeedometer from "../index"
+
+// import validators
+import { calculateNeedleHeight } from "../util/validators"
 
 const { describe, it } = global
 
@@ -165,5 +170,12 @@ describe("<ReactSpeedometer />", () => {
       </div>
     )
     expect(full_dom_wrapper.render().find("text.segment-value").length).to.equal(6)
+  })
+
+  it("should throw error on invalid needle height", () => {
+    expect(() => calculateNeedleHeight(1.1, 2)).to.throw()
+    // this one should not throw and should return some value
+    expect(() => calculateNeedleHeight(0.9, 2)).to.not.throw()
+    expect(calculateNeedleHeight(0.9, 2)).to.be.a("number")
   })
 })

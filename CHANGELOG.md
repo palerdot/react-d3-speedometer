@@ -1,5 +1,8 @@
 # Change Log
 
+## 0.4.2
+- `needleHeightRatio` for controlling the height of the needle. Takes a float between 0 and 1 and controls the height.
+
 ## 0.4.1
 - Handle `d3` ticks behaviour when we get a single tick. Refer https://github.com/d3/d3-scale/issues/149 for more info
 

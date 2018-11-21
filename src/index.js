@@ -47,6 +47,9 @@ import {
   easeElastic as d3EaseElastic
 } from "d3"
 
+// import validator
+import { calculateNeedleHeight } from "./util/validators"
+
 class ReactSpeedometer extends React.Component {
   static displayName = "ReactSpeedometer"
 
@@ -118,7 +121,7 @@ class ReactSpeedometer extends React.Component {
 
         pointerWidth: 10,
         pointerTailLength: 5,
-        pointerHeadLengthPercent: 0.9,
+        // pointerHeadLengthPercent: 0.9,
 
         minAngle: -90,
         maxAngle: 90,
@@ -151,6 +154,7 @@ class ReactSpeedometer extends React.Component {
         // needle configuration
         needleTransition: PROPS.needleTransition,
         needleTransitionDuration: PROPS.needleTransitionDuration,
+        needleHeightRatio: PROPS.needleHeightRatio,
         // text color
         textColor: PROPS.textColor,
         // label format
@@ -165,7 +169,7 @@ class ReactSpeedometer extends React.Component {
 
       var range = undefined,
         r = undefined,
-        pointerHeadLength = undefined,
+        needleLength = undefined,
         value = 0,
         svg = undefined,
         arc = undefined,
@@ -194,7 +198,9 @@ class ReactSpeedometer extends React.Component {
         range = config.maxAngle - config.minAngle
         // r = config.size / 2;
         r = config.width / 2
-        pointerHeadLength = Math.round(r * config.pointerHeadLengthPercent)
+
+        // needleLength = Math.round(r * config.needleHeightRatio)
+        needleLength = calculateNeedleHeight(config.needleHeightRatio, r)
 
         // a linear scale that maps domain values to a percent from 0..1
         // scale = d3.scaleLinear()
@@ -307,7 +313,7 @@ class ReactSpeedometer extends React.Component {
           // .style("fill", "#666");
           .style("fill", config.textColor)
 
-        var lineData = [[config.pointerWidth / 2, 0], [0, -pointerHeadLength], [-(config.pointerWidth / 2), 0], [0, config.pointerTailLength], [config.pointerWidth / 2, 0]]
+        var lineData = [[config.pointerWidth / 2, 0], [0, -needleLength], [-(config.pointerWidth / 2), 0], [0, config.pointerTailLength], [config.pointerWidth / 2, 0]]
 
         // var pointerLine = d3.svg.line().interpolate('monotone');
         // var pointerLine = d3.line()
@@ -571,6 +577,7 @@ ReactSpeedometer.propTypes = {
   // needle transition type and duration
   needleTransition: PropTypes.string.isRequired,
   needleTransitionDuration: PropTypes.number.isRequired,
+  needleHeightRatio: PropTypes.number.isRequired,
 
   ringWidth: PropTypes.number.isRequired,
   textColor: PropTypes.string.isRequired,
@@ -604,6 +611,7 @@ ReactSpeedometer.defaultProps = {
   // needle transition type and duration
   needleTransition: "easeQuadInOut",
   needleTransitionDuration: 500,
+  needleHeightRatio: 0.9,
 
   ringWidth: 60,
 

@@ -41,6 +41,7 @@ import ReactSpeedometer from "react-d3-speedometer"
 | endColor | string         |  #33CC33 | Should be a valid color code - colorname, hexadecimal name or rgb value. Should be a valid input for [d3.interpolateHsl](https://github.com/d3/d3-interpolate#interpolateHsl)   |
 | needleTransition | string         | easeQuadInOut | [d3-easing-identifiers](https://github.com/d3/d3-ease) - easeLinear, easeQuadIn, easeQuadOut, easeQuadInOut, easeCubicIn, easeCubicOut, easeCubicInOut, easePolyIn, easePolyOut, easePolyInOut, easeSinIn, easeSinOut, easeSinInOut, easeExpIn, easeExpOut, easeExpInOut, easeCircleIn, easeCircleOut, easeCircleInOut, easeBounceIn, easeBounceOut, easeBounceInOut, easeBackIn, easeBackOut, easeBackInOut, easeElasticIn, easeElasticOut, easeElasticInOut, easeElastic |
 | needleTransitionDuration | number         | 500     | Time in milliseconds. |
+| needleHeightRatio | float (between 0 and 1)         | 0.9     | Control the height of the needle by giving a number/float between `0` and `1`. Default height ratio is `0.9`.  |
 | ringWidth | number         | 60     | Width of the speedometer ring. |
 | textColor | string         | #666     | Should be a valid color code - colorname, hexadecimal name or rgb value. Used for both showing the current value and the segment values |
 | valueFormat | string       |  | should be a valid format for [d3-format](https://github.com/d3/d3-format#locale_format). By default, no formatter is used. You can use a valid d3 format identifier (for eg: `d` to convert float to integers), to format the values. **Note:** This formatter affects all the values (current value, segment values) displayed in the speedometer |
@@ -122,6 +123,17 @@ _This is the needle transition used in the sample image_
   height={500}
 />
 ```
+
+##### Needle Height Configuration Example - [Live Example](http://palerdot.in/react-d3-speedometer/?selectedKind=react-d3-speedometer&selectedStory=configure%20needle%20length&full=0&addons=1&stories=1&panelRight=0&addonPanel=storybooks%2Fstorybook-addon-knobs)
+
+```javascript
+<ReactSpeedometer
+  value={333}
+  needleHeightRatio={0.7}
+/>
+```
+
+You can give a value between `0` and `1` to control the needle height.
 
 
 ---
