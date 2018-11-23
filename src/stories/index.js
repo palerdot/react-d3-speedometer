@@ -281,5 +281,5 @@ storiesOf("react-d3-speedometer", module)
       text: "configure needle length with 'needleHeightRatio' parameter",
       inline: true,
       header: false
-    })(() => <ReactSpeedometer needleHeightRatio={0.5} />)
+    })(() => <ReactSpeedometer value={333} needleHeightRatio={0.5} />)
   )
