@@ -25,9 +25,10 @@ setDefaults({
 setAddon(infoAddon)
 
 // DEVELOPMENT
-// import ReactSpeedometer from "../index"
+import ReactSpeedometer from "../index"
 // PRODUCTION: switch to dist for checking production version
-import ReactSpeedometer from "../../dist/index"
+// import ReactSpeedometer from "../../dist/index"
+// var ReactSpeedometer = require("../../dist/index")
 
 import SpeedoButton from "./speedo-button"
 import MultiSpeedoMeters from "./multi-speedometers"

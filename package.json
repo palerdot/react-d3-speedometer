@@ -32,13 +32,17 @@
     "test-watch": "npm run testonly -- --watch --watch-extensions js",
     "storybook": "start-storybook -p 9010",
     "publish-storybook": "bash .scripts/publish_storybook.sh",
-    "try-build": "NODE_ENV=production ./node_modules/.bin/babel --ignore ./src/__tests__,./src/stories ./src --out-dir ./dist --no-comments"
+    "try-build": "NODE_ENV=production ./node_modules/.bin/babel --ignore ./src/__tests__ ./src --out-dir ./dist --no-comments"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0",
-    "@babel/core": "^7.0.0",
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/plugin-proposal-class-properties": "^7.3.4",
+    "@babel/plugin-transform-modules-commonjs": "^7.2.0",
     "@babel/plugin-transform-runtime": "^7.3.4",
     "@babel/polyfill": "^7.2.5",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
     "@storybook/addon-info": "^5.0.1",
     "@storybook/addon-knobs": "^5.0.1",
@@ -49,6 +53,7 @@
     "babel-jest": "^23.4.2",
     "babel-loader": "^8.0.5",
     "babel-minify": "^0.5.0",
+    "babel-plugin-module-resolver": "^3.2.0",
     "babel-plugin-source-map-support": "2.0.1",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "babel-preset-minify": "^0.5.0",
