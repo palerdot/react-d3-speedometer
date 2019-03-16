@@ -4,11 +4,13 @@
     ["@babel/preset-react"],
     [
       "@babel/preset-env",
-      // {
-      //   "useBuiltIns": "entry"
-      // }
+      {
+        // "useBuiltIns": "entry"
+        "modules": "commonjs"
+      }
     ],
   ],
+  "plugins": ["@babel/plugin-proposal-class-properties", "@babel/plugin-transform-modules-commonjs"],
   "env": {
     "production": {
       "plugins": [
