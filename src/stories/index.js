@@ -24,8 +24,9 @@ setDefaults({
 // set the info addon for storybook!
 setAddon(infoAddon)
 
+// DEVELOPMENT
 // import ReactSpeedometer from "../index"
-// NOTE: switch to dist for checking production version
+// PRODUCTION: switch to dist for checking production version
 import ReactSpeedometer from "../../dist/index"
 
 import SpeedoButton from "./speedo-button"
