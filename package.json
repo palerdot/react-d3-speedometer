@@ -80,6 +80,7 @@
   },
   "main": "dist/index.js",
   "engines": {
-    "npm": "^3.0.0"
+    "node": ">=8.0",
+    "npm": ">=3.0.0"
   }
 }

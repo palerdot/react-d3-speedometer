@@ -44,7 +44,7 @@ import {
   easeElasticIn as d3EaseElasticIn,
   easeElasticOut as d3EaseElasticOut,
   easeElasticInOut as d3EaseElasticInOut,
-  easeElastic as d3EaseElastic
+  easeElastic as d3EaseElastic,
 } from "d3"
 
 // import validator
@@ -58,7 +58,7 @@ class ReactSpeedometer extends React.Component {
 
     // list of d3 refs to share within the components
     this._d3_refs = {
-      powerGauge: false
+      powerGauge: false,
     }
 
     // the initial value is 0;
@@ -130,7 +130,7 @@ class ReactSpeedometer extends React.Component {
 
         // calculate the ReactSpeedometer 'parentNode' width/height; it might be used if fluidWidth: true
         parentWidth: self.gaugeDiv.parentNode.clientWidth,
-        parentHeight: self.gaugeDiv.parentNode.clientHeight
+        parentHeight: self.gaugeDiv.parentNode.clientHeight,
       }
 
       // START: Configurable values
@@ -160,7 +160,9 @@ class ReactSpeedometer extends React.Component {
         // label format
         labelFormat: d3Format(PROPS.valueFormat),
         // value text string (template string)
-        currentValueText: PROPS.currentValueText
+        currentValueText: PROPS.currentValueText,
+        // placeholder style for 'currentValue'
+        currentValueTextPlaceholderStyle: PROPS.currentValueTextPlaceholderStyle,
       }
       // END: Configurable values
 
@@ -313,7 +315,13 @@ class ReactSpeedometer extends React.Component {
           // .style("fill", "#666");
           .style("fill", config.textColor)
 
-        var lineData = [[config.pointerWidth / 2, 0], [0, -needleLength], [-(config.pointerWidth / 2), 0], [0, config.pointerTailLength], [config.pointerWidth / 2, 0]]
+        var lineData = [
+          [config.pointerWidth / 2, 0],
+          [0, -needleLength],
+          [-(config.pointerWidth / 2), 0],
+          [0, config.pointerTailLength],
+          [config.pointerWidth / 2, 0],
+        ]
 
         // var pointerLine = d3.svg.line().interpolate('monotone');
         // var pointerLine = d3.line()
@@ -342,21 +350,13 @@ class ReactSpeedometer extends React.Component {
       // formats current value
       // ref: https://stackoverflow.com/a/29771751/1410291
       function formatCurrentValueText(currentValue) {
-        let value = config.labelFormat(currentValue)
-        // simply replace ${value} with value to support IE9/10/11
-        return config.currentValueText.replace("${value}", value)
+        // get the current value
+        const value = config.labelFormat(currentValue)
+        // get the current placeholder style
+        const placeholderStyle = config.currentValueTextPlaceholderStyle
 
-        // NOTE: not using template string to support IE 9/10/11
-        // ref: https://caniuse.com/#feat=template-literals
-
-        // if needed, maybe we can later add some polyfill support
-        // ref: https://stackoverflow.com/a/29771751/1410291
-        function assemble(literal, params) {
-          // ref: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function
-          return new Function(params, "return `" + literal + "`;")
-        }
-        var template = assemble(config.currentValueText, "value")
-        return template(value)
+        // replace the placeholder style in current text
+        return config.currentValueText.replace(placeholderStyle, value)
       }
 
       function update(newValue) {
@@ -387,7 +387,7 @@ class ReactSpeedometer extends React.Component {
         render: render,
         update: update,
         // exposing the config object
-        config: config
+        config: config,
       }
     }
   }
@@ -544,7 +544,11 @@ class ReactSpeedometer extends React.Component {
 
       // if not a valid transition; throw a warning and return the default transition
       default:
-        console.warn("Invalid needle transition '", transition, "'. Switching to default transition 'easeQuadInOut'")
+        console.warn(
+          "Invalid needle transition '",
+          transition,
+          "'. Switching to default transition 'easeQuadInOut'"
+        )
         return d3EaseQuadInOut
         break
     }
@@ -585,7 +589,9 @@ ReactSpeedometer.propTypes = {
   // d3 format identifier is generally a string; default "" (empty string)
   valueFormat: PropTypes.string.isRequired,
   // value text format
-  currentValueText: PropTypes.string.isRequired
+  currentValueText: PropTypes.string.isRequired,
+  // placeholder style for current value
+  currentValueTextPlaceholderStyle: PropTypes.string.isRequired,
 }
 
 // define the default proptypes
@@ -624,7 +630,10 @@ ReactSpeedometer.defaultProps = {
 
   // value text string format; by default it just shows the value
   // takes es6 template string as input with a default ${value}
-  currentValueText: "${value}"
+  currentValueText: "${value}",
+  // specifies the style of the placeholder for current value
+  // change it some other format like "#{value}" and use it in current value text as => "Current Value: #{value}"
+  currentValueTextPlaceholderStyle: "${value}",
 }
 
 export default ReactSpeedometer

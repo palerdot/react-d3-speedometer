@@ -28,7 +28,7 @@ describe("<ReactSpeedometer />", () => {
     // const wrapper = shallow(<ReactSpeedometer />);
     // ref: VERSION 3 API change - https://github.com/airbnb/enzyme/blob/master/docs/guides/migration-from-2-to-3.md#lifecycle-methods
     const wrapper = shallow(<ReactSpeedometer />, {
-      disableLifecycleMethods: true
+      disableLifecycleMethods: true,
     })
     expect(wrapper.find("div")).to.have.length(1)
   })
@@ -73,7 +73,7 @@ describe("<ReactSpeedometer />", () => {
     const spy = sinon.spy(ReactSpeedometer.prototype, "componentDidUpdate")
     // set some props
     full_dom_wrapper.setProps({
-      segments: 11
+      segments: 11,
     })
     // check if 'componentDidUpdate' gets called
     expect(spy.calledOnce).to.equal(true)
@@ -87,14 +87,14 @@ describe("<ReactSpeedometer />", () => {
     full_dom_wrapper.setProps({
       segments: 10,
       // set force render to true so that we should get 10 segments
-      forceRender: true
+      forceRender: true,
     })
     expect(full_dom_wrapper.render().find("path.speedo-segment").length).to.equal(10)
     // now change the forceRender option to false
     full_dom_wrapper.setProps({
       segments: 15,
       // set force render to true so that we should get 10 segments
-      forceRender: false
+      forceRender: false,
     })
     // the segments should remain in 10
     expect(full_dom_wrapper.render().find("path.speedo-segment").length).to.equal(10)
@@ -116,7 +116,7 @@ describe("<ReactSpeedometer />", () => {
     // change the props
     full_dom_wrapper.setProps({
       value: passed_value,
-      valueFormat: "d"
+      valueFormat: "d",
     })
     // test if the formatting reflects the expected value
     expect(
@@ -130,7 +130,9 @@ describe("<ReactSpeedometer />", () => {
   // check the custom value text
   it("should display custom current text value", () => {
     // checking the default value
-    const full_dom_wrapper = mount(<ReactSpeedometer value={333} currentValueText={"Porumai: ${value}"} />)
+    const full_dom_wrapper = mount(
+      <ReactSpeedometer value={333} currentValueText={"Porumai: ${value}"} />
+    )
     expect(
       full_dom_wrapper
         .render()
@@ -140,7 +142,7 @@ describe("<ReactSpeedometer />", () => {
     // change props to another text
     full_dom_wrapper.setProps({
       value: 555,
-      currentValueText: "Current Value: ${value}"
+      currentValueText: "Current Value: ${value}",
     })
     // test current value text reflects our new props
     expect(
@@ -177,5 +179,24 @@ describe("<ReactSpeedometer />", () => {
     // this one should not throw and should return some value
     expect(() => calculateNeedleHeight(0.9, 2)).to.not.throw()
     expect(calculateNeedleHeight(0.9, 2)).to.be.a("number")
+  })
+
+  it("should correctly take placeholder value from passed props", () => {
+    const current_value = "333"
+    const full_dom_wrapper = mount(
+      <div>
+        <ReactSpeedometer
+          value={current_value}
+          currentValueTextPlaceholderStyle={"#{value}"}
+          currentValueText={"#{value}"}
+        />
+      </div>
+    )
+    expect(
+      full_dom_wrapper
+        .render()
+        .find("text.current-value")
+        .text()
+    ).to.equal(current_value)
   })
 })

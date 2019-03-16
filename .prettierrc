@@ -2,5 +2,6 @@
     "semi": false,
     "tabWidth": 2,
     "arrowParens": "always",
-    "printWidth": 180
+    "printWidth": 100,
+    "trailingComma": "es5"
 }
