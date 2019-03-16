@@ -5,8 +5,10 @@
   "env": {
     "production": {
       "plugins": [
-        "transform-remove-console",
-        "@babel/plugin-transform-runtime"
+        ["transform-remove-console"],
+        ["@babel/plugin-transform-runtime", {
+          "corejs": 2
+        }]
       ],
       "presets": [
         "minify"
