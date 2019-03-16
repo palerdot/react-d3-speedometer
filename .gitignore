@@ -4,3 +4,4 @@ node_modules
 dist
 *.sublime-*
 .DS_Store
+*.code-workspace
