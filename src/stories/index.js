@@ -1,9 +1,18 @@
 import React, { Component } from "react"
+import { addParameters, configure } from "@storybook/react"
+import { themes } from "@storybook/theming"
 // import { storiesOf, action, setAddon } from '@kadira/storybook';
 import { storiesOf, action, setAddon } from "@storybook/react"
 import infoAddon, { setDefaults, withInfo } from "@storybook/addon-info"
 // knobs for showing dynamic props
 import { withKnobs, text, boolean, number } from "@storybook/addon-knobs"
+
+addParameters({
+  options: {
+    name: "<ReactSpeedometer />",
+    showPanel: false,
+  },
+})
 
 // addon-info
 setDefaults({
