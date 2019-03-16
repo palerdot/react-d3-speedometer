@@ -48,7 +48,12 @@ import {
 } from "d3"
 
 // import validator
-import { calculateNeedleHeight } from "./util/"
+import {
+  calculateNeedleHeight,
+  calculateSegmentLabelCount,
+  calculateScale,
+  calculateTicks,
+} from "./util/"
 
 class ReactSpeedometer extends React.Component {
   static displayName = "ReactSpeedometer"
@@ -149,6 +154,11 @@ class ReactSpeedometer extends React.Component {
         needleColor: PROPS.needleColor,
         // segments in the speedometer
         majorTicks: PROPS.segments,
+        // max segment labels
+        maxSegmentLabels: calculateSegmentLabelCount(
+          PROPS.maxSegmentLabels,
+          PROPS.segments
+        ),
         // color range for the segments
         arcColorFn: d3InterpolateHsl(
           d3Rgb(PROPS.startColor),
@@ -208,18 +218,29 @@ class ReactSpeedometer extends React.Component {
         needleLength = calculateNeedleHeight(config.needleHeightRatio, r)
 
         // a linear scale that maps domain values to a percent from 0..1
-        // scale = d3.scaleLinear()
-        scale = d3ScaleLinear()
-          .range([0, 1])
-          .domain([config.minValue, config.maxValue])
+        scale = calculateScale({
+          min: config.minValue,
+          max: config.maxValue,
+          segments: config.maxSegmentLabels,
+        })
+        // scale = d3ScaleLinear()
+        //   .range([0, 1])
+        //   .domain([config.minValue, config.maxValue])
+        //   .nice(config.maxSegmentLabels)
 
-        ticks = scale.ticks(config.majorTicks)
+        // ticks = scale.ticks(config.majorTicks)
+        // ticks = scale.ticks(config.maxSegmentLabels)
 
         // [d3-scale][issue]: https://github.com/d3/d3-scale/issues/149
-        if (ticks.length === 1) {
-          // we have this specific `d3 ticks` behaviour stepping in a specific way
-          ticks = [config.minValue, config.maxValue]
-        }
+        // if (ticks.length === 1) {
+        //   // we have this specific `d3 ticks` behaviour stepping in a specific way
+        //   ticks = [config.minValue, config.maxValue]
+        // }
+        ticks = calculateTicks(scale, {
+          min: config.minValue,
+          max: config.maxValue,
+          segments: config.maxSegmentLabels,
+        })
 
         // tickData = d3.range(config.majorTicks)
         tickData = d3Range(config.majorTicks).map(function() {
@@ -587,6 +608,8 @@ ReactSpeedometer.propTypes = {
 
   // segments to show in the speedometer
   segments: PropTypes.number.isRequired,
+  // maximum number of labels to be shown
+  maxSegmentLabels: PropTypes.number.isRequired,
 
   // color strings
   needleColor: PropTypes.string.isRequired,
@@ -623,6 +646,8 @@ ReactSpeedometer.defaultProps = {
 
   // segments to show in the speedometer
   segments: 5,
+  // maximum segment label to be shown
+  maxSegmentLabels: 0,
 
   // color strings
   needleColor: "steelblue",

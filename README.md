@@ -31,7 +31,8 @@ import ReactSpeedometer from "react-d3-speedometer"
 | value       | number         | 0        |   Make sure your value is between your `minValue` and `maxValue`       |
 | minValue    | number         | 0        |          |
 | maxValue    | number         | 1000     |          |
-| segments    | number         | 5        | Number of segments in the speedometer         |
+| segments    | number         | 5        | Number of segments in the speedometer. Please note, `segments` is calculated with [d3-ticks]() which is an approximate count that is uniformly spaced between min and max. Please refer to [d3-ticks](https://github.com/d3/d3-scale/blob/master/README.md#continuous_ticks) and [d3-array ticks](https://github.com/d3/d3-array#ticks) for more detailed info.        |
+| maxSegmentLabels    | number         | value from 'segments' prop        | Limit the number of segment labels to displayed. This is useful for acheiving a gradient effect by giving arbitrary large number of `segments` and limiting the labels with this prop. [See Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--gradient-effect-with-large-number-of-segments-and-maxsegmentlabels-config). Please note, `maxSegmentLabels` is calculated with [d3-ticks]() which is an approximate count that is uniformly spaced between min and max. Please refer to [d3-ticks](https://github.com/d3/d3-scale/blob/master/README.md#continuous_ticks) and [d3-array ticks](https://github.com/d3/d3-array#ticks) for more detailed info.        |
 | forceRender | boolean        | false    | After initial rendering/mounting, when props change, only the `value` is changed and animated to maintain smooth visualization. But, if you want to force rerender the whole component like change in segments, colors, dimensions etc, you can use this option to force rerender of the whole component on props change.         |
 | width       | number         | 300      | **diameter** of the speedometer and the **width** of the svg element |
 | height      | number         | 300      | height of the svg element. Height of the speedometer is always half the width since it is a **semi-circle**. For fluid width, please refere to `fluidWidth` config |
@@ -46,18 +47,19 @@ import ReactSpeedometer from "react-d3-speedometer"
 | textColor | string         | #666     | Should be a valid color code - colorname, hexadecimal name or rgb value. Used for both showing the current value and the segment values |
 | valueFormat | string       |  | should be a valid format for [d3-format](https://github.com/d3/d3-format#locale_format). By default, no formatter is used. You can use a valid d3 format identifier (for eg: `d` to convert float to integers), to format the values. **Note:** This formatter affects all the values (current value, segment values) displayed in the speedometer |
 | currentValueText | string | ${value} | Should be provided a string which should have **${value}** placeholder which will be replaced with current value. By default, current value is shown (formatted with `valueFormat`). For example, if current Value is 333 if you would like to show `Current Value: 333`, you should provide a string **`Current Value: ${value}`**. See [Live Example](https://palerdot.in/react-d3-speedometer/?selectedKind=react-d3-speedometer&selectedStory=Custom%20Current%20Value%20Text&full=0&down=1&left=1&panelRight=0) |
+| currentValuePlaceholderStyle | string | ${value} | Should be provided a string which should a placeholder string which will be replaced with current value in `currentValueTextProp`. For example: you can use ruby like interpolation by giving following props - `<ReactSpeedometer    currentValueText="Current Value: #{value}" currentValuePlaceholderStyle={"#{value}"} />`. This is also helpful if you face `no-template-curly-in-string` eslint warnings and would like to use different placeholder for current value |
 
 ## Examples
 
-You can view [Live Examples here](https://palerdot.in/react-d3-speedometer/?selectedKind=React%20d3%20Speedometer&selectedStory=Default%20with%20no%20config&full=0&down=0&left=1&panelRight=0&downPanel=kadirahq%2Fstorybook-addon-actions%2Factions-panel)
+You can view [Live Examples here](https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--default-with-no-config)
 
-##### Default with no config - [Live Example](https://palerdot.in/react-d3-speedometer/?selectedKind=React%20d3%20Speedometer&selectedStory=Default%20with%20no%20config&full=0&down=0&left=1&panelRight=0&downPanel=kadirahq%2Fstorybook-addon-actions%2Factions-panel)
+#### Default with no config - [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--default-with-no-config)
 
 ```javascript
 <ReactSpeedometer />
 ```
 
-##### With configurations - [Live Example](https://palerdot.in/react-d3-speedometer/?selectedKind=React%20d3%20Speedometer&selectedStory=Configuring%20values&full=0&down=0&left=1&panelRight=0&downPanel=kadirahq%2Fstorybook-addon-actions%2Factions-panel)
+#### With configurations - [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--configuring-values)
 
 ```javascript
 <ReactSpeedometer
@@ -70,7 +72,7 @@ You can view [Live Examples here](https://palerdot.in/react-d3-speedometer/?sele
 />
 ```
 
-##### Fluid Width Example - [Live Example](https://palerdot.in/react-d3-speedometer/?selectedKind=React%20d3%20Speedometer&selectedStory=Fluid%20Width%20view&full=0&down=0&left=1&panelRight=0&downPanel=kadirahq%2Fstorybook-addon-actions%2Factions-panel)
+#### Fluid Width Example - [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--fluid-width-view)
 
 ```javascript
 // Speedometer will take the width of the parent div (500)
@@ -90,7 +92,7 @@ You can view [Live Examples here](https://palerdot.in/react-d3-speedometer/?sele
 </div>
 ```
 
-##### Needle Transition Example - [Live Example](https://palerdot.in/react-d3-speedometer/?selectedKind=React%20d3%20Speedometer&selectedStory=Needle%20Transition%20Duration&full=0&down=0&left=1&panelRight=0&downPanel=kadirahq%2Fstorybook-addon-actions%2Factions-panel)
+#### Needle Transition Example - [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--needle-transition-duration)
 
 ```javascript
 <ReactSpeedometer
@@ -103,7 +105,7 @@ You can view [Live Examples here](https://palerdot.in/react-d3-speedometer/?sele
 
 _This is the needle transition used in the sample image_
 
-##### Force Render component on props change - [Live Example](https://palerdot.in/react-d3-speedometer/?selectedKind=react-d3-speedometer&selectedStory=force%20render%20the%20component&full=0&down=1&left=1&panelRight=0)
+#### Force Render component on props change - [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--force-render-the-component)
 
 ```javascript
 // By default, when props change, only the value prop is updated and animated. 
@@ -124,7 +126,7 @@ _This is the needle transition used in the sample image_
 />
 ```
 
-##### Needle Height Configuration Example - [Live Example](https://palerdot.in/react-d3-speedometer/?selectedKind=react-d3-speedometer&selectedStory=configure%20needle%20length&full=0&addons=1&stories=1&panelRight=0&addonPanel=storybooks%2Fstorybook-addon-knobs)
+#### Needle Height Configuration Example - [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--configure-needle-length)
 
 ```javascript
 <ReactSpeedometer
@@ -135,6 +137,16 @@ _This is the needle transition used in the sample image_
 
 You can give a value between `0` and `1` to control the needle height.
 
+
+#### Gradient Like Effect - [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--gradient-effect-with-large-number-of-segments-and-maxsegmentlabels-config)
+
+```javascript
+<ReactSpeedometer
+  value={333}
+  maxSegmentLabels={5}
+  segments={1000}
+/>
+```
 
 ---
 

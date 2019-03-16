@@ -11,7 +11,7 @@ import { shallow, mount, render } from "enzyme"
 import ReactSpeedometer from "../index"
 
 // import validators
-import { calculateNeedleHeight } from "../util/"
+import { calculateNeedleHeight, calculateScale, calculateTicks } from "../util/"
 
 const { describe, it } = global
 
@@ -205,5 +205,39 @@ describe("<ReactSpeedometer />", () => {
         .find("text.current-value")
         .text()
     ).toEqual(current_value.toString())
+  })
+
+  test("scale and ticks works properly", () => {
+    const min = 0
+    const max = 1000
+    const segments = 1000
+    const max_segment_labels = 10
+
+    const full_dom_wrapper = mount(
+      <ReactSpeedometer
+        segments={segments}
+        maxSegmentLabels={max_segment_labels}
+      />
+    )
+
+    const scale1 = calculateScale({ min, max, segments })
+    const ticks1 = calculateTicks(scale1, { min, max, segments })
+
+    const scale2 = calculateScale({ min, max, segments: max_segment_labels })
+    const ticks2 = calculateTicks(scale2, {
+      min,
+      max,
+      segments: max_segment_labels,
+    })
+
+    const scale3 = calculateScale({ min, max, segments: 1 })
+    const ticks3 = calculateTicks(scale3, { min, max, segments: 1 })
+
+    expect(ticks2.length).toBeLessThan(ticks1.length)
+    expect(ticks3.length).toBe(2)
+
+    expect(full_dom_wrapper.render().find("text.segment-value").length).toBe(
+      ticks2.length
+    )
   })
 })

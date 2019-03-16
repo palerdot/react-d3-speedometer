@@ -9,17 +9,15 @@ import { withKnobs, text, boolean, number } from "@storybook/addon-knobs"
 setDefaults({
   inline: true,
   maxPropsIntoLine: 1,
-  maxPropObjectKeys: 10,
-  maxPropArrayLength: 10,
-  maxPropStringLength: 100,
+  maxPropObjectKeys: 100,
 })
 
 // set the info addon for storybook!
 setAddon(infoAddon)
 
-import ReactSpeedometer from "../index"
+// import ReactSpeedometer from "../index"
 // NOTE: switch to dist for checking production version
-// import ReactSpeedometer from "../../dist/index"
+import ReactSpeedometer from "../../dist/index"
 
 import SpeedoButton from "./speedo-button"
 import MultiSpeedoMeters from "./multi-speedometers"
@@ -170,5 +168,17 @@ storiesOf("react-d3-speedometer", module)
   .add(
     "configure needle length",
     () => <ReactSpeedometer value={333} needleHeightRatio={0.5} />,
+    { source: true, inline: true, header: true }
+  )
+  .add(
+    "Gradient effect with large number of segments and 'maxSegmentLabels' config",
+    () => (
+      <ReactSpeedometer
+        needleHeightRatio={0.7}
+        maxSegmentLabels={5}
+        segments={1000}
+        value={333}
+      />
+    ),
     { source: true, inline: true, header: true }
   )
