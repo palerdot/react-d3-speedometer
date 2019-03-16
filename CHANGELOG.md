@@ -1,5 +1,8 @@
 # Change Log
 
+## 0.5.5 
+- `babel 7` runtime issue fixed. Affected versions - `0.5.0` to `0.5.4`
+
 ## 0.5.0
 - `maxSegmentLabels` prop to limit labels for segment. Useful for displaying gradient like effect. Example - https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--gradient-effect-with-large-number-of-segments-and-maxsegmentlabels-config
 - `currentValuePlaceholderStyle` to configure custom placeholder for current value. Example - https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--custom-current-value-placeholder-style-for-eg-value
