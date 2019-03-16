@@ -150,7 +150,10 @@ class ReactSpeedometer extends React.Component {
         // segments in the speedometer
         majorTicks: PROPS.segments,
         // color range for the segments
-        arcColorFn: d3InterpolateHsl(d3Rgb(PROPS.startColor), d3Rgb(PROPS.endColor)),
+        arcColorFn: d3InterpolateHsl(
+          d3Rgb(PROPS.startColor),
+          d3Rgb(PROPS.endColor)
+        ),
         // needle configuration
         needleTransition: PROPS.needleTransition,
         needleTransitionDuration: PROPS.needleTransitionDuration,
@@ -162,7 +165,7 @@ class ReactSpeedometer extends React.Component {
         // value text string (template string)
         currentValueText: PROPS.currentValueText,
         // placeholder style for 'currentValue'
-        currentValueTextPlaceholderStyle: PROPS.currentValueTextPlaceholderStyle,
+        currentValuePlaceholderStyle: PROPS.currentValuePlaceholderStyle,
       }
       // END: Configurable values
 
@@ -286,7 +289,13 @@ class ReactSpeedometer extends React.Component {
           .attr("transform", function(d) {
             var ratio = scale(d)
             var newAngle = config.minAngle + ratio * range
-            return "rotate(" + newAngle + ") translate(0," + (config.labelInset - r) + ")"
+            return (
+              "rotate(" +
+              newAngle +
+              ") translate(0," +
+              (config.labelInset - r) +
+              ")"
+            )
           })
           .text(config.labelFormat)
           // add class for text label
@@ -301,7 +310,10 @@ class ReactSpeedometer extends React.Component {
         // save current value reference
         self._d3_refs.current_value_text = svg
           .append("g")
-          .attr("transform", "translate(" + config.width / 2 + "," + config.width / 2 + ")")
+          .attr(
+            "transform",
+            "translate(" + config.width / 2 + "," + config.width / 2 + ")"
+          )
           .append("text")
           // add class for the text
           .attr("class", "current-value")
@@ -353,7 +365,7 @@ class ReactSpeedometer extends React.Component {
         // get the current value
         const value = config.labelFormat(currentValue)
         // get the current placeholder style
-        const placeholderStyle = config.currentValueTextPlaceholderStyle
+        const placeholderStyle = config.currentValuePlaceholderStyle
 
         // replace the placeholder style in current text
         return config.currentValueText.replace(placeholderStyle, value)
@@ -409,9 +421,12 @@ class ReactSpeedometer extends React.Component {
 
   updateReadings() {
     // refresh the config of 'labelFormat'
-    this._d3_refs.powerGauge.config.labelFormat = d3Format(this.props.valueFormat || "")
+    this._d3_refs.powerGauge.config.labelFormat = d3Format(
+      this.props.valueFormat || ""
+    )
     // refresh the current value text
-    this._d3_refs.powerGauge.config.currentValueText = this.props.currentValueText || "${value}"
+    this._d3_refs.powerGauge.config.currentValueText =
+      this.props.currentValueText || "${value}"
     // updates the readings of the gauge with the current prop value
     // animates between old prop value and current prop value
     this._d3_refs.powerGauge.update(this.props.value || 0)
@@ -591,7 +606,7 @@ ReactSpeedometer.propTypes = {
   // value text format
   currentValueText: PropTypes.string.isRequired,
   // placeholder style for current value
-  currentValueTextPlaceholderStyle: PropTypes.string.isRequired,
+  currentValuePlaceholderStyle: PropTypes.string.isRequired,
 }
 
 // define the default proptypes
@@ -633,7 +648,7 @@ ReactSpeedometer.defaultProps = {
   currentValueText: "${value}",
   // specifies the style of the placeholder for current value
   // change it some other format like "#{value}" and use it in current value text as => "Current Value: #{value}"
-  currentValueTextPlaceholderStyle: "${value}",
+  currentValuePlaceholderStyle: "${value}",
 }
 
 export default ReactSpeedometer

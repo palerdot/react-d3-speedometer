@@ -19,187 +19,20 @@ setAddon(infoAddon)
 
 import ReactSpeedometer from "../index"
 // NOTE: switch to dist for checking production version
-// import ReactSpeedometer from '../../dist/index';
+// import ReactSpeedometer from "../../dist/index"
 
-// a custom button with state to demonstrate force rendering
-class SpeedoButton extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      toggleStatus: false,
-      value: 111,
-      startColor: "blue",
-      segments: 5,
-      width: 300,
-      height: 300,
-    }
-
-    this.values = [
-      {
-        value: 111,
-        startColor: "blue",
-        segments: 5,
-        width: 300,
-        height: 300,
-      },
-      {
-        value: 222,
-        startColor: "orange",
-        segments: 10,
-        width: 400,
-        height: 400,
-      },
-    ]
-  }
-
-  render() {
-    return (
-      <div>
-        <h4>
-          Click the below button to force rerendering the whole component on props change. By
-          default, on props change, only the speedometer value/needle value will be updated and
-          animated for smooth visualization. Below button will toggle between two sets of totally
-          different appearances, when forceRender option is given true.
-        </h4>
-
-        <button
-          onClick={() => {
-            // change the toggle status
-            this.setState({
-              toggleStatus: !this.state.toggleStatus,
-            })
-            // now set the new set of values
-            let new_values = this.state.toggleStatus ? this.values[0] : this.values[1]
-            this.setState(new_values)
-          }}
-        >
-          <strong>Force Re render component on props change</strong>
-        </button>
-        <ReactSpeedometer
-          value={this.state.value}
-          startColor={this.state.startColor}
-          forceRender={true}
-          segments={this.state.segments}
-          width={this.state.width}
-          height={this.state.height}
-        />
-      </div>
-    )
-  }
-}
-
-// create multiple speedometers
-class MultiSpeedoMeters extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      speedometer1: {
-        startColor: "red",
-        toggleStatus: false,
-        value: 10,
-        maxValue: 200,
-        segments: 1,
-      },
-      speedometer2: {
-        startColor: "blue",
-        toggleStatus: false,
-        value: 10,
-        maxValue: 40,
-        segments: 1,
-      },
-    }
-
-    this.values = [
-      {
-        speedometer1: {
-          startColor: "red",
-          toggleStatus: false,
-          value: 10,
-          maxValue: 200,
-          segments: 1,
-        },
-        speedometer2: {
-          startColor: "blue",
-          toggleStatus: false,
-          value: 10,
-          maxValue: 40,
-          segments: 1,
-        },
-      },
-      {
-        speedometer1: {
-          startColor: "orange",
-          toggleStatus: false,
-          value: 5,
-          maxValue: 10,
-          segments: 1,
-        },
-        speedometer2: {
-          startColor: "green",
-          toggleStatus: false,
-          value: 900,
-          maxValue: 1000,
-          segments: 1,
-        },
-      },
-    ]
-  }
-
-  render() {
-    return (
-      <div>
-        <h4>
-          Click the below button to force rerendering the whole component on props change. By
-          default, on props change, only the speedometer value/needle value will be updated and
-          animated for smooth visualization. Below button will toggle between two sets of totally
-          different appearances, when forceRender option is given true.
-        </h4>
-
-        <button
-          onClick={() => {
-            // change the toggle status
-            this.setState({
-              toggleStatus: !this.state.toggleStatus,
-            })
-            // now set the new set of values
-            let new_values = this.state.toggleStatus ? this.values[0] : this.values[1]
-            this.setState(new_values)
-          }}
-        >
-          <strong>Force Re render component on props change</strong>
-        </button>
-        <ReactSpeedometer
-          value={this.state.speedometer1.value}
-          maxValue={this.state.speedometer1.maxValue}
-          startColor={this.state.speedometer1.startColor}
-          forceRender={true}
-          segments={this.state.speedometer1.segments}
-          width={this.state.speedometer1.width}
-          height={this.state.speedometer1.height}
-        />
-        <ReactSpeedometer
-          value={this.state.speedometer2.value}
-          maxValue={this.state.speedometer2.maxValue}
-          startColor={this.state.speedometer2.startColor}
-          forceRender={true}
-          segments={this.state.speedometer2.segments}
-          width={this.state.speedometer2.width}
-          height={this.state.speedometer2.height}
-        />
-      </div>
-    )
-  }
-}
+import SpeedoButton from "./speedo-button"
+import MultiSpeedoMeters from "./multi-speedometers"
 
 storiesOf("react-d3-speedometer", module)
   // Add the `withKnobs` decorator to add knobs support to your stories.
   // You can also configure `withKnobs` as a global decorator.
   // .addDecorator(withKnobs)
-
+  .addDecorator(withInfo)
   // default view with no configuration
   .add("Default with no config", () => <ReactSpeedometer />)
   // configuring values
-  .addWithInfo(
+  .add(
     "Configuring values",
     () => (
       <ReactSpeedometer
@@ -219,7 +52,7 @@ storiesOf("react-d3-speedometer", module)
     }
   )
   // fluid display view
-  .addWithInfo(
+  .add(
     "Fluid Width view",
     () => (
       <div
@@ -238,10 +71,16 @@ storiesOf("react-d3-speedometer", module)
         />
       </div>
     ),
-    { source: true, inline: true, header: false }
+    {
+      info: {
+        text: `
+        Fluid width takes the width of the parent div
+        `,
+      },
+    }
   )
   // needle transition duration
-  .addWithInfo(
+  .add(
     "Needle Transition Duration",
     () => (
       <ReactSpeedometer
@@ -258,30 +97,23 @@ storiesOf("react-d3-speedometer", module)
     }
   )
   // knobs for demonstrating force render
-  .add(
-    "force render the component",
-    withInfo({
-      source: false,
-      text: "Usage: &lt;ReactSpeedometer forceRender={true} /&gt;",
-      inline: true,
-      header: false,
-    })(() => {
-      return <SpeedoButton />
-    })
-  )
+  .add("force render the component", () => <SpeedoButton />, {
+    info: {
+      text: `
+      By default, on props change only the current value and needle transition is updated. 
+      Force render completly re-renders the whole component on update. 
+      This is helpful for features like dynmaic width/height on resize
+      `,
+    },
+  })
   // configuring format of the value
   .add(
     "Configuring the format for values displayed",
-    withInfo({
-      source: true,
-      text:
-        "converting decimal to integer using 'd' identifier of 'd3 format'. For more details on formatting, please refer - https://github.com/d3/d3-format#locale_format",
-      inline: true,
-      header: false,
-    })(() => <ReactSpeedometer maxValue={150} value={70.7} valueFormat={"d"} />)
+    () => <ReactSpeedometer maxValue={150} value={70.7} valueFormat={"d"} />,
+    {}
   )
   // custom value text
-  .addWithInfo(
+  .add(
     "Custom Current Value Text",
     () => (
       <ReactSpeedometer
@@ -295,7 +127,7 @@ storiesOf("react-d3-speedometer", module)
     { source: true, inline: true, header: false }
   )
   // configure current value placeholder style
-  .addWithInfo(
+  .add(
     "Custom Current Value Placeholder Style ... (for eg: #{value} ...)",
     () => (
       <ReactSpeedometer
@@ -304,13 +136,21 @@ storiesOf("react-d3-speedometer", module)
         needleTransitionDuration={4000}
         needleTransition="easeElastic"
         currentValueText="Current Value: #{value}"
-        currentValueTextPlaceholderStyle={"#{value}"}
+        currentValuePlaceholderStyle={"#{value}"}
       />
     ),
-    { source: true, inline: true, header: false }
+    {
+      info: {
+        text: `
+          Configure the current Value placeholder with custom style. For eg: you can use ruby like interpolation by giving following props:
+          currentValueText=**"Current Value: #{value}"**
+          currentValuePlaceholderStyle=**{"#{value}"}**. This is also helpful if you face 'no-template-curly-in-string' eslint warnings
+        `,
+      },
+    }
   )
   // render multiple Speedometer
-  .addWithInfo(
+  .add(
     "Render multiple Speedometer with a single segment",
     () => (
       <div>
@@ -324,21 +164,11 @@ storiesOf("react-d3-speedometer", module)
   // force render multiple Speedometer
   .add(
     "force render multiple Speedometer with a single segment",
-    withInfo({
-      source: false,
-      text: "Usage: &lt;ReactSpeedometer forceRender={true} /&gt;",
-      inline: true,
-      header: false,
-    })(() => {
-      return <MultiSpeedoMeters />
-    })
+    () => <MultiSpeedoMeters />,
+    { source: true, inline: true, header: false }
   )
   .add(
     "configure needle length",
-    withInfo({
-      source: true,
-      text: "configure needle length with 'needleHeightRatio' parameter",
-      inline: true,
-      header: false,
-    })(() => <ReactSpeedometer value={333} needleHeightRatio={0.5} />)
+    () => <ReactSpeedometer value={333} needleHeightRatio={0.5} />,
+    { source: true, inline: true, header: true }
   )
