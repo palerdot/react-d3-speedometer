@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.5.0
+- `maxSegmentLabels` prop to limit labels for segment. Useful for displaying gradient like effect. Example - https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--gradient-effect-with-large-number-of-segments-and-maxsegmentlabels-config
+- `currentValuePlaceholderStyle` to configure custom placeholder for current value. Example - https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--custom-current-value-placeholder-style-for-eg-value
+
 ## 0.4.2
 - `needleHeightRatio` for controlling the height of the needle. Takes a float between 0 and 1 and controls the height.
 
