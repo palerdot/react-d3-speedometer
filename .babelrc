@@ -6,9 +6,16 @@
     "production": {
       "plugins": [
         ["transform-remove-console"],
-        ["@babel/plugin-transform-runtime", {
-          "corejs": 2
-        }]
+        [
+          "@babel/plugin-transform-runtime",
+          {
+            "absoluteRuntime": false,
+            "corejs": false,
+            "helpers": true,
+            "regenerator": true,
+            "useESModules": false
+          }
+        ]
       ],
       "presets": [
         "minify"
