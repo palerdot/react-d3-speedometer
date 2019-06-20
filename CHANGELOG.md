@@ -1,5 +1,8 @@
 # Change Log
 
+## 0.5.6
+- `maxSegmentLabels` now takes `0` as valid value. Addresses - https://github.com/palerdot/react-d3-speedometer/issues/43
+
 ## 0.5.5 
 - `babel 7` runtime issue fixed. Affected versions - `0.5.0` to `0.5.4`
 

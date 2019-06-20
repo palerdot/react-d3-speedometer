@@ -155,10 +155,10 @@ class ReactSpeedometer extends React.Component {
         // segments in the speedometer
         majorTicks: PROPS.segments,
         // max segment labels
-        maxSegmentLabels: calculateSegmentLabelCount(
-          PROPS.maxSegmentLabels,
-          PROPS.segments
-        ),
+        maxSegmentLabels: calculateSegmentLabelCount({
+          maxSegmentLabelCount: PROPS.maxSegmentLabels,
+          segmentCount: PROPS.segments,
+        }),
         // color range for the segments
         arcColorFn: d3InterpolateHsl(
           d3Rgb(PROPS.startColor),
@@ -215,7 +215,10 @@ class ReactSpeedometer extends React.Component {
         r = config.width / 2
 
         // needleLength = Math.round(r * config.needleHeightRatio)
-        needleLength = calculateNeedleHeight(config.needleHeightRatio, r)
+        needleLength = calculateNeedleHeight({
+          heightRatio: config.needleHeightRatio,
+          radius: r,
+        })
 
         // a linear scale that maps domain values to a percent from 0..1
         scale = calculateScale({
@@ -609,7 +612,7 @@ ReactSpeedometer.propTypes = {
   // segments to show in the speedometer
   segments: PropTypes.number.isRequired,
   // maximum number of labels to be shown
-  maxSegmentLabels: PropTypes.number.isRequired,
+  maxSegmentLabels: PropTypes.number,
 
   // color strings
   needleColor: PropTypes.string.isRequired,
@@ -647,7 +650,7 @@ ReactSpeedometer.defaultProps = {
   // segments to show in the speedometer
   segments: 5,
   // maximum segment label to be shown
-  maxSegmentLabels: 0,
+  maxSegmentLabels: -1,
 
   // color strings
   needleColor: "steelblue",

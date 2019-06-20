@@ -11,7 +11,12 @@ import { shallow, mount, render } from "enzyme"
 import ReactSpeedometer from "../index"
 
 // import validators
-import { calculateNeedleHeight, calculateScale, calculateTicks } from "../util/"
+import {
+  calculateNeedleHeight,
+  calculateScale,
+  calculateTicks,
+  calculateSegmentLabelCount,
+} from "../util/"
 
 const { describe, it } = global
 
@@ -182,10 +187,16 @@ describe("<ReactSpeedometer />", () => {
   })
 
   it("should throw error on invalid needle height", () => {
-    expect(() => calculateNeedleHeight(1.1, 2)).toThrowError()
+    expect(() =>
+      calculateNeedleHeight({ heightRatio: 1.1, radius: 2 })
+    ).toThrowError()
     // this one should not throw and should return some value
-    expect(() => calculateNeedleHeight(0.9, 2)).not.toThrowError()
-    expect(typeof calculateNeedleHeight(0.9, 2)).toBe("number")
+    expect(() =>
+      calculateNeedleHeight({ heightRatio: 0.9, radius: 2 })
+    ).not.toThrowError()
+    expect(typeof calculateNeedleHeight({ heightRatio: 0.9, radius: 2 })).toBe(
+      "number"
+    )
   })
 
   it("should correctly take current Value placeholder from passed props", () => {
@@ -238,6 +249,30 @@ describe("<ReactSpeedometer />", () => {
 
     expect(full_dom_wrapper.render().find("text.segment-value").length).toBe(
       ticks2.length
+    )
+  })
+
+  test("'maxSegmentLabels' config with no labels ", () => {
+    const min = 0
+    const max = 1000
+    let segments = 1000
+    let max_segment_labels = 0
+    let label_count = calculateSegmentLabelCount({
+      maxSegmentLabelCount: max_segment_labels,
+      segmentCount: segments,
+    })
+
+    const full_dom_wrapper = mount(
+      <ReactSpeedometer
+        segments={segments}
+        maxSegmentLabels={max_segment_labels}
+      />
+    )
+
+    const scale1 = calculateScale({ min, max, segments })
+    const ticks1 = calculateTicks(scale1, { min, max, segments: label_count })
+    expect(full_dom_wrapper.render().find("text.segment-value").length).toBe(
+      max_segment_labels
     )
   })
 })

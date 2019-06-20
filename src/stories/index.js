@@ -25,9 +25,9 @@ setDefaults({
 setAddon(infoAddon)
 
 // DEVELOPMENT
-// import ReactSpeedometer from "../index"
+import ReactSpeedometer from "../index"
 // PRODUCTION: switch to dist for checking production version
-import ReactSpeedometer from "../../dist/index"
+// import ReactSpeedometer from "../../dist/index"
 
 import SpeedoButton from "./speedo-button"
 import MultiSpeedoMeters from "./multi-speedometers"
@@ -189,6 +189,28 @@ storiesOf("react-d3-speedometer", module)
         segments={1000}
         value={333}
       />
+    ),
+    { source: true, inline: true, header: true }
+  )
+  .add(
+    "No segment Labels",
+    () => (
+      <div>
+        <div>
+          <ReactSpeedometer maxSegmentLabels={0} segments={1000} />
+        </div>
+
+        <div>
+          <ReactSpeedometer
+            maxSegmentLabels={0}
+            segments={4}
+            value={333}
+            startColor={"#2E3440"}
+            endColor={"#4C566A"}
+            needleColor="#D8DEE9"
+          />
+        </div>
+      </div>
     ),
     { source: true, inline: true, header: true }
   )

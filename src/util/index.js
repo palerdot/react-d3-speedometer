@@ -1,22 +1,26 @@
+import { isNumber as _isNumber } from "lodash"
 import { scaleLinear as d3ScaleLinear } from "d3"
 
 // export validators
-export function calculateNeedleHeight(height_ratio, radius) {
-  if (height_ratio < 0 || height_ratio > 1) {
-    throw new Error(`Invalid needleHeightRatio given - ${height_ratio}`)
+export function calculateNeedleHeight({ heightRatio, radius }) {
+  if (heightRatio < 0 || heightRatio > 1) {
+    throw new Error(`Invalid needleHeightRatio given - ${heightRatio}`)
   }
-  return Math.round(radius * height_ratio)
+  return Math.round(radius * heightRatio)
 }
 
-export function calculateSegmentLabelCount(maxSegmentLabelCount, segmentCount) {
+export function calculateSegmentLabelCount({
+  maxSegmentLabelCount,
+  segmentCount,
+}) {
   const max_segment_label_count = parseInt(maxSegmentLabelCount, 10)
   const segments_count = parseInt(segmentCount, 10)
 
-  return max_segment_label_count &&
-    max_segment_label_count > 0 &&
-    max_segment_label_count <= segmentCount
+  return _isNumber(max_segment_label_count) &&
+    max_segment_label_count >= 0 &&
+    max_segment_label_count <= segments_count
     ? max_segment_label_count
-    : segmentCount
+    : segments_count
 }
 
 // calculate d3 scale
