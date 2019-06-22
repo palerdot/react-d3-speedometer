@@ -18,11 +18,11 @@ import {
   calculateSegmentLabelCount,
 } from "../util/"
 
-const { describe, it } = global
+// const { describe, it } = global
 
 describe("<ReactSpeedometer />", () => {
   // test if it has the parent div component for the "svg"
-  it("should render one parent div component", () => {
+  test("should render one parent div component", () => {
     // a wrapper that does not render the child components
     // ref: http://airbnb.io/enzyme/
     // const wrapper = shallow(<ReactSpeedometer />);
@@ -34,7 +34,7 @@ describe("<ReactSpeedometer />", () => {
   })
 
   // test if we component did mount is called
-  it("componentDidMount => called once", () => {
+  test("componentDidMount => called once", () => {
     // ref: http://airbnb.io/enzyme/
     const didMountSpy = jest.spyOn(
       ReactSpeedometer.prototype,
@@ -45,26 +45,26 @@ describe("<ReactSpeedometer />", () => {
   })
 
   // test if we have the 'svg.speedometer'
-  it("svg.speedometer is present", () => {
+  test("svg.speedometer is present", () => {
     // ref: http://airbnb.io/enzyme/
     const full_dom_wrapper = mount(<ReactSpeedometer />).render()
     expect(full_dom_wrapper.find("svg.speedometer").length).toBe(1)
   })
 
   // check if the default segments is 5 by counting 'speedo-segment'
-  it("by default we should have 5 segments", () => {
+  test("by default we should have 5 segments", () => {
     const full_dom_wrapper = mount(<ReactSpeedometer />).render()
     expect(full_dom_wrapper.find("path.speedo-segment").length).toBe(5)
   })
 
   // check the text color of the current value is the default (#666)
-  it("should have the default text color for current value", () => {
+  test("should have the default text color for current value", () => {
     const full_dom_wrapper = mount(<ReactSpeedometer />).render()
     expect(full_dom_wrapper.find("text.current-value").css("fill")).toBe("#666")
   })
 
   // should take the color given by us in 'textColor'
-  it("should have the text color given by us => steelblue ", () => {
+  test("should have the text color given by us => steelblue ", () => {
     const full_dom_wrapper = mount(
       <ReactSpeedometer textColor="steelblue" />
     ).render()
@@ -74,7 +74,7 @@ describe("<ReactSpeedometer />", () => {
   })
 
   // make sure 'componentDidUpdate' is called
-  it("should call componentDidUpdate", () => {
+  test("should call componentDidUpdate", () => {
     const full_dom_wrapper = mount(<ReactSpeedometer />)
     const spy = jest.spyOn(ReactSpeedometer.prototype, "componentDidUpdate")
     // set some props
@@ -85,8 +85,47 @@ describe("<ReactSpeedometer />", () => {
     expect(spy).toHaveBeenCalled()
   })
 
+  // should smoothly animate only the current value; not other breaking changes
+  test("smooth update of values", () => {
+    const value = 333
+    const updatedValue = 470
+    const full_dom_wrapper = mount(<ReactSpeedometer value={value} />)
+    expect(
+      full_dom_wrapper
+        .render()
+        .find("text.current-value")
+        .text()
+    ).toBe(value.toString())
+    // confirm if our start color is the default
+    expect(
+      full_dom_wrapper
+        .render()
+        .find("path.speedo-segment")
+        .get(0).attribs.fill
+    ).toBe(`rgb(255, 71, 26)`) // rgb value of our default 'startColor'
+    // set updated props
+    full_dom_wrapper.setProps({
+      value: updatedValue,
+      startColor: "red",
+    })
+    // confirm if our value is updated
+    expect(
+      full_dom_wrapper
+        .render()
+        .find("text.current-value")
+        .text()
+    ).toBe(updatedValue.toString())
+    // confirm our start color is intact
+    expect(
+      full_dom_wrapper
+        .render()
+        .find("path.speedo-segment")
+        .get(0).attribs.fill
+    ).toBe(`rgb(255, 71, 26)`) // rgb value of our default 'startColor'
+  })
+
   // if force render is present, it should re render the whole component
-  it('should rerender the whole component when "forceRender: true" ', () => {
+  test('should rerender the whole component when "forceRender: true" ', () => {
     const full_dom_wrapper = mount(<ReactSpeedometer />)
     expect(full_dom_wrapper.render().find("path.speedo-segment").length).toBe(5)
     // change the props and give 'rerender' true
@@ -111,7 +150,7 @@ describe("<ReactSpeedometer />", () => {
   })
 
   // check the format of the values
-  it("should display the format of the values correctly", () => {
+  test("should display the format of the values correctly", () => {
     // checking the default value
     const full_dom_wrapper = mount(<ReactSpeedometer value={0} />)
     expect(
@@ -138,7 +177,7 @@ describe("<ReactSpeedometer />", () => {
   })
 
   // check the custom value text
-  it("should display custom current text value", () => {
+  test("should display custom current text value", () => {
     // checking the default value
     const full_dom_wrapper = mount(
       <ReactSpeedometer value={333} currentValueText={"Porumai: ${value}"} />
@@ -164,7 +203,7 @@ describe("<ReactSpeedometer />", () => {
   })
 
   // it should not break on invalid needle transition
-  it("should not break on invalid needle transition", () => {
+  test("should not break on invalid needle transition", () => {
     const full_dom_wrapper = mount(
       <ReactSpeedometer needleTransition="porumaiTransition" />
     )
@@ -173,7 +212,7 @@ describe("<ReactSpeedometer />", () => {
 
   // [d3-scale][bug]: https://github.com/d3/d3-scale/issues/149
   // [fix] should render segments correctly when multiple speedometers are rendered
-  it("should correctly show the ticks when multiple speedometers are rendered", () => {
+  test("should correctly show the ticks when multiple speedometers are rendered", () => {
     const full_dom_wrapper = mount(
       <div>
         <div>
@@ -186,7 +225,7 @@ describe("<ReactSpeedometer />", () => {
     expect(full_dom_wrapper.render().find("text.segment-value").length).toBe(6)
   })
 
-  it("should throw error on invalid needle height", () => {
+  test("should throw error on invalid needle height", () => {
     expect(() =>
       calculateNeedleHeight({ heightRatio: 1.1, radius: 2 })
     ).toThrowError()
@@ -199,7 +238,7 @@ describe("<ReactSpeedometer />", () => {
     )
   })
 
-  it("should correctly take current Value placeholder from passed props", () => {
+  test("should correctly take current Value placeholder from passed props", () => {
     const current_value = 333
     const full_dom_wrapper = mount(
       <div>
@@ -274,5 +313,21 @@ describe("<ReactSpeedometer />", () => {
     expect(full_dom_wrapper.render().find("text.segment-value").length).toBe(
       max_segment_labels
     )
+  })
+
+  test("custom segment colors", () => {
+    const segmentColors = ["red", "blue", "green"]
+    const full_dom_wrapper = mount(
+      <ReactSpeedometer segments={3} segmentColors={segmentColors} />
+    )
+
+    segmentColors.forEach((color, index) => {
+      expect(
+        full_dom_wrapper
+          .render()
+          .find("path.speedo-segment")
+          .get(index).attribs.fill
+      ).toEqual(color)
+    })
   })
 })

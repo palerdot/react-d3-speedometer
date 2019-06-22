@@ -4,8 +4,6 @@ import { themes } from "@storybook/theming"
 // import { storiesOf, action, setAddon } from '@kadira/storybook';
 import { storiesOf, action, setAddon } from "@storybook/react"
 import infoAddon, { setDefaults, withInfo } from "@storybook/addon-info"
-// knobs for showing dynamic props
-import { withKnobs, text, boolean, number } from "@storybook/addon-knobs"
 
 addParameters({
   options: {
@@ -31,6 +29,7 @@ import ReactSpeedometer from "../index"
 
 import SpeedoButton from "./speedo-button"
 import MultiSpeedoMeters from "./multi-speedometers"
+import AutoRefresh from "./auto-refresh"
 
 storiesOf("react-d3-speedometer", module)
   // Add the `withKnobs` decorator to add knobs support to your stories.
@@ -58,6 +57,24 @@ storiesOf("react-d3-speedometer", module)
       inline: true,
       header: false,
     }
+  )
+  // custom colors
+  .add(
+    "Custom segment colors",
+    () => (
+      <div>
+        <div>
+          <ReactSpeedometer
+            maxSegmentLabels={12}
+            segments={3}
+            value={470}
+            segmentColors={["#FF9933", "#ECEFF4", "#138808"]}
+            needleColor="#000080"
+          />
+        </div>
+      </div>
+    ),
+    { source: true, inline: true, header: true }
   )
   // fluid display view
   .add(
@@ -214,3 +231,4 @@ storiesOf("react-d3-speedometer", module)
     ),
     { source: true, inline: true, header: true }
   )
+  .add("Auto Refresh Segments", () => <AutoRefresh />)

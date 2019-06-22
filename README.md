@@ -40,6 +40,7 @@ import ReactSpeedometer from "react-d3-speedometer"
 | needleColor | string         | steelblue | Should be a valid color code - colorname, hexadecimal name or rgb value. Should be a valid input for [d3.interpolateHsl](https://github.com/d3/d3-interpolate#interpolateHsl)   |
 | startColor | string         | #FF471A | Should be a valid color code - colorname, hexadecimal name or rgb value. Should be a valid input for [d3.interpolateHsl](https://github.com/d3/d3-interpolate#interpolateHsl)   |
 | endColor | string         |  #33CC33 | Should be a valid color code - colorname, hexadecimal name or rgb value. Should be a valid input for [d3.interpolateHsl](https://github.com/d3/d3-interpolate#interpolateHsl)   |
+| segmentColors | array (of colors)         |  [] | Custom segment colors can be given with this option. Should be an array of valid color codes. If this option is given **startColor** and **endColor** options will be ignored. |
 | needleTransition | string         | easeQuadInOut | [d3-easing-identifiers](https://github.com/d3/d3-ease) - easeLinear, easeQuadIn, easeQuadOut, easeQuadInOut, easeCubicIn, easeCubicOut, easeCubicInOut, easePolyIn, easePolyOut, easePolyInOut, easeSinIn, easeSinOut, easeSinInOut, easeExpIn, easeExpOut, easeExpInOut, easeCircleIn, easeCircleOut, easeCircleInOut, easeBounceIn, easeBounceOut, easeBounceInOut, easeBackIn, easeBackOut, easeBackInOut, easeElasticIn, easeElasticOut, easeElasticInOut, easeElastic |
 | needleTransitionDuration | number         | 500     | Time in milliseconds. |
 | needleHeightRatio | float (between 0 and 1)         | 0.9     | Control the height of the needle by giving a number/float between `0` and `1`. Default height ratio is `0.9`.  |
@@ -69,6 +70,24 @@ You can view [Live Examples here](https://palerdot.in/react-d3-speedometer/?path
   startColor="green"
   segments={10}
   endColor="blue"
+/>
+```
+
+#### Custom Segment Colors - [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--custom-segment-colors)
+
+```javascript
+<ReactSpeedometer
+  value={333}
+  segments={5}
+  segmentColors={[
+    "#bf616a",
+    "#d08770",
+    "#ebcb8b",
+    "#a3be8c",
+    "#b48ead",
+  ]}
+  // startColor will be ignored
+  // endColor will be ignored
 />
 ```
 
@@ -102,8 +121,6 @@ You can view [Live Examples here](https://palerdot.in/react-d3-speedometer/?path
   needleTransition="easeElastic"
 />
 ```
-
-_This is the needle transition used in the sample image_
 
 #### Force Render component on props change - [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--force-render-the-component)
 
@@ -182,6 +199,11 @@ npm test
 
 #### Contributing:
 PRs are welcome. Please create a issue/bugfix/feature branch and create an issue with your branch details. Probably I will create a similar branch in the upstream repo so that PRs can be raised against that branch instead of `master`.
+
+#### Notes
+- `0.x` versions are compatible with React & React DOM Versions (16.x)
+For every subsequent major react upgrade, `react-d3-speedometer` will be bumped to next major versions. For example `1.x` will be compatible with `React 17.x` so and so forth ...
+
 
 #### License:
 

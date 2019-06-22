@@ -1,12 +1,11 @@
 // React Component to show speedometer like gauge with d3
-import React from "react"
+import React, { PureComponent } from "react"
 import PropTypes from "prop-types"
 
 // selectively import d3 components for reducing file size
 // import * as d3 from "d3";
 import {
   format as d3Format,
-  scaleLinear as d3ScaleLinear,
   range as d3Range,
   arc as d3Arc,
   select as d3Select,
@@ -15,6 +14,7 @@ import {
   pie as d3Pie,
   rgb as d3Rgb,
   interpolateHsl as d3InterpolateHsl,
+  scaleQuantize as d3ScaleQuantize,
   // importing all the easing functions
   easeLinear as d3EaseLinear,
   easeQuadIn as d3EaseQuadIn,
@@ -55,7 +55,7 @@ import {
   calculateTicks,
 } from "./util/"
 
-class ReactSpeedometer extends React.Component {
+class ReactSpeedometer extends PureComponent {
   static displayName = "ReactSpeedometer"
 
   constructor(props) {
@@ -71,8 +71,6 @@ class ReactSpeedometer extends React.Component {
     this.initialValue = 0
   }
 
-  componentWillMount() {}
-
   componentDidMount() {
     // render the gauge here
     this.renderGauge()
@@ -81,24 +79,6 @@ class ReactSpeedometer extends React.Component {
   render = () => {
     return <div ref={(ref) => (this.gaugeDiv = ref)} />
   }
-
-  componentWillReceiveProps() {
-    // update the initial value
-    this.initialValue = this.props.value || 0
-  }
-
-  shouldComponentUpdate(new_props) {
-    return true
-    // NOTE: following logic for 'stopRerender'
-    // update the props
-    this.props = new_props
-    // just update our readings
-    this.updateReadings()
-    // DO NOT UPDATE THE WHOLE COMPONENT
-    return false
-  }
-
-  componentWillUpdate() {}
 
   componentDidUpdate() {
     // on update, check if 'forceRender' option is present;
@@ -160,10 +140,10 @@ class ReactSpeedometer extends React.Component {
           segmentCount: PROPS.segments,
         }),
         // color range for the segments
-        arcColorFn: d3InterpolateHsl(
-          d3Rgb(PROPS.startColor),
-          d3Rgb(PROPS.endColor)
-        ),
+        arcColorFn:
+          PROPS.segmentColors.length > 0
+            ? d3ScaleQuantize(PROPS.segmentColors)
+            : d3InterpolateHsl(d3Rgb(PROPS.startColor), d3Rgb(PROPS.endColor)),
         // needle configuration
         needleTransition: PROPS.needleTransition,
         needleTransitionDuration: PROPS.needleTransitionDuration,
@@ -226,19 +206,7 @@ class ReactSpeedometer extends React.Component {
           max: config.maxValue,
           segments: config.maxSegmentLabels,
         })
-        // scale = d3ScaleLinear()
-        //   .range([0, 1])
-        //   .domain([config.minValue, config.maxValue])
-        //   .nice(config.maxSegmentLabels)
 
-        // ticks = scale.ticks(config.majorTicks)
-        // ticks = scale.ticks(config.maxSegmentLabels)
-
-        // [d3-scale][issue]: https://github.com/d3/d3-scale/issues/149
-        // if (ticks.length === 1) {
-        //   // we have this specific `d3 ticks` behaviour stepping in a specific way
-        //   ticks = [config.minValue, config.maxValue]
-        // }
         ticks = calculateTicks(scale, {
           min: config.minValue,
           max: config.maxValue,
@@ -438,7 +406,7 @@ class ReactSpeedometer extends React.Component {
     // store the gauge in our d3_refs
     this._d3_refs.powerGauge = this.getGauge()(this.gaugeDiv)
     // render for first time; no value means initializes with 0
-    this._d3_refs.powerGauge.render(this.initialValue)
+    this._d3_refs.powerGauge.render(this.props.value || this.initialValue)
     // update readings for the first time
     this.updateReadings()
   }
@@ -584,9 +552,7 @@ class ReactSpeedometer extends React.Component {
       // if not a valid transition; throw a warning and return the default transition
       default:
         console.warn(
-          "Invalid needle transition '",
-          transition,
-          "'. Switching to default transition 'easeQuadInOut'"
+          `Warning: Invalid needle transition '${transition}'. Switching to default transition 'easeQuadInOut'`
         )
         return d3EaseQuadInOut
         break
@@ -618,6 +584,8 @@ ReactSpeedometer.propTypes = {
   needleColor: PropTypes.string.isRequired,
   startColor: PropTypes.string.isRequired,
   endColor: PropTypes.string.isRequired,
+  // custom segment colors
+  segmentColors: PropTypes.array.isRequired,
 
   // needle transition type and duration
   needleTransition: PropTypes.string.isRequired,
@@ -656,6 +624,8 @@ ReactSpeedometer.defaultProps = {
   needleColor: "steelblue",
   startColor: "#FF471A",
   endColor: "#33CC33",
+  // custom segment colors; by default off
+  segmentColors: [],
 
   // needle transition type and duration
   needleTransition: "easeQuadInOut",
