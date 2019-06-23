@@ -1,6 +1,6 @@
 # react-d3-speedometer
 
-**react-d3-speedometer** is a react component for showing speedometer like gauge using d3.
+**react-d3-speedometer** is a react component library for showing speedometer like gauge using d3.
 
 [![Build Status](https://travis-ci.org/palerdot/react-d3-speedometer.svg?branch=master)](https://travis-ci.org/palerdot/react-d3-speedometer)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
@@ -202,7 +202,7 @@ PRs are welcome. Please create a issue/bugfix/feature branch and create an issue
 
 #### Notes
 - `0.x` versions are compatible with React & React DOM Versions (16.x)
-For every subsequent major react upgrade, `react-d3-speedometer` will be bumped to next major versions. For example `1.x` will be compatible with `React 17.x` so and so forth ...
+For every subsequent major react upgrade, `react-d3-speedometer` will be bumped to next major versions. For example `1.x` will be compatible with `React 17.x` so on and so forth ...
 
 
 #### License:
