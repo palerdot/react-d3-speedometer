@@ -72,6 +72,15 @@ storiesOf("react-d3-speedometer", module)
             needleColor="#000080"
           />
         </div>
+        <div>
+          <ReactSpeedometer
+            maxSegmentLabels={12}
+            segments={3}
+            value={470}
+            segmentColors={["#0055A4", "#ECEFF4", "#EF4135"]}
+            needleColor="lightgreen"
+          />
+        </div>
       </div>
     ),
     { source: true, inline: true, header: true }
