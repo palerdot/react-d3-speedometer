@@ -204,7 +204,7 @@ class ReactSpeedometer extends PureComponent {
       }
 
       function centerTranslation() {
-        return "translate(" + r + "," + r + ")"
+        return `translate(${r}, ${r})`
       }
 
       function isRendered() {
