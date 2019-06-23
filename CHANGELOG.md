@@ -1,7 +1,7 @@
 # Change Log
 
 ## 0.6.0
-- new option/prop `segmentColors` for giving custom segment colors. Reference - https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--custom-segment-colors 
+- new option/prop `segmentColors` for giving custom segment colors. Reference - https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--custom-segment-colors. ref: - https://codesandbox.io/s/relaxed-silence-c3qkb 
 
 ## 0.5.6
 - `maxSegmentLabels` now takes `0` as valid value. Addresses - https://github.com/palerdot/react-d3-speedometer/issues/43
