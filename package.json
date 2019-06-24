@@ -85,7 +85,6 @@
     "@babel/runtime": "^7.3.4",
     "@babel/runtime-corejs2": "^7.3.4",
     "d3": "^5.9.2",
-    "global": "^4.3.2",
     "lodash": "^4.17.11",
     "prop-types": "^15.7.2"
   },

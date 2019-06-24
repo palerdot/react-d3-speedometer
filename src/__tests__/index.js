@@ -18,8 +18,6 @@ import {
   calculateSegmentLabelCount,
 } from "../util/"
 
-// const { describe, it } = global
-
 describe("<ReactSpeedometer />", () => {
   // test if it has the parent div component for the "svg"
   test("should render one parent div component", () => {
