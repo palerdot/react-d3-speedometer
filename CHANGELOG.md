@@ -1,7 +1,7 @@
 # Change Log
 
 ## 0.6.1
-- removed unwanted `global` package from dependency
+- removed unwanted `global` package from dependency. ref: - https://codesandbox.io/s/billowing-lake-9somf
 
 ## 0.6.0
 - new option/prop `segmentColors` for giving custom segment colors. Reference - https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--custom-segment-colors. ref: - https://codesandbox.io/s/relaxed-silence-c3qkb 
