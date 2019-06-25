@@ -4,6 +4,7 @@
 
 [![Build Status](https://travis-ci.org/palerdot/react-d3-speedometer.svg?branch=master)](https://travis-ci.org/palerdot/react-d3-speedometer)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+![npm](https://img.shields.io/npm/dt/react-d3-speedometer.svg)
 
 [![NPM](https://nodei.co/npm/react-d3-speedometer.png)](https://npmjs.org/package/react-d3-speedometer)
 
@@ -185,6 +186,9 @@ npm test
 ```
 
 ---
+
+#### Feature Updates:
+- Custom segment colors in `v0.6.0`. [Live Example](https://codesandbox.io/s/relaxed-silence-c3qkb)
 
 #### Changelog:
 
