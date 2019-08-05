@@ -240,4 +240,18 @@ storiesOf("react-d3-speedometer", module)
     ),
     { source: true, inline: true, header: true }
   )
+  .add(
+    "Custom Segments",
+    () => (
+      <ReactSpeedometer
+        needleHeightRatio={0.7}
+        maxSegmentLabels={5}
+        segments={3}
+        // startColor={"lightblue"}
+        customSegmentStops={[0, 500, 750, 1000]}
+        value={333}
+      />
+    ),
+    { source: true, inline: true, header: true }
+  )
 // .add("Auto Refresh Segments", () => <AutoRefresh />)

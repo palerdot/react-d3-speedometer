@@ -1,7 +1,6 @@
 // React Component to show speedometer like gauge with d3
 import React, { PureComponent } from "react"
 import PropTypes from "prop-types"
-
 // selectively import d3 components for reducing file size
 import {
   format as d3Format,
@@ -22,6 +21,8 @@ import {
   calculateSegmentLabelCount,
   calculateScale,
   calculateTicks,
+  calculateSegmentStops,
+  sumArrayTill,
 } from "./util/"
 import { getNeedleTransition } from "./util/get-needle-transition"
 
@@ -104,6 +105,8 @@ class ReactSpeedometer extends PureComponent {
         needleColor: PROPS.needleColor,
         // segments in the speedometer
         majorTicks: PROPS.segments,
+        // custom segment points
+        customSegmentStops: PROPS.customSegmentStops,
         // max segment labels
         maxSegmentLabels: calculateSegmentLabelCount({
           maxSegmentLabelCount: PROPS.maxSegmentLabels,
@@ -183,9 +186,21 @@ class ReactSpeedometer extends PureComponent {
           segments: config.maxSegmentLabels,
         })
 
+        if (config.customSegmentStops.length > 0) {
+          ticks = config.customSegmentStops
+        }
+
         // tickData = d3.range(config.majorTicks)
-        tickData = d3Range(config.majorTicks).map(function() {
+        tickData = d3Range(config.majorTicks).map(function(d) {
           return 1 / config.majorTicks
+        })
+
+        // custom segment stops calculate tickData
+        tickData = calculateSegmentStops({
+          tickData,
+          customSegmentStops: config.customSegmentStops,
+          min: config.minValue,
+          max: config.maxValue,
         })
 
         // arc = d3.svg.arc()
@@ -194,11 +209,13 @@ class ReactSpeedometer extends PureComponent {
           .innerRadius(r - config.ringWidth - config.ringInset)
           .outerRadius(r - config.ringInset)
           .startAngle(function(d, i) {
-            var ratio = d * i
+            // var ratio = d * i
+            const ratio = sumArrayTill(tickData, i)
             return deg2rad(config.minAngle + ratio * range)
           })
           .endAngle(function(d, i) {
-            var ratio = d * (i + 1)
+            // var ratio = d * (i + 1)
+            const ratio = sumArrayTill(tickData, i + 1)
             return deg2rad(config.minAngle + ratio * range)
           })
       }
@@ -413,6 +430,8 @@ ReactSpeedometer.propTypes = {
   segments: PropTypes.number.isRequired,
   // maximum number of labels to be shown
   maxSegmentLabels: PropTypes.number,
+  // custom segment points to create unequal segments
+  customSegmentStops: PropTypes.array,
 
   // color strings
   needleColor: PropTypes.string.isRequired,
@@ -453,6 +472,7 @@ ReactSpeedometer.defaultProps = {
   segments: 5,
   // maximum segment label to be shown
   maxSegmentLabels: -1,
+  customSegmentStops: [],
 
   // color strings
   needleColor: "steelblue",
