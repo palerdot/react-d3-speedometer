@@ -248,7 +248,8 @@ storiesOf("react-d3-speedometer", module)
         maxSegmentLabels={5}
         segments={3}
         // startColor={"lightblue"}
-        customSegmentStops={[0, 500, 750, 1000]}
+        customSegmentStops={[0, 500, 750, 900, 1000]}
+        segmentColors={["#0055A4", "#ECEFF4", "#EF4135", "lightblue"]}
         value={333}
       />
     ),

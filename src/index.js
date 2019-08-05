@@ -112,6 +112,7 @@ class ReactSpeedometer extends PureComponent {
           maxSegmentLabelCount: PROPS.maxSegmentLabels,
           segmentCount: PROPS.segments,
         }),
+        segmentColors: PROPS.segmentColors,
         // color range for the segments
         arcColorFn:
           PROPS.segmentColors.length > 0
@@ -252,7 +253,13 @@ class ReactSpeedometer extends PureComponent {
           .append("path")
           .attr("class", "speedo-segment")
           .attr("fill", function(d, i) {
-            return config.arcColorFn(d * i)
+            if (config.customSegmentStops.length === 0) {
+              return config.arcColorFn(d * i)
+            }
+            console.log("porumai! coloring ", config.segmentColors[i], d)
+            return config.segmentColors && config.segmentColors[i]
+              ? config.segmentColors[i]
+              : config.arcColorFn(d)
           })
           .attr("d", arc)
 
