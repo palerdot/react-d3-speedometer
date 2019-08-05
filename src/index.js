@@ -256,10 +256,9 @@ class ReactSpeedometer extends PureComponent {
             if (config.customSegmentStops.length === 0) {
               return config.arcColorFn(d * i)
             }
-            console.log("porumai! coloring ", config.segmentColors[i], d)
             return config.segmentColors && config.segmentColors[i]
               ? config.segmentColors[i]
-              : config.arcColorFn(d)
+              : config.arcColorFn(d * i)
           })
           .attr("d", arc)
 
