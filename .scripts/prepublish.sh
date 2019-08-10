@@ -14,7 +14,7 @@ echo "=> Transpiling 'src' into ES5 ..."
 echo ""
 rm -rf ./dist
 # .babelrc has all the plugins and presets used
-NODE_ENV=production ./node_modules/.bin/babel --ignore ./src/__tests__,./src/stories ./src --out-dir ./dist --no-comments
+npm run try-build
 echo ""
 echo "=> Transpiling completed."
 
