@@ -1,3 +1,4 @@
+import memoizeOne from "memoize-one"
 import { range as d3Range, arc as d3Arc } from "d3"
 import {
   deg2rad,
@@ -7,7 +8,13 @@ import {
   calculateSegmentStops,
 } from "../util"
 
-export function configureScale(config) {
+// export memoized functions
+export const configureScale = memoizeOne(_configureScale)
+export const configureTicks = memoizeOne(_configureTicks)
+export const configureTickData = memoizeOne(_configureTickData)
+export const configureArc = memoizeOne(_configureArc)
+
+function _configureScale(config) {
   return calculateScale({
     min: config.minValue,
     max: config.maxValue,
@@ -15,7 +22,7 @@ export function configureScale(config) {
   })
 }
 
-export function configureTicks(config) {
+function _configureTicks(config) {
   const scale = configureScale(config)
 
   let ticks = calculateTicks(scale, {
@@ -31,7 +38,7 @@ export function configureTicks(config) {
   return ticks
 }
 
-export function configureTickData(config) {
+function _configureTickData(config) {
   const defaultTickData = d3Range(config.majorTicks).map((d) => {
     return 1 / config.majorTicks
   })
@@ -46,7 +53,7 @@ export function configureTickData(config) {
   return tickData
 }
 
-export const configureArc = (config) => {
+function _configureArc(config) {
   const tickData = configureTickData(config)
 
   const range = config.maxAngle - config.minAngle
