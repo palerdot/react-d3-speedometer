@@ -47,7 +47,6 @@ export function configureTickData(config) {
 }
 
 export const configureArc = (config) => {
-  console.log("porumai! will configure tick data ", config)
   const tickData = configureTickData(config)
 
   const range = config.maxAngle - config.minAngle

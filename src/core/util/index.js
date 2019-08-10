@@ -122,11 +122,9 @@ export function deg2rad(deg) {
 }
 
 export function centerTranslation(r) {
-  console.log("porumai! center translation ", r)
   return `translate(${r}, ${r})`
 }
 
 export function getRadius(config) {
-  console.log("porumai! getting radius ", config)
   return config.width / 2
 }
