@@ -16,7 +16,7 @@ import {
   calculateScale,
   calculateTicks,
   calculateSegmentLabelCount,
-} from "../util/"
+} from "../core/util"
 
 describe("<ReactSpeedometer />", () => {
   // test if it has the parent div component for the "svg"

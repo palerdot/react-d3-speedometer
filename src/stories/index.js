@@ -183,24 +183,12 @@ storiesOf("react-d3-speedometer", module)
       },
     }
   )
-  // render multiple Speedometer
-  .add(
-    "Render multiple Speedometer with a single segment",
-    () => (
-      <div>
-        <ReactSpeedometer value={10} maxValue={200} segments={1} />
-        <ReactSpeedometer value={10} maxValue={40} segments={1} />
-        <ReactSpeedometer value={10} maxValue={30} segments={1} />
-      </div>
-    ),
-    { source: true, inline: true, header: false }
-  )
-  // force render multiple Speedometer
-  .add(
-    "force render multiple Speedometer with a single segment",
-    () => <MultiSpeedoMeters />,
-    { source: true, inline: true, header: false }
-  )
+  // // force render multiple Speedometer
+  // .add(
+  //   "force render multiple Speedometer with a single segment",
+  //   () => <MultiSpeedoMeters />,
+  //   { source: true, inline: true, header: false }
+  // )
   .add(
     "configure needle length",
     () => <ReactSpeedometer value={333} needleHeightRatio={0.5} />,

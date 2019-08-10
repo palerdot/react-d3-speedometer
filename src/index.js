@@ -9,22 +9,17 @@ import {
   select as d3Select,
   line as d3Line,
   curveMonotoneX as d3CurveMonotoneX,
-  pie as d3Pie,
-  rgb as d3Rgb,
-  interpolateHsl as d3InterpolateHsl,
-  scaleQuantize as d3ScaleQuantize,
 } from "d3"
-
-// import validator
+import { getConfig } from "./core/config"
+// import validators
 import {
   calculateNeedleHeight,
-  calculateSegmentLabelCount,
   calculateScale,
   calculateTicks,
   calculateSegmentStops,
   sumArrayTill,
-} from "./util/"
-import { getNeedleTransition } from "./util/get-needle-transition"
+} from "./core/util/"
+import { getNeedleTransition } from "./core/util/get-needle-transition"
 
 class ReactSpeedometer extends PureComponent {
   static displayName = "ReactSpeedometer"
@@ -71,70 +66,11 @@ class ReactSpeedometer extends PureComponent {
     // here container is our gaugeDiv ref
     // return function (container) {
     return (container) => {
-      // default config that are 'not' configurable
-      var default_config = {
-        ringInset: 20,
-
-        pointerWidth: 10,
-        pointerTailLength: 5,
-        // pointerHeadLengthPercent: 0.9,
-
-        minAngle: -90,
-        maxAngle: 90,
-
-        labelInset: 10,
-
-        // calculate the ReactSpeedometer 'parentNode' width/height; it might be used if fluidWidth: true
+      const config = getConfig({
+        PROPS,
         parentWidth: self.gaugeDiv.parentNode.clientWidth,
         parentHeight: self.gaugeDiv.parentNode.clientHeight,
-      }
-
-      // START: Configurable values
-      var config = {
-        // width/height config
-        // if fluidWidth; width/height taken from the parent of the ReactSpeedometer
-        // else if width/height given it is used; else our default
-        width: PROPS.fluidWidth ? default_config.parentWidth : PROPS.width,
-        height: PROPS.fluidWidth ? default_config.parentHeight : PROPS.height,
-        // ring width should be 1/4 th of width
-        ringWidth: PROPS.ringWidth,
-        // min/max values
-        minValue: PROPS.minValue,
-        maxValue: PROPS.maxValue,
-        // color of the speedometer needle
-        needleColor: PROPS.needleColor,
-        // segments in the speedometer
-        majorTicks: PROPS.segments,
-        // custom segment points
-        customSegmentStops: PROPS.customSegmentStops,
-        // max segment labels
-        maxSegmentLabels: calculateSegmentLabelCount({
-          maxSegmentLabelCount: PROPS.maxSegmentLabels,
-          segmentCount: PROPS.segments,
-        }),
-        segmentColors: PROPS.segmentColors,
-        // color range for the segments
-        arcColorFn:
-          PROPS.segmentColors.length > 0
-            ? d3ScaleQuantize(PROPS.segmentColors)
-            : d3InterpolateHsl(d3Rgb(PROPS.startColor), d3Rgb(PROPS.endColor)),
-        // needle configuration
-        needleTransition: PROPS.needleTransition,
-        needleTransitionDuration: PROPS.needleTransitionDuration,
-        needleHeightRatio: PROPS.needleHeightRatio,
-        // text color
-        textColor: PROPS.textColor,
-        // label format
-        labelFormat: d3Format(PROPS.valueFormat),
-        // value text string (template string)
-        currentValueText: PROPS.currentValueText,
-        // placeholder style for 'currentValue'
-        currentValuePlaceholderStyle: PROPS.currentValuePlaceholderStyle,
-      }
-      // END: Configurable values
-
-      // merge default config with the config
-      config = Object.assign({}, default_config, config)
+      })
 
       var range = undefined,
         r = undefined,
@@ -145,9 +81,6 @@ class ReactSpeedometer extends PureComponent {
         scale = undefined,
         ticks = undefined,
         tickData = undefined
-
-      // var donut = d3.pie();
-      var donut = d3Pie()
 
       function deg2rad(deg) {
         return (deg * Math.PI) / 180
