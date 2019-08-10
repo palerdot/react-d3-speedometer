@@ -150,7 +150,7 @@ storiesOf("react-d3-speedometer", module)
           value={70.7}
           valueFormat={"d"}
           customSegmentStops={[0, 50, 70, 90, 150]}
-          segmentColors={["red", "green", "blue", "orange"]}
+          segmentColors={["#bf616a", "#d08770", "#ebcb8b", "#a3be8c"]}
         />
         <ReactSpeedometer
           maxValue={150}
