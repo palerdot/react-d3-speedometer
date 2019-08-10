@@ -96,18 +96,22 @@ export function calculateTicks(scale, { min, max, segments }) {
   let ticks = []
   ticks = scale.ticks(segments)
   // [d3-scale][issue]: https://github.com/d3/d3-scale/issues/149
-  if (ticks.length === 1) {
-    // we have this specific `d3 ticks` behaviour stepping in a specific way
-    ticks = [min, max]
-  }
 
-  if (_last(ticks) !== max || segments < ticks.length) {
+  const normalize_ticks =
+    (_last(ticks) !== max || segments < ticks.length) && ticks.length > 1
+
+  if (normalize_ticks) {
     // let us split it ourselves
     const diff = (max - min) / segments
     ticks = [min]
     _times(segments, (i) => {
       ticks.push(min + (i + 1) * diff)
     })
+  }
+
+  if (ticks.length === 1) {
+    // we have this specific `d3 ticks` behaviour stepping in a specific way
+    ticks = [min, max]
   }
 
   return ticks
