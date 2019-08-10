@@ -95,7 +95,6 @@ export function calculateScale({ min, max, segments }) {
 export function calculateTicks(scale, { min, max, segments }) {
   let ticks = []
   ticks = scale.ticks(segments)
-  // ticks = [1, 333, 1000]
   // [d3-scale][issue]: https://github.com/d3/d3-scale/issues/149
   if (ticks.length === 1) {
     // we have this specific `d3 ticks` behaviour stepping in a specific way

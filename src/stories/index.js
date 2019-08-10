@@ -143,7 +143,7 @@ storiesOf("react-d3-speedometer", module)
   // configuring format of the value
   .add(
     "Configuring the format for values displayed",
-    () => <ReactSpeedometer maxValue={150} value={70.7} valueFormat={"d"} />,
+    () => <ReactSpeedometer segments={5} value={70.7} valueFormat={"d"} />,
     {}
   )
   // custom value text
