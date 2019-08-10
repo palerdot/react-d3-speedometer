@@ -6,6 +6,7 @@ import {
   head as _head,
   last as _last,
   drop as _drop,
+  times as _times,
 } from "lodash"
 import { take as _take } from "lodash/fp"
 import { scaleLinear as d3ScaleLinear } from "d3"
@@ -88,7 +89,6 @@ export function calculateScale({ min, max, segments }) {
   return d3ScaleLinear()
     .range([0, 1])
     .domain([min, max])
-    .nice(segments)
 }
 
 // calculate ticks
@@ -99,6 +99,15 @@ export function calculateTicks(scale, { min, max, segments }) {
   if (ticks.length === 1) {
     // we have this specific `d3 ticks` behaviour stepping in a specific way
     ticks = [min, max]
+  }
+
+  if (_last(ticks) !== max || segments < ticks.length) {
+    // let us split it ourselves
+    const diff = (max - min) / segments
+    ticks = [min]
+    _times(segments, (i) => {
+      ticks.push(min + (i + 1) * diff)
+    })
   }
 
   return ticks

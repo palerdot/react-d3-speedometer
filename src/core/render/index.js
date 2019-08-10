@@ -1,4 +1,3 @@
-import { pipe } from "lodash/fp"
 import {
   select as d3Select,
   line as d3Line,
@@ -9,6 +8,7 @@ import {
   getRadius,
   calculateNeedleHeight,
   formatCurrentValueText,
+  sumArrayTill,
 } from "../util"
 import { getNeedleTransition } from "../util/get-needle-transition"
 import {
@@ -86,6 +86,7 @@ function _renderArcs({ config, svg, centerTx }) {
 
 function _renderLabels({ config, svg, centerTx, r }) {
   const ticks = configureTicks(config)
+  const tickData = configureTickData(config)
   const scale = configureScale(config)
   const range = config.maxAngle - config.minAngle
 
@@ -98,8 +99,11 @@ function _renderLabels({ config, svg, centerTx, r }) {
     .data(ticks)
     .enter()
     .append("text")
-    .attr("transform", (d) => {
-      const ratio = scale(d)
+    .attr("transform", (d, i) => {
+      const ratio =
+        config.customSegmentStops.length === 0
+          ? scale(d)
+          : sumArrayTill(tickData, i)
       const newAngle = config.minAngle + ratio * range
       return (
         "rotate(" + newAngle + ") translate(0," + (config.labelInset - r) + ")"
