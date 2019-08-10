@@ -10,7 +10,7 @@ import {
   line as d3Line,
   curveMonotoneX as d3CurveMonotoneX,
 } from "d3"
-import { getConfig } from "./core/config"
+import { getConfig, DEFAULT_PROPS, updateConfig } from "./core/config"
 // import validators
 import {
   calculateNeedleHeight,
@@ -20,6 +20,7 @@ import {
   sumArrayTill,
 } from "./core/util/"
 import { getNeedleTransition } from "./core/util/get-needle-transition"
+import { render, update } from "./core/render"
 
 class ReactSpeedometer extends PureComponent {
   static displayName = "ReactSpeedometer"
@@ -75,7 +76,6 @@ class ReactSpeedometer extends PureComponent {
       var range = undefined,
         r = undefined,
         needleLength = undefined,
-        value = 0,
         svg = undefined,
         arc = undefined,
         scale = undefined,
@@ -84,13 +84,6 @@ class ReactSpeedometer extends PureComponent {
 
       function deg2rad(deg) {
         return (deg * Math.PI) / 180
-      }
-
-      function newAngle(d) {
-        var ratio = scale(d)
-        var newAngle = config.minAngle + ratio * range
-
-        return newAngle
       }
 
       function configure() {
@@ -158,11 +151,7 @@ class ReactSpeedometer extends PureComponent {
         return `translate(${r}, ${r})`
       }
 
-      function isRendered() {
-        return svg !== undefined
-      }
-
-      function render(newValue) {
+      function render() {
         // svg = d3.select(container)
         svg = d3Select(container)
           .append("svg:svg")
@@ -293,6 +282,7 @@ class ReactSpeedometer extends PureComponent {
         var ratio = scale(newValue)
 
         var newAngle = config.minAngle + ratio * range
+        console.log("porumai! old updating ", self._d3_refs)
         // update the pointer
         self._d3_refs.pointer
           .transition()
@@ -312,7 +302,6 @@ class ReactSpeedometer extends PureComponent {
       // also expose the 'config' object; for now, we will update the 'labelFormat' while updating
       return {
         configure: configure,
-        isRendered: isRendered,
         render: render,
         update: update,
         // exposing the config object
@@ -321,7 +310,7 @@ class ReactSpeedometer extends PureComponent {
     }
   }
 
-  renderGauge() {
+  _renderGauge() {
     // console.log("rendering gauge ");
     // before rendering remove the existing gauge?
     // d3.select( this.gaugeDiv )
@@ -336,7 +325,30 @@ class ReactSpeedometer extends PureComponent {
     this.updateReadings()
   }
 
-  updateReadings() {
+  renderGauge() {
+    this.config = getConfig({
+      PROPS: this.props,
+      parentWidth: this.gaugeDiv.parentNode.clientWidth,
+      parentHeight: this.gaugeDiv.parentNode.clientHeight,
+    })
+
+    d3Select(this.gaugeDiv)
+      .select("svg")
+      .remove()
+
+    this.d3_refs = render({
+      container: this.gaugeDiv,
+      config: this.config,
+    })
+
+    update({
+      d3_refs: this.d3_refs,
+      newValue: this.props.value,
+      config: this.config,
+    })
+  }
+
+  _updateReadings() {
     // refresh the config of 'labelFormat'
     this._d3_refs.powerGauge.config.labelFormat = d3Format(
       this.props.valueFormat || ""
@@ -347,6 +359,21 @@ class ReactSpeedometer extends PureComponent {
     // updates the readings of the gauge with the current prop value
     // animates between old prop value and current prop value
     this._d3_refs.powerGauge.update(this.props.value || 0)
+  }
+
+  updateReadings() {
+    this.config = updateConfig(this.config, {
+      labelFormat: d3Format(this.props.valueFormat || ""),
+      currentValueText: this.props.currentValueText || "${value}",
+    })
+
+    // updates the readings of the gauge with the current prop value
+    // animates between old prop value and current prop value
+    update({
+      d3_refs: this.d3_refs,
+      newValue: this.props.value || 0,
+      config: this.config,
+    })
   }
 }
 
@@ -396,50 +423,6 @@ ReactSpeedometer.propTypes = {
 }
 
 // define the default proptypes
-ReactSpeedometer.defaultProps = {
-  value: 0,
-  minValue: 0,
-  maxValue: 1000,
-
-  forceRender: false,
-
-  width: 300,
-  height: 300,
-  fluidWidth: false,
-
-  // segments to show in the speedometer
-  segments: 5,
-  // maximum segment label to be shown
-  maxSegmentLabels: -1,
-  customSegmentStops: [],
-
-  // color strings
-  needleColor: "steelblue",
-  startColor: "#FF471A",
-  endColor: "#33CC33",
-  // custom segment colors; by default off
-  segmentColors: [],
-
-  // needle transition type and duration
-  needleTransition: "easeQuadInOut",
-  needleTransitionDuration: 500,
-  needleHeightRatio: 0.9,
-
-  ringWidth: 60,
-
-  // text color (for both showing current value and segment values)
-  textColor: "#666",
-
-  // label format => https://github.com/d3/d3-format
-  // by default ""; takes valid input for d3 format
-  valueFormat: "",
-
-  // value text string format; by default it just shows the value
-  // takes es6 template string as input with a default ${value}
-  currentValueText: "${value}",
-  // specifies the style of the placeholder for current value
-  // change it some other format like "#{value}" and use it in current value text as => "Current Value: #{value}"
-  currentValuePlaceholderStyle: "${value}",
-}
+ReactSpeedometer.defaultProps = DEFAULT_PROPS
 
 export default ReactSpeedometer

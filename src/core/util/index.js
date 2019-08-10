@@ -104,3 +104,29 @@ export function calculateTicks(scale, { min, max, segments }) {
 
   return ticks
 }
+
+// formats current value
+// ref: https://stackoverflow.com/a/29771751/1410291
+export function formatCurrentValueText(currentValue, config) {
+  // get the current value
+  const value = config.labelFormat(currentValue)
+  // get the current placeholder style
+  const placeholderStyle = config.currentValuePlaceholderStyle
+
+  // replace the placeholder style in current text
+  return config.currentValueText.replace(placeholderStyle, value)
+}
+
+export function deg2rad(deg) {
+  return (deg * Math.PI) / 180
+}
+
+export function centerTranslation(r) {
+  console.log("porumai! center translation ", r)
+  return `translate(${r}, ${r})`
+}
+
+export function getRadius(config) {
+  console.log("porumai! getting radius ", config)
+  return config.width / 2
+}
