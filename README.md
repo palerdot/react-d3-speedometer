@@ -187,7 +187,7 @@ You can give a value between `0` and `1` to control the needle height.
 - [x] Test coverage (with enzyme)
 - [x] Convert entire code base to ES6
 - [x] Split core from lifecycles
-- [] Typescript support?
+- [ ] Typescript support?
 
 ---
 
