@@ -269,4 +269,4 @@ storiesOf("react-d3-speedometer", module)
     ),
     { source: true, inline: true, header: true }
   )
-  .add("Auto Refresh Segments", () => <AutoRefresh />)
+// .add("Auto Refresh Segments", () => <AutoRefresh />)
