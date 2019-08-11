@@ -105,9 +105,7 @@ function _renderLabels({ config, svg, centerTx, r }) {
           ? scale(d)
           : sumArrayTill(tickData, i)
       const newAngle = config.minAngle + ratio * range
-      return (
-        "rotate(" + newAngle + ") translate(0," + (config.labelInset - r) + ")"
-      )
+      return `rotate(${newAngle}) translate(0, ${config.labelInset - r})`
     })
     .text(config.labelFormat)
     // add class for text label
@@ -124,10 +122,7 @@ function _renderCurrentValueText({ config, svg }) {
   return (
     svg
       .append("g")
-      .attr(
-        "transform",
-        "translate(" + config.width / 2 + "," + config.width / 2 + ")"
-      )
+      .attr("transform", `translate(${config.width / 2}, ${config.width / 2})`)
       .append("text")
       // add class for the text
       .attr("class", "current-value")
@@ -138,7 +133,6 @@ function _renderCurrentValueText({ config, svg }) {
       .text(config.currentValue || "amaidhi")
       .style("font-size", "16px")
       .style("font-weight", "bold")
-      // .style("fill", "#666");
       .style("fill", config.textColor)
   )
 }
@@ -169,5 +163,5 @@ function _renderNeedle({ config, svg, r, centerTx }) {
   return pg
     .append("path")
     .attr("d", pointerLine)
-    .attr("transform", "rotate(" + config.minAngle + ")")
+    .attr("transform", `rotate(${config.minAngle})`)
 }

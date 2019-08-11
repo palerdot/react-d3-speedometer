@@ -43,6 +43,7 @@ class ReactSpeedometer extends PureComponent {
       parentHeight: this.gaugeDiv.parentNode.clientHeight,
     })
 
+    // remove existing gauge (if any)
     d3Select(this.gaugeDiv)
       .select("svg")
       .remove()

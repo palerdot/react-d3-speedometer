@@ -63,12 +63,10 @@ function _configureArc(config) {
     .innerRadius(r - config.ringWidth - config.ringInset)
     .outerRadius(r - config.ringInset)
     .startAngle((d, i) => {
-      // var ratio = d * i
       const ratio = sumArrayTill(tickData, i)
       return deg2rad(config.minAngle + ratio * range)
     })
     .endAngle((d, i) => {
-      // var ratio = d * (i + 1)
       const ratio = sumArrayTill(tickData, i + 1)
       return deg2rad(config.minAngle + ratio * range)
     })
