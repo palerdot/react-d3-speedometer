@@ -1,7 +1,7 @@
 # Change Log
 
 ## 0.7.0
-- new `customSegmentStops` configuration to customize segments, ref: https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--custom-segment-stops. **Complete rewrite** of core, where core is modularized and separated from lifecycle methods
+- new `customSegmentStops` configuration to customize segments, ref: https://codesandbox.io/s/purple-cdn-eu9xf. **Complete rewrite** of core, where core is modularized and separated from lifecycle methods
 
 ## 0.6.1
 - removed unwanted `global` package from dependency. ref: - https://codesandbox.io/s/billowing-lake-9somf
