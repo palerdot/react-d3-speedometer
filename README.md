@@ -50,6 +50,7 @@ import ReactSpeedometer from "react-d3-speedometer"
 | valueFormat | string       |  | should be a valid format for [d3-format](https://github.com/d3/d3-format#locale_format). By default, no formatter is used. You can use a valid d3 format identifier (for eg: `d` to convert float to integers), to format the values. **Note:** This formatter affects all the values (current value, segment values) displayed in the speedometer |
 | currentValueText | string | ${value} | Should be provided a string which should have **${value}** placeholder which will be replaced with current value. By default, current value is shown (formatted with `valueFormat`). For example, if current Value is 333 if you would like to show `Current Value: 333`, you should provide a string **`Current Value: ${value}`**. See [Live Example](https://palerdot.in/react-d3-speedometer/?selectedKind=react-d3-speedometer&selectedStory=Custom%20Current%20Value%20Text&full=0&down=1&left=1&panelRight=0) |
 | currentValuePlaceholderStyle | string | ${value} | Should be provided a placeholder string which will be replaced with current value in `currentValueTextProp`. For example: you can use ruby like interpolation by giving following props - `<ReactSpeedometer    currentValueText="Current Value: #{value}" currentValuePlaceholderStyle={"#{value}"} />`. This is also helpful if you face `no-template-curly-in-string` eslint warnings and would like to use different placeholder for current value |
+| customSegmentStops | array         | []     | Array of values **starting** at `min` value, and **ending** at `max` value. This configuration is useful if you would like to split the segments at custom points or have unequal segments at preferred values. If the values does not begin and end with `min` and `max` value respectively, an error will be thrown. This configuration will override `segments` prop, since total number of segments will be `length - 1` of `customSegmentProps`. For example, `[0, 50, 75, 100]` value will have three segments - `0-50`, `50-75`, `75-100`. See [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--custom-segment-stops) |
 
 ## Examples
 
@@ -89,6 +90,19 @@ You can view [Live Examples here](https://palerdot.in/react-d3-speedometer/?path
   ]}
   // startColor will be ignored
   // endColor will be ignored
+/>
+```
+
+#### Custom Segment Stops - [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--custom-segment-stops)
+
+```javascript
+  <ReactSpeedometer
+    customSegmentStops={[0, 500, 750, 900, 1000]}
+    segmentColors={["firebrick", "tomato", "gold", "limegreen"]}
+    value={333}
+  />
+  // `segments` prop will be ignored since it will be calculated from `customSegmentStops`
+  // In this case there will be `4` segments (0-500, 500-750, 750-900, 900-1000)
 />
 ```
 
@@ -171,7 +185,9 @@ You can give a value between `0` and `1` to control the needle height.
 ### Todos:
 
 - [x] Test coverage (with enzyme)
-- [ ] Convert entire code base to ES6
+- [x] Convert entire code base to ES6
+- [x] Split core from lifecycles
+- [] Typescript support?
 
 ---
 
@@ -188,6 +204,7 @@ npm test
 ---
 
 #### Feature Updates:
+- Custom segment stops in `v0.7.0`. [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--custom-segment-stops)
 - Custom segment colors in `v0.6.0`. [Live Example](https://codesandbox.io/s/relaxed-silence-c3qkb)
 
 #### Changelog:

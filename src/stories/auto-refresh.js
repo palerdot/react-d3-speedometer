@@ -37,12 +37,32 @@ class AutoRefresh extends React.Component {
           <ReactSpeedometer
             value={333}
             segments={1000}
-            maxSegmentLabels={5}
+            maxSegmentLabels={1}
             textColor={"#d8dee9"}
             needleColor={`rgba(94, 129, 172, ${this.state.opacity})`}
             forceRender={true}
           />
         </div>
+
+        {/* <div
+          style={{
+            margin: "7px 17px",
+          }}
+        >
+          <ReactSpeedometer
+            forceRender={true}
+            textColor={"#d8dee9"}
+            maxSegmentLabels={0}
+            customSegmentStops={
+              this.state.opacity === 1 ? [0, 777, 1000] : [0, 500, 1000]
+            }
+            segmentColors={["#5959ac", "#DEDEDE"]}
+            needleColor={"#5959ac"}
+            currentValueText={"Current Value: ${value}"}
+            value={this.state.opacity === 1 ? 777 : 500}
+          />
+        </div>
+         */}
 
         <div
           style={{
@@ -50,7 +70,7 @@ class AutoRefresh extends React.Component {
           }}
         >
           <ReactSpeedometer
-            maxSegmentLabels={12}
+            maxSegmentLabels={1}
             segments={3}
             value={470}
             forceRender={true}
@@ -78,10 +98,10 @@ class AutoRefresh extends React.Component {
             ]}
             maxSegmentLabels={5}
             textColor={"#d8dee9"}
-            // needleColor={`rgba(94, 129, 172, ${this.state.opacity})`}
             needleColor="#eceff4"
-            // forceRender={true}
-            // value={333}
+            needleTransition="easeElastic"
+            needleTransitionDuration={3333}
+            customSegmentStops={[0, 500, 700, 800, 900, 1000]}
             value={this.state.opacity === 1 ? 333 : 470}
           />
         </div>

@@ -31,7 +31,7 @@ function _configureTicks(config) {
     segments: config.maxSegmentLabels,
   })
 
-  if (config.customSegmentStops.length > 0) {
+  if (config.customSegmentStops.length > 0 && config.maxSegmentLabels !== 0) {
     ticks = config.customSegmentStops
   }
 

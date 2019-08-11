@@ -85,6 +85,31 @@ storiesOf("react-d3-speedometer", module)
     ),
     { source: true, inline: true, header: true }
   )
+  .add(
+    "Custom Segment Stops",
+    () => (
+      <div>
+        <ReactSpeedometer
+          needleHeightRatio={0.7}
+          maxSegmentLabels={5}
+          segments={3}
+          customSegmentStops={[0, 500, 750, 900, 1000]}
+          segmentColors={["firebrick", "tomato", "gold", "limegreen"]}
+          value={333}
+        />
+        <ReactSpeedometer
+          forceRender={true}
+          maxSegmentLabels={1}
+          customSegmentStops={[0, 777, 1000]}
+          segmentColors={["#5959ac", "#AAA"]}
+          needleColor={"#5959ac"}
+          currentValueText={"Current Value: ${value}"}
+          value={777}
+        />
+      </div>
+    ),
+    { source: true, inline: true, header: true }
+  )
   // fluid display view
   .add(
     "Fluid Width view",
@@ -241,21 +266,6 @@ storiesOf("react-d3-speedometer", module)
           />
         </div>
       </div>
-    ),
-    { source: true, inline: true, header: true }
-  )
-  .add(
-    "Custom Segments",
-    () => (
-      <ReactSpeedometer
-        needleHeightRatio={0.7}
-        maxSegmentLabels={5}
-        segments={3}
-        // startColor={"lightblue"}
-        customSegmentStops={[0, 500, 750, 900, 1000]}
-        segmentColors={["#0055A4", "#ECEFF4", "#EF4135", "lightblue"]}
-        value={333}
-      />
     ),
     { source: true, inline: true, header: true }
   )
