@@ -85,7 +85,7 @@
     "@babel/runtime": "^7.3.4",
     "@babel/runtime-corejs2": "^7.3.4",
     "d3": "^5.9.2",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.14",
     "memoize-one": "^5.0.5",
     "prop-types": "^15.7.2"
   },
