@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { addParameters, configure } from "@storybook/react"
+import { addParameters, configure, addDecorator } from "@storybook/react"
 import { themes } from "@storybook/theming"
 // import { storiesOf, action, setAddon } from '@kadira/storybook';
 import { storiesOf, action, setAddon } from "@storybook/react"
@@ -12,15 +12,23 @@ addParameters({
   },
 })
 
-// addon-info
-setDefaults({
-  inline: true,
-  maxPropsIntoLine: 1,
-  maxPropObjectKeys: 100,
-})
+// // addon-info
+// setDefaults({
+//   inline: true,
+//   maxPropsIntoLine: 1,
+//   maxPropObjectKeys: 100,
+// })
 
-// set the info addon for storybook!
-setAddon(infoAddon)
+// // set the info addon for storybook!
+// setAddon(infoAddon)
+
+addDecorator(
+  withInfo({
+    inline: true,
+    maxPropObjectKeys: 100,
+    maxPropArrayLength: 1000,
+  })
+)
 
 // DEVELOPMENT
 import ReactSpeedometer from "../index"
@@ -35,7 +43,7 @@ storiesOf("react-d3-speedometer", module)
   // Add the `withKnobs` decorator to add knobs support to your stories.
   // You can also configure `withKnobs` as a global decorator.
   // .addDecorator(withKnobs)
-  .addDecorator(withInfo)
+  // .addDecorator(withInfo)
   // default view with no configuration
   .add("Default with no config", () => <ReactSpeedometer />)
   // configuring values
