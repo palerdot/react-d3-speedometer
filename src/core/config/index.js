@@ -52,7 +52,7 @@ export const DEFAULT_PROPS = {
   // change it some other format like "#{value}" and use it in current value text as => "Current Value: #{value}"
   currentValuePlaceholderStyle: "${value}",
 
-  fontSize: '14px',
+  fontSize: "14px",
 }
 
 // default config

@@ -56,7 +56,7 @@ function _renderSVG({ container, config }) {
     .attr("class", "speedometer")
     .attr("width", config.width)
     .attr("height", config.height)
-    .style('overflow', 'visible')
+    .style("overflow", "visible")
 }
 
 function _renderArcs({ config, svg, centerTx }) {
