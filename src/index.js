@@ -1,10 +1,10 @@
-import React, { PureComponent } from "react"
+import React from "react"
 import PropTypes from "prop-types"
 import { format as d3Format, select as d3Select } from "d3"
 import { getConfig, DEFAULT_PROPS, updateConfig } from "./core/config"
 import { render, update } from "./core/render"
 
-class ReactSpeedometer extends PureComponent {
+class ReactSpeedometer extends React.PureComponent {
   static displayName = "ReactSpeedometer"
 
   constructor(props) {
@@ -23,7 +23,7 @@ class ReactSpeedometer extends PureComponent {
   }
 
   render = () => {
-    return <div ref={(ref) => (this.gaugeDiv = ref)} />
+    return <div ref={(ref) => (this.gaugeDiv = ref)}/>
   }
 
   componentDidUpdate() {
@@ -119,6 +119,7 @@ ReactSpeedometer.propTypes = {
   currentValueText: PropTypes.string.isRequired,
   // placeholder style for current value
   currentValuePlaceholderStyle: PropTypes.string.isRequired,
+  fontSize: PropTypes.string,
 }
 
 // define the default proptypes

@@ -277,4 +277,19 @@ storiesOf("react-d3-speedometer", module)
     ),
     { source: true, inline: true, header: true }
   )
+  .add(
+    "Configurable font size",
+      () => (
+          <div>
+              <ReactSpeedometer
+                  needleHeightRatio={0.7}
+                  maxSegmentLabels={5}
+                  segments={5}
+                  value={333}
+                  fontSize={'24px'}
+                />
+            </div>
+        ),
+        { source: true, inline: true, header: true }
+    )
 // .add("Auto Refresh Segments", () => <AutoRefresh />)

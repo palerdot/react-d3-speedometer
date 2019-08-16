@@ -56,6 +56,7 @@ function _renderSVG({ container, config }) {
     .attr("class", "speedometer")
     .attr("width", config.width)
     .attr("height", config.height)
+    .style('overflow', 'visible')
 }
 
 function _renderArcs({ config, svg, centerTx }) {
@@ -112,7 +113,7 @@ function _renderLabels({ config, svg, centerTx, r }) {
     .attr("class", "segment-value")
     // styling stuffs
     .style("text-anchor", "middle")
-    .style("font-size", "14px")
+    .style("font-size", config.fontSize)
     .style("font-weight", "bold")
     // .style("fill", "#666");
     .style("fill", config.textColor)
