@@ -1,7 +1,7 @@
 # Change Log
 
 ## 0.7.1
-- `bugfix`. Handle negative values and custom min/max values for `customSegmentStops`. Fixes - https://github.com/palerdot/react-d3-speedometer/issues/51 and https://github.com/palerdot/react-d3-speedometer/issues/52
+- `bugfix`. Handle negative values and custom min/max values for `customSegmentStops`. Fixes - https://github.com/palerdot/react-d3-speedometer/issues/51 and https://github.com/palerdot/react-d3-speedometer/issues/52. ref - https://codesandbox.io/s/jolly-thompson-2k3d7
 
 ## 0.7.0
 - new `customSegmentStops` configuration to customize segments, ref: https://codesandbox.io/s/purple-cdn-eu9xf. **Complete rewrite** of core, where core is modularized and separated from lifecycle methods
