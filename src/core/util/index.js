@@ -17,6 +17,11 @@ export function sumArrayTill(array, index) {
 }
 
 // helper function to calculate segment stops
+// if custom segment stops is given does the following validation
+// first elem === min
+// last elem === max
+// if valid, massages custom segment stops into valid tick data
+// if custom segment stop is not given
 export function calculateSegmentStops({
   tickData,
   customSegmentStops,
@@ -51,16 +56,11 @@ export function calculateSegmentStops({
       // ignore
       return
     }
-    return (current_stop - customSegmentStops[index - 1]) / max
+    return (current_stop - customSegmentStops[index - 1]) / (max - min)
   })
 
   return _drop(relative_difference)
 }
-// if custom segment stops is given does the following validation
-// first elem === min
-// last elem === max
-// if valid, massages custom segment stops into valid tick data
-// if custom segment stop is not given
 
 // export validators
 export function calculateNeedleHeight({ heightRatio, radius }) {

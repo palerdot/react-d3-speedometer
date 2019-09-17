@@ -108,11 +108,25 @@ storiesOf("react-d3-speedometer", module)
         <ReactSpeedometer
           forceRender={true}
           maxSegmentLabels={1}
-          customSegmentStops={[0, 777, 1000]}
+          customSegmentStops={[500, 777, 1000]}
           segmentColors={["#5959ac", "#AAA"]}
           needleColor={"#5959ac"}
           currentValueText={"Current Value: ${value}"}
+          minValue={500}
+          maxValue={1000}
           value={777}
+        />
+        <ReactSpeedometer
+          forceRender={true}
+          maxSegmentLabels={1}
+          // customSegmentStops={[500, 777, 1000]}
+          segmentColors={["tomato", "gold"]}
+          needleColor={"#5959ac"}
+          currentValueText={"Current Value: ${value}"}
+          minValue={-120}
+          maxValue={0}
+          value={-100}
+          customSegmentStops={[-120, -100, 0]}
         />
       </div>
     ),

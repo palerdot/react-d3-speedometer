@@ -61,4 +61,26 @@ describe("calculate segment data", () => {
       })
     ).toEqual([0.5, 0.25, 0.25])
   })
+
+  // test massaged data for custom min/max values
+  test("confirm massaged data for custom min/max values", () => {
+    expect(
+      calculateSegmentStops({
+        tickData,
+        customSegmentStops: [500, 777, 1000],
+        min: 500,
+        max: 1000,
+      })
+    ).toEqual([0.554, 0.446])
+
+    // test for negative values
+    expect(
+      calculateSegmentStops({
+        tickData,
+        customSegmentStops: [-120, -100, 0],
+        min: -120,
+        max: 0,
+      })
+    ).toEqual([0.16666666666666666, 0.8333333333333334])
+  })
 })
