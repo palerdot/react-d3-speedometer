@@ -51,11 +51,16 @@ export const render = ({ container, config }) => {
 
 // helper function to render individual parts of gauge
 function _renderSVG({ container, config }) {
-  return d3Select(container)
-    .append("svg:svg")
-    .attr("class", "speedometer")
-    .attr("width", config.width)
-    .attr("height", config.height)
+  return (
+    d3Select(container)
+      .append("svg:svg")
+      .attr("class", "speedometer")
+      .attr("width", config.width)
+      .attr("height", config.height)
+      // use inline styles so that width/height is not overridden
+      .style("width", config.width)
+      .style("height", config.height)
+  )
 }
 
 function _renderArcs({ config, svg, centerTx }) {
