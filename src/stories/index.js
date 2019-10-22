@@ -7,7 +7,7 @@ import infoAddon, { setDefaults, withInfo } from "@storybook/addon-info"
 
 addParameters({
   options: {
-    // name: "<ReactSpeedometer />",
+    name: "<ReactSpeedometer />",
     brandTitle: "<ReactSpeedometer />",
     brandUrl: "https://github.com/palerdot/react-d3-speedometer",
     showPanel: false,
