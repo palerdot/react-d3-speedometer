@@ -1,5 +1,8 @@
 # Change Log
 
+## 0.7.3
+- `dimensionUnit` prop to configure `width/height` ... Defaults to `px`. More context - https://developer.mozilla.org/en-US/docs/Web/SVG/Content_type#Length
+
 ## 0.7.2
 - `labelFontSize` and `valueTextFontSize` configurable props.
  

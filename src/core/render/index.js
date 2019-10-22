@@ -55,11 +55,11 @@ function _renderSVG({ container, config }) {
     d3Select(container)
       .append("svg:svg")
       .attr("class", "speedometer")
-      .attr("width", config.width)
-      .attr("height", config.height)
+      .attr("width", `${config.width}${config.dimensionUnit}`)
+      .attr("height", `${config.height}${config.dimensionUnit}`)
       // use inline styles so that width/height is not overridden
-      .style("width", config.width)
-      .style("height", config.height)
+      .style("width", `${config.width}${config.dimensionUnit}`)
+      .style("height", `${config.height}${config.dimensionUnit}`)
   )
 }
 

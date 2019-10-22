@@ -17,6 +17,7 @@ export const DEFAULT_PROPS = {
   width: 300,
   height: 300,
   fluidWidth: false,
+  dimensionUnit: "px",
 
   // segments to show in the speedometer
   segments: 5,
@@ -77,6 +78,10 @@ export const getConfig = ({ PROPS, parentWidth, parentHeight }) => {
     // else if width/height given it is used; else our default
     width: PROPS.fluidWidth ? parentWidth : PROPS.width,
     height: PROPS.fluidWidth ? parentHeight : PROPS.height,
+
+    // width/height dimension unit ... default "px"
+    dimensionUnit: PROPS.dimensionUnit,
+
     // ring width should be 1/4 th of width
     ringWidth: PROPS.ringWidth,
     // min/max values

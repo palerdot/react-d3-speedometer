@@ -89,6 +89,7 @@ ReactSpeedometer.propTypes = {
 
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
+  dimensionUnit: PropTypes.string.isRequired, // width/height dimension ... default "px"
   fluidWidth: PropTypes.bool.isRequired,
 
   // segments to show in the speedometer
