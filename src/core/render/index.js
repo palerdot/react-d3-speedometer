@@ -112,7 +112,7 @@ function _renderLabels({ config, svg, centerTx, r }) {
     .attr("class", "segment-value")
     // styling stuffs
     .style("text-anchor", "middle")
-    .style("font-size", "14px")
+    .style("font-size", config.labelFontSize)
     .style("font-weight", "bold")
     // .style("fill", "#666");
     .style("fill", config.textColor)
@@ -131,7 +131,7 @@ function _renderCurrentValueText({ config, svg }) {
       .attr("y", 23)
       // add text
       .text(config.currentValue || "amaidhi")
-      .style("font-size", "16px")
+      .style("font-size", config.valueTextFontSize)
       .style("font-weight", "bold")
       .style("fill", config.textColor)
   )

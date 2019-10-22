@@ -1,5 +1,8 @@
 # Change Log
 
+## 0.7.2
+- `labelFontSize` and `valueTextFontSize` configurable props.
+ 
 ## 0.7.1
 - `bugfix`. Handle negative values and custom min/max values for `customSegmentStops`. Fixes - https://github.com/palerdot/react-d3-speedometer/issues/51 and https://github.com/palerdot/react-d3-speedometer/issues/52. ref - https://codesandbox.io/s/jolly-thompson-2k3d7
 

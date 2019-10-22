@@ -1,5 +1,5 @@
 import React from "react"
-
+import { isEmpty } from "lodash"
 // ref: https://github.com/airbnb/enzyme/blob/master/docs/guides/migration-from-2-to-3.md
 import Enzyme from "enzyme"
 import Adapter from "enzyme-adapter-react-16"
@@ -327,5 +327,52 @@ describe("<ReactSpeedometer />", () => {
           .get(index).attribs.fill
       ).toEqual(color)
     })
+  })
+
+  test("label and value font sizes", () => {
+    const labelFontSize = "15px"
+    const valueTextFontSize = "23px"
+
+    const full_dom_wrapper = mount(
+      <ReactSpeedometer
+        value={333}
+        needleHeightRatio={0.5}
+        labelFontSize={labelFontSize}
+        valueTextFontSize={valueTextFontSize}
+      />
+    )
+
+    // construct styles from inline 'attribs.style'
+    let styles = {}
+    let label_styles = full_dom_wrapper
+      .render()
+      .find("text.segment-value")
+      .get(0).attribs.style
+
+    label_styles.split(";").forEach((style) => {
+      const [key, value] = style.split(":")
+      if (isEmpty(key) || isEmpty(value)) {
+        return
+      }
+      styles[key.trim()] = value.trim()
+    })
+
+    expect(styles["font-size"]).toEqual(labelFontSize)
+
+    // check for current value font size
+    let current_value_styles = full_dom_wrapper
+      .render()
+      .find("text.current-value")
+      .get(0).attribs.style
+
+    current_value_styles.split(";").forEach((style) => {
+      const [key, value] = style.split(":")
+      if (isEmpty(key) || isEmpty(value)) {
+        return
+      }
+      styles[key.trim()] = value.trim()
+    })
+
+    expect(styles["font-size"]).toEqual(valueTextFontSize)
   })
 })

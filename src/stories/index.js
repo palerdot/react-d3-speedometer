@@ -253,8 +253,15 @@ storiesOf("react-d3-speedometer", module)
   //   { source: true, inline: true, header: false }
   // )
   .add(
-    "configure needle length",
-    () => <ReactSpeedometer value={333} needleHeightRatio={0.5} />,
+    "configure needle length and font sizes",
+    () => (
+      <ReactSpeedometer
+        value={333}
+        needleHeightRatio={0.5}
+        labelFontSize={"15px"}
+        valueTextFontSize={"23px"}
+      />
+    ),
     { source: true, inline: true, header: true }
   )
   .add(

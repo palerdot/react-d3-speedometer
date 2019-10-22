@@ -119,6 +119,10 @@ ReactSpeedometer.propTypes = {
   currentValueText: PropTypes.string.isRequired,
   // placeholder style for current value
   currentValuePlaceholderStyle: PropTypes.string.isRequired,
+
+  // font sizes
+  labelFontSize: PropTypes.string.isRequired,
+  valueTextFontSize: PropTypes.string.isRequired,
 }
 
 // define the default proptypes
