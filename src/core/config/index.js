@@ -16,6 +16,9 @@ export const DEFAULT_PROPS = {
 
   width: 300,
   height: 300,
+  paddingHorizontal: 0,
+  paddingVertical: 0,
+
   fluidWidth: false,
   dimensionUnit: "px",
 
@@ -78,6 +81,10 @@ export const getConfig = ({ PROPS, parentWidth, parentHeight }) => {
     // else if width/height given it is used; else our default
     width: PROPS.fluidWidth ? parentWidth : PROPS.width,
     height: PROPS.fluidWidth ? parentHeight : PROPS.height,
+
+    // text padding horizontal/vertical
+    paddingHorizontal: PROPS.paddingHorizontal,
+    paddingVertical: PROPS.paddingVertical,
 
     // width/height dimension unit ... default "px"
     dimensionUnit: PROPS.dimensionUnit,

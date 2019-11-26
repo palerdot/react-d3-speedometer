@@ -89,6 +89,10 @@ ReactSpeedometer.propTypes = {
 
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
+  // text padding horizontal/vertical
+  paddingHorizontal: PropTypes.number.isRequired,
+  paddingVertical: PropTypes.number.isRequired,
+
   dimensionUnit: PropTypes.string.isRequired, // width/height dimension ... default "px"
   fluidWidth: PropTypes.bool.isRequired,
 

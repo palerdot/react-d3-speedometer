@@ -36,7 +36,11 @@ export const update = ({ d3_refs, newValue, config }) => {
 
 export const render = ({ container, config }) => {
   const r = getRadius(config)
-  const centerTx = centerTranslation(r)
+  const centerTx = centerTranslation(
+    r,
+    config.paddingHorizontal,
+    config.paddingVertical
+  )
 
   const svg = _renderSVG({ container, config })
 
@@ -55,11 +59,23 @@ function _renderSVG({ container, config }) {
     d3Select(container)
       .append("svg:svg")
       .attr("class", "speedometer")
-      .attr("width", `${config.width}${config.dimensionUnit}`)
-      .attr("height", `${config.height}${config.dimensionUnit}`)
+      .attr(
+        "width",
+        `${config.width + 2 * config.paddingHorizontal}${config.dimensionUnit}`
+      )
+      .attr(
+        "height",
+        `${config.height + 2 * config.paddingVertical}${config.dimensionUnit}`
+      )
       // use inline styles so that width/height is not overridden
-      .style("width", `${config.width}${config.dimensionUnit}`)
-      .style("height", `${config.height}${config.dimensionUnit}`)
+      .style(
+        "width",
+        `${config.width + 2 * config.paddingHorizontal}${config.dimensionUnit}`
+      )
+      .style(
+        "height",
+        `${config.height + 2 * config.paddingVertical}${config.dimensionUnit}`
+      )
   )
 }
 
@@ -127,7 +143,11 @@ function _renderCurrentValueText({ config, svg }) {
   return (
     svg
       .append("g")
-      .attr("transform", `translate(${config.width / 2}, ${config.width / 2})`)
+      .attr(
+        "transform",
+        `translate(${(config.width + 2 * config.paddingHorizontal) /
+          2}, ${(config.width + 4 * config.paddingVertical) / 2})`
+      )
       .append("text")
       // add class for the text
       .attr("class", "current-value")
@@ -135,7 +155,7 @@ function _renderCurrentValueText({ config, svg }) {
       // position the text 23pt below
       .attr("y", 23)
       // add text
-      .text(config.currentValue || "amaidhi")
+      .text(config.currentValue)
       .style("font-size", config.valueTextFontSize)
       .style("font-weight", "bold")
       .style("fill", config.textColor)

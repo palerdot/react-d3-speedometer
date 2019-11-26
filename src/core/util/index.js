@@ -133,8 +133,8 @@ export function deg2rad(deg) {
   return (deg * Math.PI) / 180
 }
 
-export function centerTranslation(r) {
-  return `translate(${r}, ${r})`
+export function centerTranslation(r, paddingHorizontal, paddingVertical) {
+  return `translate(${r + paddingHorizontal}, ${r + paddingVertical})`
 }
 
 export function getRadius(config) {
