@@ -302,10 +302,12 @@ storiesOf("react-d3-speedometer", module)
   )
   .add("Customize font sizes and spacing", () => (
     <ReactSpeedometer
+      value={333}
       labelFontSize={"31px"}
       valueTextFontSize={"37px"}
       paddingHorizontal={17}
       paddingVertical={17}
+      currentValueText={"Value: ${value}"}
     />
   ))
 // .add("Auto Refresh Segments", () => <AutoRefresh />)

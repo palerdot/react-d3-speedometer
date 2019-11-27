@@ -55,27 +55,19 @@ export const render = ({ container, config }) => {
 
 // helper function to render individual parts of gauge
 function _renderSVG({ container, config }) {
+  // calculate width and height
+  const width = config.width + 2 * config.paddingHorizontal
+  const height = config.height + 2 * config.paddingVertical
+
   return (
     d3Select(container)
       .append("svg:svg")
       .attr("class", "speedometer")
-      .attr(
-        "width",
-        `${config.width + 2 * config.paddingHorizontal}${config.dimensionUnit}`
-      )
-      .attr(
-        "height",
-        `${config.height + 2 * config.paddingVertical}${config.dimensionUnit}`
-      )
+      .attr("width", `${width}${config.dimensionUnit}`)
+      .attr("height", `${height}${config.dimensionUnit}`)
       // use inline styles so that width/height is not overridden
-      .style(
-        "width",
-        `${config.width + 2 * config.paddingHorizontal}${config.dimensionUnit}`
-      )
-      .style(
-        "height",
-        `${config.height + 2 * config.paddingVertical}${config.dimensionUnit}`
-      )
+      .style("width", `${width}${config.dimensionUnit}`)
+      .style("height", `${height}${config.dimensionUnit}`)
   )
 }
 
@@ -140,14 +132,14 @@ function _renderLabels({ config, svg, centerTx, r }) {
 }
 
 function _renderCurrentValueText({ config, svg }) {
+  const translateX = (config.width + 2 * config.paddingHorizontal) / 2
+  // move the current value text down depending on padding vertical
+  const translateY = (config.width + 4 * config.paddingVertical) / 2
+
   return (
     svg
       .append("g")
-      .attr(
-        "transform",
-        `translate(${(config.width + 2 * config.paddingHorizontal) /
-          2}, ${(config.width + 4 * config.paddingVertical) / 2})`
-      )
+      .attr("transform", `translate(${translateX}, ${translateY})`)
       .append("text")
       // add class for the text
       .attr("class", "current-value")
