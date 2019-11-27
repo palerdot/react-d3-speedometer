@@ -209,6 +209,7 @@ npm test
 ---
 
 #### Feature Updates:
+- `paddingHorizontal`, `paddingVertical` configuration to control spacing around text. [Live Example](https://codesandbox.io/s/blazing-sun-bsm0j)
 - Custom segment stops in `v0.7.0`. [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--custom-segment-stops)
 - Custom segment colors in `v0.6.0`. [Live Example](https://codesandbox.io/s/relaxed-silence-c3qkb)
 
