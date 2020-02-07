@@ -1,6 +1,6 @@
 # Change Log
 
-## 0.8.1
+## 0.9.0
 - `Typescript` support with typescript definition file
 
 ## 0.8.0

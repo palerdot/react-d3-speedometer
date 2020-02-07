@@ -209,7 +209,7 @@ npm test
 ---
 
 #### Feature Updates:
-- [`v0.8.1`] `Typescript` support
+- [`v0.9.0`] `Typescript` support
 - [`v0.8.0`] `paddingHorizontal`, `paddingVertical` configuration to control spacing around text. [Live Example](https://codesandbox.io/s/blazing-sun-bsm0j)
 - [`v0.7.0`] Custom segment stops. [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--custom-segment-stops)
 - [`v0.6.0`] Custom segment colors. [Live Example](https://codesandbox.io/s/relaxed-silence-c3qkb)
