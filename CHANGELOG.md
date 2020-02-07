@@ -1,5 +1,8 @@
 # Change Log
 
+## 0.8.1
+- `Typescript` support with typescript definition file
+
 ## 0.8.0
 - `paddingHorizontal`, `paddingVertical` props to configure space for label texts of bigger font sizes.
 
