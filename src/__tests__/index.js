@@ -478,12 +478,29 @@ describe("Custom segment labels", () => {
     )
 
     customSegmentLabels.forEach((label, index) => {
-      const textValue = full_dom_wrapper
+      const textNode = full_dom_wrapper
         .render()
         .find("text.segment-value")
-        .get(index).children[0].data
+        .get(index)
+
+      const textValue = textNode.children[0].data
+      const raw_styles = textNode.attribs.style.split(";")
+      let styles = {}
+      // construct the styles
+      raw_styles.forEach((style) => {
+        if (style === "") {
+          return
+        }
+        const [key, value] = style.split(":")
+        styles[key.trim()] = value.trim()
+      })
 
       expect(textValue).toEqual(label.text)
+      expect(styles["fill"]).toEqual(label.color)
+
+      if (label.fontSize) {
+        expect(styles["font-size"]).toEqual(label.fontSize)
+      }
     })
   })
 })
