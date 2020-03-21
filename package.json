@@ -50,13 +50,9 @@
     "@storybook/react": "^5.0.1",
     "@storybook/theming": "^5.0.1",
 
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-eslint": "^10.1.0",
-    "babel-jest": "^25.1.0",
-    "babel-loader": "^8.1.0",
-    "babel-minify": "^0.5.1",
+    
+    
     "babel-plugin-module-resolver": "^4.0.0",
-    "babel-plugin-source-map-support": "2.1.1",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "babel-preset-minify": "^0.5.1",
     
