@@ -16,6 +16,7 @@ export default {
 }
 
 const textColor = "#AAA"
+
 // ---------------------------------------------------
 // START: Stories
 // ---------------------------------------------------
@@ -38,44 +39,81 @@ export const ConfiguringValues = () => (
 )
 
 export const CustomSegmentLabels = () => (
-  <ReactSpeedometer
-    width={500}
-    needleHeightRatio={0.7}
-    value={777}
-    currentValueText="Happiness Level"
-    customSegmentLabels={[
-      {
-        text: "Very Bad",
-        position: "INSIDE",
-        color: "#555",
-      },
-      {
-        text: "Bad",
-        position: "INSIDE",
-        color: "#555",
-      },
-      {
-        text: "Ok",
-        position: "INSIDE",
-        color: "#555",
-        fontSize: "19px",
-      },
-      {
-        text: "Good",
-        position: "INSIDE",
-        color: "#555",
-      },
-      {
-        text: "Very Good",
-        position: "INSIDE",
-        color: "#555",
-      },
-    ]}
-    ringWidth={47}
-    textColor={textColor}
-    needleTransitionDuration={3333}
-    needleTransition="easeElastic"
-  />
+  <div>
+    <div>
+      <ReactSpeedometer
+        width={500}
+        needleHeightRatio={0.7}
+        value={777}
+        currentValueText="Happiness Level"
+        customSegmentLabels={[
+          {
+            text: "Very Bad",
+            position: "INSIDE",
+            color: "#555",
+          },
+          {
+            text: "Bad",
+            position: "INSIDE",
+            color: "#555",
+          },
+          {
+            text: "Ok",
+            position: "INSIDE",
+            color: "#555",
+            fontSize: "19px",
+          },
+          {
+            text: "Good",
+            position: "INSIDE",
+            color: "#555",
+          },
+          {
+            text: "Very Good",
+            position: "INSIDE",
+            color: "#555",
+          },
+        ]}
+        ringWidth={47}
+        needleTransitionDuration={3333}
+        needleTransition="easeElastic"
+        needleColor={"#90f2ff"}
+        textColor={"#d8dee9"}
+      />
+    </div>
+    <div>
+      <ReactSpeedometer
+        width={500}
+        needleHeightRatio={0.7}
+        value={777}
+        customSegmentStops={[0, 250, 750, 1000]}
+        segmentColors={["#9399ff", "#14ffec", "#00bbf0"]}
+        currentValueText="How are you?"
+        customSegmentLabels={[
+          {
+            text: "Good",
+            position: "OUTSIDE",
+            color: "#d8dee9",
+          },
+          {
+            text: "Great",
+            position: "OUTSIDE",
+            color: "#d8dee9",
+          },
+          {
+            text: "Awesome!",
+            position: "OUTSIDE",
+            color: "#d8dee9",
+          },
+        ]}
+        ringWidth={47}
+        needleTransitionDuration={3333}
+        needleTransition="easeElastic"
+        needleColor={"#a7ff83"}
+        textColor={"#d8dee9"}
+      />
+    </div>
+  </div>
 )
 
 export const CustomSegmentColors = () => (

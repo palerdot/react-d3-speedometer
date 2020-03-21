@@ -110,13 +110,13 @@ function _renderLabels({ config, svg, centerTx, r }) {
   const isCustomLabelsPresent =
     isArray(customSegmentLabels) && !isEmpty(customSegmentLabels)
   const isCustomLabelsValid =
-    isCustomLabelsPresent && customSegmentLabels.length === ticks.length - 1
+    isCustomLabelsPresent && customSegmentLabels.length === tickData.length
 
   // if custom labels present and not valid
   if (isCustomLabelsPresent && !isCustomLabelsValid) {
     throw new Error(
       `Custom Segment Labels should be an array with length of ${
-        config.majorTicks
+        tickData.length
       }`
     )
   }
@@ -182,7 +182,7 @@ function _renderCustomSegmentLabels({
   const { customSegmentStops, customSegmentLabels } = config
 
   // helper function to calculate angle
-  function _calculateAngle(d) {
+  function _calculateAngle(d, i) {
     const ratio =
       customSegmentStops.length === 0 ? scale(d) : sumArrayTill(tickData, i)
 
@@ -193,11 +193,14 @@ function _renderCustomSegmentLabels({
 
   // calculate the angles ([avg of range angles])
   const newAngles = customSegmentLabels.map((label, i) => {
-    const d1 = ticks[i]
-    const angle1 = _calculateAngle(d1)
+    const curr_index = i
+    const next_index = i + 1
 
-    const d2 = ticks[i + 1]
-    const angle2 = _calculateAngle(d2)
+    const d1 = ticks[curr_index]
+    const angle1 = _calculateAngle(d1, curr_index)
+
+    const d2 = ticks[next_index]
+    const angle2 = _calculateAngle(d2, next_index)
 
     return (angle2 + angle1) / 2
   })
