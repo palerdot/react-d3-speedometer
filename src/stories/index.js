@@ -28,7 +28,8 @@ addDecorator(
   withInfo({
     inline: true,
     maxPropObjectKeys: 100,
-    maxPropArrayLength: 1000,
+    maxPropArrayLength: 111,
+    maxPropStringLength: 1000,
   })
 )
 
@@ -133,6 +134,46 @@ storiesOf("react-d3-speedometer", module)
       </div>
     ),
     { source: true, inline: true, header: true }
+  )
+  .add(
+    "Porumai ... will show custom labels",
+    () => (
+      <ReactSpeedometer
+        value={333}
+        width={500}
+        needleHeightRatio={0.7}
+        customSegmentLabels={[
+          {
+            text: "Very Bad",
+            position: "INSIDE",
+            color: "#555",
+          },
+          {
+            text: "Bad",
+            position: "INSIDE",
+            color: "#555",
+          },
+          {
+            text: "Ok",
+            position: "INSIDE",
+            color: "#555",
+            fontSize: "19px",
+          },
+          {
+            text: "Good",
+            position: "INSIDE",
+            color: "#555",
+          },
+          {
+            text: "Very Good",
+            position: "INSIDE",
+            color: "#555",
+          },
+        ]}
+        ringWidth={47}
+      />
+    ),
+    { source: true, inline: true, header: false, maxPropArrayLength: 13 }
   )
   // fluid display view
   .add(
@@ -310,4 +351,5 @@ storiesOf("react-d3-speedometer", module)
       currentValueText={"Value: ${value}"}
     />
   ))
+
 // .add("Auto Refresh Segments", () => <AutoRefresh />)

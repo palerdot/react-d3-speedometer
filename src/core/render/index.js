@@ -3,6 +3,7 @@ import {
   line as d3Line,
   curveMonotoneX as d3CurveMonotoneX,
 } from "d3"
+import { isEmpty, isArray } from "lodash"
 import {
   centerTranslation,
   getRadius,
@@ -103,6 +104,40 @@ function _renderLabels({ config, svg, centerTx, r }) {
   const scale = configureScale(config)
   const range = config.maxAngle - config.minAngle
 
+  // assuming we have the custom segment labels here
+  const { customSegmentLabels } = config
+
+  const isCustomLabelsPresent =
+    isArray(customSegmentLabels) && !isEmpty(customSegmentLabels)
+  const isCustomLabelsValid =
+    isCustomLabelsPresent && customSegmentLabels.length === ticks.length - 1
+
+  // if custom labels present and not valid
+  if (isCustomLabelsPresent && !isCustomLabelsValid) {
+    throw new Error(
+      `Custom Segment Labels should be an array with length of ${
+        config.majorTicks
+      }`
+    )
+  }
+
+  // we have valid custom labels
+  if (isCustomLabelsPresent && isCustomLabelsValid) {
+    _renderCustomSegmentLabels({
+      config,
+      svg,
+      centerTx,
+      r,
+      ticks,
+      tickData,
+      scale,
+      range,
+    })
+    // do not proceed
+    return
+  }
+
+  // normal label rendering
   let lg = svg
     .append("g")
     .attr("class", "label")
@@ -117,7 +152,9 @@ function _renderLabels({ config, svg, centerTx, r }) {
         config.customSegmentStops.length === 0
           ? scale(d)
           : sumArrayTill(tickData, i)
+
       const newAngle = config.minAngle + ratio * range
+
       return `rotate(${newAngle}) translate(0, ${config.labelInset - r})`
     })
     .text(config.labelFormat)
@@ -129,6 +166,80 @@ function _renderLabels({ config, svg, centerTx, r }) {
     .style("font-weight", "bold")
     // .style("fill", "#666");
     .style("fill", config.textColor)
+}
+
+// helper function to render 'custom segment labels'
+function _renderCustomSegmentLabels({
+  config,
+  svg,
+  centerTx,
+  r,
+  ticks,
+  tickData,
+  scale,
+  range,
+}) {
+  const { customSegmentStops, customSegmentLabels } = config
+
+  // helper function to calculate angle
+  function _calculateAngle(d) {
+    const ratio =
+      customSegmentStops.length === 0 ? scale(d) : sumArrayTill(tickData, i)
+
+    const newAngle = config.minAngle + ratio * range
+
+    return newAngle
+  }
+
+  // calculate the angles ([avg of range angles])
+  const newAngles = customSegmentLabels.map((label, i) => {
+    const d1 = ticks[i]
+    const angle1 = _calculateAngle(d1)
+
+    const d2 = ticks[i + 1]
+    const angle2 = _calculateAngle(d2)
+
+    return (angle2 + angle1) / 2
+  })
+
+  const innerRadius = r - config.ringWidth - config.ringInset
+  const outerRadius = r - config.ringInset
+
+  const position = outerRadius - (outerRadius - innerRadius) / 2
+
+  let lg = svg
+    .append("g")
+    .attr("class", "label")
+    .attr("transform", centerTx)
+
+  lg.selectAll("text")
+    .data(customSegmentLabels)
+    .enter()
+    .append("text")
+    .attr("transform", (d, i) => {
+      const newAngle = newAngles[i]
+
+      const outerText = `rotate(${newAngle}) translate(0, ${config.labelInset -
+        r})`
+      const innerText = `rotate(${newAngle}) translate(0, ${config.labelInset /
+        2 -
+        position})`
+
+      // by default we will show "INSIDE"
+      return d.position === "OUTSIDE" ? outerText : innerText
+    })
+    .text((d) => d.text || "")
+    // add class for text label
+    .attr("class", "segment-value")
+    // styling stuffs
+    .style("text-anchor", "middle")
+    .style("font-size", (d) => d.fontSize || config.labelFontSize)
+    .style("font-weight", "bold")
+    .style("fill", (d) => d.color || config.textColor)
+
+  // depending on INSIDE/OUTSIDE config calculate the position/rotate/translate
+
+  // utilise the color/fontSize configs
 }
 
 function _renderCurrentValueText({ config, svg }) {
