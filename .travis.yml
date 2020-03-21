@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - "lts/*"
+  - "lts/dubnium"
 before_install:
   npm install -g prettier
 matrix:
