@@ -432,3 +432,58 @@ describe("Custom Segment Colors", () => {
     })
   })
 })
+
+describe("Custom segment labels", () => {
+  test("custom text labels and value text are shown correctly", () => {
+    const currentValueText = "Happiness Level"
+
+    const customSegmentLabels = [
+      {
+        text: "Very Bad",
+        position: "INSIDE",
+        color: "#555",
+      },
+      {
+        text: "Bad",
+        position: "INSIDE",
+        color: "#555",
+      },
+      {
+        text: "Ok",
+        position: "INSIDE",
+        color: "#555",
+        fontSize: "19px",
+      },
+      {
+        text: "Good",
+        position: "INSIDE",
+        color: "#555",
+      },
+      {
+        text: "Very Good",
+        position: "INSIDE",
+        color: "#555",
+      },
+    ]
+
+    const full_dom_wrapper = mount(
+      <ReactSpeedometer
+        width={500}
+        needleHeightRatio={0.7}
+        value={777}
+        currentValueText={currentValueText}
+        customSegmentLabels={customSegmentLabels}
+        ringWidth={47}
+      />
+    )
+
+    customSegmentLabels.forEach((label, index) => {
+      const textValue = full_dom_wrapper
+        .render()
+        .find("text.segment-value")
+        .get(index).children[0].data
+
+      expect(textValue).toEqual(label.text)
+    })
+  })
+})
