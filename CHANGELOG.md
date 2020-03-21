@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.10.0
+- `customSegmentLabels` prop to display custom labels. [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/reactspeedometer--custom-segment-labels)
+- *bugfix*. Fixed https://github.com/palerdot/react-d3-speedometer/issues/68
+
 ## 0.9.0
 - `Typescript` support with typescript definition file
 
