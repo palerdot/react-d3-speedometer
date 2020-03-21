@@ -99,6 +99,53 @@ You can view [Live Examples here](https://palerdot.in/react-d3-speedometer/?path
 />
 ```
 
+#### Custom Segment Labels - [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/reactspeedometer--custom-segment-labels)
+
+```javascript
+  // 'customSegmentLabels' prop takes an array of 'CustomSegmentLabel' Object
+  /*
+  type CustomSegmentLabel = {
+    text?: string
+    position?: OUTSIDE/INSIDE
+    fontSize?: string
+    color?: string
+  }
+  */
+
+  <ReactSpeedometer
+    value={777}
+    currentValueText="Happiness Level"
+    customSegmentLabels={[
+      {
+        text: "Very Bad",
+        position: "INSIDE",
+        color: "#555",
+      },
+      {
+        text: "Bad",
+        position: "INSIDE",
+        color: "#555",
+      },
+      {
+        text: "Ok",
+        position: "INSIDE",
+        color: "#555",
+        fontSize: "19px",
+      },
+      {
+        text: "Good",
+        position: "INSIDE",
+        color: "#555",
+      },
+      {
+        text: "Very Good",
+        position: "INSIDE",
+        color: "#555",
+      },
+    ]}
+  />
+```
+
 #### Custom Segment Stops - [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--custom-segment-stops)
 
 ```javascript
