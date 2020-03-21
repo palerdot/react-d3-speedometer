@@ -3,16 +3,16 @@ import { addParameters, configure, addDecorator } from "@storybook/react"
 import { themes } from "@storybook/theming"
 // import { storiesOf, action, setAddon } from '@kadira/storybook';
 import { storiesOf, action, setAddon } from "@storybook/react"
-import infoAddon, { setDefaults, withInfo } from "@storybook/addon-info"
+// import infoAddon, { setDefaults, withInfo } from "@storybook/addon-info"
 
-addParameters({
+/* addParameters({
   options: {
     name: "<ReactSpeedometer />",
     brandTitle: "<ReactSpeedometer />",
     brandUrl: "https://github.com/palerdot/react-d3-speedometer",
     showPanel: false,
   },
-})
+}) */
 
 // // addon-info
 // setDefaults({
@@ -24,14 +24,14 @@ addParameters({
 // // set the info addon for storybook!
 // setAddon(infoAddon)
 
-addDecorator(
+/* addDecorator(
   withInfo({
     inline: true,
     maxPropObjectKeys: 100,
     maxPropArrayLength: 111,
     maxPropStringLength: 1000,
   })
-)
+) */
 
 // DEVELOPMENT
 import ReactSpeedometer from "../index"
