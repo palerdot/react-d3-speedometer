@@ -33,7 +33,11 @@ export default class SpeedoButton extends React.Component {
 
   render() {
     return (
-      <div>
+      <div
+        style={{
+          color: "#DEDEDE",
+        }}
+      >
         <h4>
           Click the below button to force rerendering the whole component on
           props change. By default, on props change, only the speedometer
@@ -64,6 +68,7 @@ export default class SpeedoButton extends React.Component {
           segments={this.state.segments}
           width={this.state.width}
           height={this.state.height}
+          textColor={"#AAA"}
         />
       </div>
     )
