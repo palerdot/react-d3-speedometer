@@ -16,6 +16,9 @@ export default {
 }
 
 const textColor = "#AAA"
+// ---------------------------------------------------
+// START: Stories
+// ---------------------------------------------------
 
 export const DefaultWithNoConfig = () => (
   <ReactSpeedometer textColor={textColor} />
@@ -77,7 +80,6 @@ export const CustomSegmentColors = () => (
   <div>
     <div>
       <ReactSpeedometer
-        maxSegmentLabels={12}
         segments={3}
         value={470}
         segmentColors={["#FF9933", "#ECEFF4", "#138808"]}
@@ -87,7 +89,6 @@ export const CustomSegmentColors = () => (
     </div>
     <div>
       <ReactSpeedometer
-        maxSegmentLabels={12}
         segments={3}
         value={470}
         segmentColors={["#0055A4", "#ECEFF4", "#EF4135"]}
@@ -265,3 +266,7 @@ export const CustomizeFontSizesAndSpacing = () => (
     textColor={textColor}
   />
 )
+
+// ---------------------------------------------------
+// END: Stories
+// ---------------------------------------------------

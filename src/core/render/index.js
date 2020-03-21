@@ -88,12 +88,12 @@ function _renderArcs({ config, svg, centerTx }) {
     .append("path")
     .attr("class", "speedo-segment")
     .attr("fill", (d, i) => {
-      if (config.customSegmentStops.length === 0) {
-        return config.arcColorFn(d * i)
+      // if custom segment colors is present just use it
+      if (!isEmpty(config.segmentColors) && config.segmentColors[i]) {
+        return config.segmentColors[i]
       }
-      return config.segmentColors && config.segmentColors[i]
-        ? config.segmentColors[i]
-        : config.arcColorFn(d * i)
+
+      return config.arcColorFn(d * i)
     })
     .attr("d", arc)
 }
