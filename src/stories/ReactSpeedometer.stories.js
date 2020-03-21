@@ -73,6 +73,8 @@ export const CustomSegmentLabels = () => (
     ]}
     ringWidth={47}
     textColor={textColor}
+    needleTransitionDuration={3333}
+    needleTransition="easeElastic"
   />
 )
 

@@ -32,7 +32,8 @@
     "test-watch": "npm run testonly -- --watch --watch-extensions js",
     "storybook": "start-storybook -p 9010",
     "publish-storybook": "bash .scripts/publish_storybook.sh",
-    "try-build": "NODE_ENV=production ./node_modules/.bin/babel --ignore ./src/__tests__,./src/**/*.test.js,./src/stories ./src --out-dir ./dist --no-comments"
+    "try-build": "NODE_ENV=production ./node_modules/.bin/babel --ignore ./src/__tests__,./src/**/*.test.js,./src/stories ./src --out-dir ./dist --no-comments",
+    "make-build": "npm run try-build && cp ./src/index.d.ts ./dist/"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
