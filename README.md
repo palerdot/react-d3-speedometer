@@ -257,7 +257,7 @@ npm test
 ---
 
 #### Feature Updates:
-- [`v0.10.0`] Custom labels. [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/reactspeedometer--custom-segment-labels)
+- [`v0.10.0`] Custom labels. [Live Example](https://codesandbox.io/s/vibrant-platform-cesh3)
 - [`v0.9.0`] `Typescript` support
 - [`v0.8.0`] `paddingHorizontal`, `paddingVertical` configuration to control spacing around text. [Live Example](https://codesandbox.io/s/blazing-sun-bsm0j)
 - [`v0.7.0`] Custom segment stops. [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--custom-segment-stops)
