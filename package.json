@@ -24,7 +24,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "prepublish": ". ./.scripts/prepublish.sh",
+    "prepare": ". ./.scripts/prepublish.sh",
     "lint": "prettier -l **/src/**/*.js",
     "lintfix": "prettier --write **/src/**/*.js",
     "testonly": "jest",
