@@ -103,7 +103,14 @@ ReactSpeedometer.propTypes = {
   // custom segment points to create unequal segments
   customSegmentStops: PropTypes.array,
   // custom segment labels that places label within the segment
-  customSegmentLabels: PropTypes.array,
+  customSegmentLabels: PropTypes.arrayOf(
+    PropTypes.shape({
+      text: PropTypes.string,
+      position: PropTypes.oneOf(["OUTSIDE", "INSIDE"]),
+      fontSize: PropTypes.string,
+      color: PropTypes.string,
+    })
+  ),
 
   // color strings
   needleColor: PropTypes.string.isRequired,
