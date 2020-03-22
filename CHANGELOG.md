@@ -1,5 +1,8 @@
 # Change Log
 
+## 0.10.1
+- `npmignore` to reduce npm tarball/package size. Linking to github image asset for README
+
 ## 0.10.0
 - `customSegmentLabels` prop to display custom labels. [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/reactspeedometer--custom-segment-labels)
 - *bugfix*. Fixed https://github.com/palerdot/react-d3-speedometer/issues/68
