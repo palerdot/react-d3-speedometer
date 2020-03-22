@@ -265,7 +265,7 @@ export const GradientEffectWithLargeNumberOfSegmentsAndMaxSegmentLabelsConfig = 
   <ReactSpeedometer
     needleHeightRatio={0.7}
     maxSegmentLabels={5}
-    segments={1000}
+    segments={5555}
     value={333}
     textColor={textColor}
   />
@@ -276,7 +276,7 @@ export const NoSegmentLabels = () => (
     <div>
       <ReactSpeedometer
         maxSegmentLabels={0}
-        segments={1000}
+        segments={5555}
         textColor={textColor}
       />
     </div>
