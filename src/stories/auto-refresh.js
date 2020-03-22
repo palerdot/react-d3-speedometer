@@ -14,7 +14,7 @@ class AutoRefresh extends React.Component {
       this.setState((prevState) => ({
         opacity: prevState.opacity === 1 ? 0.9 : 1,
       }))
-    }, 5000)
+    }, 3333)
   }
 
   render() {
@@ -30,6 +30,7 @@ class AutoRefresh extends React.Component {
             display: "flex",
             justifyContent: "center",
             // alignItems: "center",
+            height: "231px",
           }}
         >
           <div
@@ -99,8 +100,9 @@ class AutoRefresh extends React.Component {
             <ReactSpeedometer
               width={500}
               needleHeightRatio={0.7}
-              value={this.state.opacity === 1 ? 555 : 777}
+              value={this.state.opacity === 1 ? 777 : 931}
               currentValueText="Happiness Level"
+              startColor={"#ff927e"}
               customSegmentLabels={[
                 {
                   text: "Very Bad",
