@@ -21,3 +21,11 @@ stories
 .travis.yml
 
 yarn.lock
+
+.nvmrc
+.eslintrc
+
+.vscode/
+
+*.md
+
