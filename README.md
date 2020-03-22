@@ -52,6 +52,7 @@ import ReactSpeedometer from "react-d3-speedometer"
 | currentValueText | String | ${value} | Should be provided a string which should have **${value}** placeholder which will be replaced with current value. By default, current value is shown (formatted with `valueFormat`). For example, if current Value is 333 if you would like to show `Current Value: 333`, you should provide a string **`Current Value: ${value}`**. See [Live Example](https://palerdot.in/react-d3-speedometer/?selectedKind=react-d3-speedometer&selectedStory=Custom%20Current%20Value%20Text&full=0&down=1&left=1&panelRight=0) |
 | currentValuePlaceholderStyle | String | ${value} | Should be provided a placeholder string which will be replaced with current value in `currentValueTextProp`. For example: you can use ruby like interpolation by giving following props - `<ReactSpeedometer    currentValueText="Current Value: #{value}" currentValuePlaceholderStyle={"#{value}"} />`. This is also helpful if you face `no-template-curly-in-string` eslint warnings and would like to use different placeholder for current value |
 | customSegmentStops | Array         | []     | Array of values **starting** at `min` value, and **ending** at `max` value. This configuration is useful if you would like to split the segments at custom points or have unequal segments at preferred values. If the values does not begin and end with `min` and `max` value respectively, an error will be thrown. This configuration will override `segments` prop, since total number of segments will be `length - 1` of `customSegmentProps`. For example, `[0, 50, 75, 100]` value will have three segments - `0-50`, `50-75`, `75-100`. See [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--custom-segment-stops) |
+| customSegmentLabels | Array`<CustomSegmentLabel>` | [] | Takes an array of `CustomSegmentLabel` objects. Each object has following keys for custom rendering of labels - `text`, `fontSize`, `color`, `position: OUTSIDE/INSIDE`. For `type(script)` definitions, please refer [here](./src/index.d.ts). |
 | labelFontSize | String         | 14px     | Font size for segment labels/legends |
 | valueTextFontSize | String         | 16px     | Font size for current value text |
 | paddingHorizontal | Number         | 0     | Provides right/left space for the label text. Takes a number (without explicit unit, unit will be taken from dimensionUnit config which defaults to px). Helpful when using a bigger font size for label texts. |
@@ -96,6 +97,53 @@ You can view [Live Examples here](https://palerdot.in/react-d3-speedometer/?path
   // startColor will be ignored
   // endColor will be ignored
 />
+```
+
+#### Custom Segment Labels - [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/reactspeedometer--custom-segment-labels)
+
+```javascript
+  // 'customSegmentLabels' prop takes an array of 'CustomSegmentLabel' Object
+  /*
+  type CustomSegmentLabel = {
+    text?: string
+    position?: OUTSIDE/INSIDE
+    fontSize?: string
+    color?: string
+  }
+  */
+
+  <ReactSpeedometer
+    value={777}
+    currentValueText="Happiness Level"
+    customSegmentLabels={[
+      {
+        text: "Very Bad",
+        position: "INSIDE",
+        color: "#555",
+      },
+      {
+        text: "Bad",
+        position: "INSIDE",
+        color: "#555",
+      },
+      {
+        text: "Ok",
+        position: "INSIDE",
+        color: "#555",
+        fontSize: "19px",
+      },
+      {
+        text: "Good",
+        position: "INSIDE",
+        color: "#555",
+      },
+      {
+        text: "Very Good",
+        position: "INSIDE",
+        color: "#555",
+      },
+    ]}
+  />
 ```
 
 #### Custom Segment Stops - [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--custom-segment-stops)
@@ -209,6 +257,7 @@ npm test
 ---
 
 #### Feature Updates:
+- [`v0.10.0`] Custom labels. [Live Example](https://codesandbox.io/s/vibrant-platform-cesh3)
 - [`v0.9.0`] `Typescript` support
 - [`v0.8.0`] `paddingHorizontal`, `paddingVertical` configuration to control spacing around text. [Live Example](https://codesandbox.io/s/blazing-sun-bsm0j)
 - [`v0.7.0`] Custom segment stops. [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--custom-segment-stops)

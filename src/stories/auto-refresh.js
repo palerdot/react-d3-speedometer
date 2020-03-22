@@ -1,7 +1,6 @@
 // sample auto refresh component to screen grab gifs
 import React from "react"
 import ReactSpeedometer from "../../src/"
-import { rgb } from "polished"
 
 class AutoRefresh extends React.Component {
   constructor(props) {
@@ -23,87 +22,152 @@ class AutoRefresh extends React.Component {
       <div
         style={{
           background: "#2e3440",
-          display: "flex",
-          justifyContent: "center",
-          // alignItems: "center",
-          padding: "31px",
+          background: "#2a2744",
         }}
       >
         <div
           style={{
-            margin: "7px 17px",
+            display: "flex",
+            justifyContent: "center",
+            // alignItems: "center",
           }}
         >
-          <ReactSpeedometer
-            value={333}
-            segments={1000}
-            maxSegmentLabels={1}
-            textColor={"#d8dee9"}
-            needleColor={`rgba(94, 129, 172, ${this.state.opacity})`}
-            forceRender={true}
-          />
+          <div
+            style={{
+              margin: "7px 17px",
+            }}
+          >
+            <ReactSpeedometer
+              maxSegmentLabels={1}
+              segments={3}
+              value={471}
+              forceRender={true}
+              textColor={"#d8dee9"}
+              segmentColors={["#FF9933", "#FFF", "#138808"]}
+              needleColor={`rgba(94, 129, 172, ${this.state.opacity})`}
+              needleTransition="easeElastic"
+              needleTransitionDuration={3333}
+              currentValueText={"Current Value: ${value}"}
+            />
+          </div>
+          <div
+            style={{
+              margin: "7px 17px",
+            }}
+          >
+            <ReactSpeedometer
+              value={333}
+              segments={77}
+              maxSegmentLabels={1}
+              textColor={"#d8dee9"}
+              needleColor={`rgba(94, 129, 172, ${this.state.opacity})`}
+              forceRender={true}
+            />
+          </div>
+          <div
+            style={{
+              margin: "7px 17px",
+            }}
+          >
+            <ReactSpeedometer
+              segments={5}
+              segmentColors={[
+                "#bf616a",
+                "#d08770",
+                "#ebcb8b",
+                "#a3be8c",
+                "#b48ead",
+              ]}
+              maxSegmentLabels={5}
+              textColor={"#d8dee9"}
+              needleColor="#eceff4"
+              needleTransition="easeElastic"
+              needleTransitionDuration={3333}
+              customSegmentStops={[0, 500, 700, 800, 900, 1000]}
+              value={this.state.opacity === 1 ? 333 : 470}
+            />
+          </div>
         </div>
-
-        {/* <div
-          style={{
-            margin: "7px 17px",
-          }}
-        >
-          <ReactSpeedometer
-            forceRender={true}
-            textColor={"#d8dee9"}
-            maxSegmentLabels={0}
-            customSegmentStops={
-              this.state.opacity === 1 ? [0, 777, 1000] : [0, 500, 1000]
-            }
-            segmentColors={["#5959ac", "#DEDEDE"]}
-            needleColor={"#5959ac"}
-            currentValueText={"Current Value: ${value}"}
-            value={this.state.opacity === 1 ? 777 : 500}
-          />
-        </div>
-         */}
-
         <div
           style={{
-            margin: "7px 17px",
+            display: "flex",
+            justifyContent: "center",
+            // alignItems: "center",
           }}
         >
-          <ReactSpeedometer
-            maxSegmentLabels={1}
-            segments={3}
-            value={470}
-            forceRender={true}
-            textColor={"#d8dee9"}
-            segmentColors={["#FF9933", "#FFF", "#138808"]}
-            needleColor="#5959ac"
-            needleTransition="easeElastic"
-            needleTransitionDuration={3333}
-            currentValueText={"Current Value: ${value}"}
-          />
-        </div>
-        <div
-          style={{
-            margin: "7px 17px",
-          }}
-        >
-          <ReactSpeedometer
-            segments={5}
-            segmentColors={[
-              "#bf616a",
-              "#d08770",
-              "#ebcb8b",
-              "#a3be8c",
-              "#b48ead",
-            ]}
-            maxSegmentLabels={5}
-            textColor={"#d8dee9"}
-            needleColor="#eceff4"
-            needleTransition="easeElastic"
-            needleTransitionDuration={3333}
-            customSegmentStops={[0, 500, 700, 800, 900, 1000]}
-            value={this.state.opacity === 1 ? 333 : 470}
-          />
+          <div>
+            <ReactSpeedometer
+              width={500}
+              needleHeightRatio={0.7}
+              value={this.state.opacity === 1 ? 555 : 777}
+              currentValueText="Happiness Level"
+              customSegmentLabels={[
+                {
+                  text: "Very Bad",
+                  position: "INSIDE",
+                  color: "#555",
+                },
+                {
+                  text: "Bad",
+                  position: "INSIDE",
+                  color: "#555",
+                },
+                {
+                  text: "Ok",
+                  position: "INSIDE",
+                  color: "#555",
+                  fontSize: "19px",
+                },
+                {
+                  text: "Good",
+                  position: "INSIDE",
+                  color: "#555",
+                },
+                {
+                  text: "Very Good",
+                  position: "INSIDE",
+                  color: "#555",
+                },
+              ]}
+              ringWidth={47}
+              needleTransitionDuration={3333}
+              needleTransition="easeElastic"
+              needleColor={"#90f2ff"}
+              textColor={"#d8dee9"}
+            />
+          </div>
+          <div>
+            <ReactSpeedometer
+              width={500}
+              needleHeightRatio={0.7}
+              value={this.state.opacity === 1 ? 747 : 871}
+              customSegmentStops={[0, 250, 750, 1000]}
+              segmentColors={["#9399ff", "#14ffec", "#00bbf0"]}
+              currentValueText="How are you?"
+              customSegmentLabels={[
+                {
+                  text: "Good",
+                  position: "OUTSIDE",
+                  color: "#d8dee9",
+                },
+                {
+                  text: "Great",
+                  position: "OUTSIDE",
+                  color: "#d8dee9",
+                },
+                {
+                  text: "Awesome!",
+                  position: "OUTSIDE",
+                  color: "#d8dee9",
+                },
+              ]}
+              ringWidth={47}
+              needleTransitionDuration={3333}
+              needleTransition="easeElastic"
+              needleColor={"#a7ff83"}
+              textColor={"#d8dee9"}
+            />
+          </div>
         </div>
       </div>
     )

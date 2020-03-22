@@ -1,4 +1,16 @@
 declare module "react-d3-speedometer" {
+  enum CustomSegmentLabelPosition {
+    Outside = "OUTSIDE",
+    Inside = "INSIDE",
+  }
+
+  type CustomSegmentLabel = {
+    text?: string
+    position?: CustomSegmentLabelPosition
+    fontSize?: string
+    color?: string
+  }
+
   type Props = {
     value?: number
 
@@ -34,6 +46,8 @@ declare module "react-d3-speedometer" {
 
     customSegmentStops?: number[]
 
+    customSegmentLabels?: CustomSegmentLabel[]
+
     labelFontSize?: string
     valueTextFontSize?: string
 
@@ -42,6 +56,9 @@ declare module "react-d3-speedometer" {
   }
 
   const ReactSpeedometer: React.FunctionComponent<Props>
+
+  // named exports of all the types
+  export { Props, CustomSegmentLabel, CustomSegmentLabelPosition }
 
   export default ReactSpeedometer
 }

@@ -313,22 +313,6 @@ describe("<ReactSpeedometer />", () => {
     )
   })
 
-  test("custom segment colors", () => {
-    const segmentColors = ["red", "blue", "green"]
-    const full_dom_wrapper = mount(
-      <ReactSpeedometer segments={3} segmentColors={segmentColors} />
-    )
-
-    segmentColors.forEach((color, index) => {
-      expect(
-        full_dom_wrapper
-          .render()
-          .find("path.speedo-segment")
-          .get(index).attribs.fill
-      ).toEqual(color)
-    })
-  })
-
   test("label and value font sizes", () => {
     const labelFontSize = "15px"
     const valueTextFontSize = "23px"
@@ -374,5 +358,149 @@ describe("<ReactSpeedometer />", () => {
     })
 
     expect(styles["font-size"]).toEqual(valueTextFontSize)
+  })
+})
+
+describe("Custom Segment Colors", () => {
+  test("custom segment colors works as expected", () => {
+    const segmentColors = ["red", "blue", "green"]
+    const full_dom_wrapper = mount(
+      <ReactSpeedometer segments={3} segmentColors={segmentColors} />
+    )
+
+    segmentColors.forEach((color, index) => {
+      expect(
+        full_dom_wrapper
+          .render()
+          .find("path.speedo-segment")
+          .get(index).attribs.fill
+      ).toEqual(color)
+    })
+  })
+
+  test("6 custom segment colors", () => {
+    const segmentColors = [
+      "#e60000",
+      "#e67300",
+      "#e6e600",
+      "#bcf5bc",
+      "#228b22",
+      "#ff6347",
+    ]
+    const full_dom_wrapper = mount(
+      <ReactSpeedometer
+        segments={6}
+        segmentColors={segmentColors}
+        minValue={0}
+        maxValue={10}
+        value={10}
+        currentValueText={`1.5%`}
+        height={200}
+      />
+    )
+
+    segmentColors.forEach((color, index) => {
+      expect(
+        full_dom_wrapper
+          .render()
+          .find("path.speedo-segment")
+          .get(index).attribs.fill
+      ).toEqual(color)
+    })
+  })
+
+  test("custom segment colors with custom segment stops ", () => {
+    const segmentColors = ["firebrick", "tomato", "gold", "limegreen"]
+    const full_dom_wrapper = mount(
+      <ReactSpeedometer
+        needleHeightRatio={0.7}
+        maxSegmentLabels={5}
+        segments={3}
+        customSegmentStops={[0, 500, 750, 900, 1000]}
+        segmentColors={segmentColors}
+        value={333}
+      />
+    )
+
+    segmentColors.forEach((color, index) => {
+      expect(
+        full_dom_wrapper
+          .render()
+          .find("path.speedo-segment")
+          .get(index).attribs.fill
+      ).toEqual(color)
+    })
+  })
+})
+
+describe("Custom segment labels", () => {
+  test("custom text labels and value text are shown correctly", () => {
+    const currentValueText = "Happiness Level"
+
+    const customSegmentLabels = [
+      {
+        text: "Very Bad",
+        position: "INSIDE",
+        color: "#555",
+      },
+      {
+        text: "Bad",
+        position: "INSIDE",
+        color: "#555",
+      },
+      {
+        text: "Ok",
+        position: "INSIDE",
+        color: "#555",
+        fontSize: "19px",
+      },
+      {
+        text: "Good",
+        position: "INSIDE",
+        color: "#555",
+      },
+      {
+        text: "Very Good",
+        position: "INSIDE",
+        color: "#555",
+      },
+    ]
+
+    const full_dom_wrapper = mount(
+      <ReactSpeedometer
+        width={500}
+        needleHeightRatio={0.7}
+        value={777}
+        currentValueText={currentValueText}
+        customSegmentLabels={customSegmentLabels}
+        ringWidth={47}
+      />
+    )
+
+    customSegmentLabels.forEach((label, index) => {
+      const textNode = full_dom_wrapper
+        .render()
+        .find("text.segment-value")
+        .get(index)
+
+      const textValue = textNode.children[0].data
+      const raw_styles = textNode.attribs.style.split(";")
+      let styles = {}
+      // construct the styles
+      raw_styles.forEach((style) => {
+        if (style === "") {
+          return
+        }
+        const [key, value] = style.split(":")
+        styles[key.trim()] = value.trim()
+      })
+
+      expect(textValue).toEqual(label.text)
+      expect(styles["fill"]).toEqual(label.color)
+
+      if (label.fontSize) {
+        expect(styles["font-size"]).toEqual(label.fontSize)
+      }
+    })
   })
 })
