@@ -8,7 +8,7 @@
 
 [![NPM](https://nodei.co/npm/react-d3-speedometer.png)](https://npmjs.org/package/react-d3-speedometer)
 
-![react-d3-speedometer](speedo.gif)
+![react-d3-speedometer](https://raw.githubusercontent.com/palerdot/react-d3-speedometer/master/speedo.gif)
 
 ## Usage:
 
