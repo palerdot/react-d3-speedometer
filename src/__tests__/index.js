@@ -1,5 +1,5 @@
 import React from "react"
-import { isEmpty } from "lodash"
+import isEmpty from "lodash-es/isEmpty"
 // ref: https://github.com/airbnb/enzyme/blob/master/docs/guides/migration-from-2-to-3.md
 import Enzyme from "enzyme"
 import Adapter from "enzyme-adapter-react-16"

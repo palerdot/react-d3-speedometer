@@ -1,13 +1,9 @@
 import { addParameters } from "@storybook/react"
-import { themes } from "@storybook/theming"
 import { create } from "@storybook/theming/create"
+import theme from "../src/core/theme/"
 
 const speedoTheme = create({
-  base: "dark",
-
-  appBg: "#413c69",
-  appContentBg: "#2a2744",
-  barBg: "#373359",
+  ...theme,
   // appContentBg: "#413c69",
 
   brandTitle: "react-d3-speedometer",
