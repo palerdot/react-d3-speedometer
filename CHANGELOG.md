@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.11.0
+- migrated to `lodash-es` from `lodash` for better tree shaking. Exporting `types` and `themes` from core for better reusablility.
+- removed `lodash` dependency
+
 ## 0.10.1
 - `npmignore` to reduce npm tarball/package size. Linking to github image asset for README
 
