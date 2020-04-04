@@ -2,7 +2,7 @@
 
 ## 0.11.0
 - migrated to `lodash-es` from `lodash` for better tree shaking. Exporting `types` and `themes` from core for better reusablility.
-- removed `lodash` dependency
+- removed `lodash` dependency. ref: https://codesandbox.io/s/zen-darkness-c3ev3, https://codesandbox.io/s/gracious-swanson-1rts8
 
 ## 0.10.1
 - `npmignore` to reduce npm tarball/package size. Linking to github image asset for README
