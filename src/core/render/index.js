@@ -3,7 +3,10 @@ import {
   line as d3Line,
   curveMonotoneX as d3CurveMonotoneX,
 } from "d3"
-import { isEmpty, isArray } from "lodash"
+
+import isEmpty from "lodash-es/isEmpty"
+import isArray from "lodash-es/isArray"
+
 import {
   centerTranslation,
   getRadius,

@@ -1,19 +1,18 @@
-import {
-  isNumber as _isNumber,
-  sum as _sum,
-  isEmpty,
-  isArray,
-  head as _head,
-  last as _last,
-  drop as _drop,
-  times as _times,
-} from "lodash"
-import { take as _take } from "lodash/fp"
+import _isNumber from "lodash-es/isNumber"
+import _sum from "lodash-es/sum"
+import isEmpty from "lodash-es/isEmpty"
+import isArray from "lodash-es/isArray"
+import _head from "lodash-es/head"
+import _last from "lodash-es/last"
+import _drop from "lodash-es/drop"
+import _times from "lodash-es/times"
+import _take from "lodash-es/take"
+
 import { scaleLinear as d3ScaleLinear } from "d3"
 
 // helper function to calculate array sum till specified index
 export function sumArrayTill(array, index) {
-  return _sum(_take(index)(array))
+  return _sum(_take(array, index))
 }
 
 // helper function to calculate segment stops
