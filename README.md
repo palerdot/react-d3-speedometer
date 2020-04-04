@@ -64,13 +64,13 @@ import ReactSpeedometer from "react-d3-speedometer"
 
 You can view [Live Examples here](https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--default-with-no-config)
 
-#### Default with no config - [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--default-with-no-config)
+#### Default with no config - [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/reactspeedometer--default-with-no-config)
 
 ```javascript
 <ReactSpeedometer />
 ```
 
-#### With configurations - [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--configuring-values)
+#### With configurations - [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/reactspeedometer--configuring-values)
 
 ```javascript
 <ReactSpeedometer
@@ -83,7 +83,7 @@ You can view [Live Examples here](https://palerdot.in/react-d3-speedometer/?path
 />
 ```
 
-#### Custom Segment Colors - [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--custom-segment-colors)
+#### Custom Segment Colors - [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/reactspeedometer--custom-segment-colors)
 
 ```javascript
 <ReactSpeedometer
@@ -148,7 +148,7 @@ You can view [Live Examples here](https://palerdot.in/react-d3-speedometer/?path
   />
 ```
 
-#### Custom Segment Stops - [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--custom-segment-stops)
+#### Custom Segment Stops - [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/reactspeedometer--custom-segment-stops)
 
 ```javascript
   <ReactSpeedometer
@@ -161,7 +161,7 @@ You can view [Live Examples here](https://palerdot.in/react-d3-speedometer/?path
 />
 ```
 
-#### Fluid Width Example - [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--fluid-width-view)
+#### Fluid Width Example - [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/reactspeedometer--fluid-width-view)
 
 ```javascript
 // Speedometer will take the width of the parent div (500)
@@ -181,7 +181,7 @@ You can view [Live Examples here](https://palerdot.in/react-d3-speedometer/?path
 </div>
 ```
 
-#### Needle Transition Example - [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--needle-transition-duration)
+#### Needle Transition Example - [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/reactspeedometer--needle-transition-duration)
 
 ```javascript
 <ReactSpeedometer
@@ -192,7 +192,7 @@ You can view [Live Examples here](https://palerdot.in/react-d3-speedometer/?path
 />
 ```
 
-#### Force Render component on props change - [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--force-render-the-component)
+#### Force Render component on props change - [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/reactspeedometer--force-render-the-component)
 
 ```javascript
 // By default, when props change, only the value prop is updated and animated. 
@@ -213,7 +213,7 @@ You can view [Live Examples here](https://palerdot.in/react-d3-speedometer/?path
 />
 ```
 
-#### Needle Height Configuration Example - [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--configure-needle-length)
+#### Needle Height Configuration Example - [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/reactspeedometer--configure-needle-length-and-font-sizes)
 
 ```javascript
 <ReactSpeedometer
@@ -225,7 +225,7 @@ You can view [Live Examples here](https://palerdot.in/react-d3-speedometer/?path
 You can give a value between `0` and `1` to control the needle height.
 
 
-#### Gradient Like Effect - [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--gradient-effect-with-large-number-of-segments-and-maxsegmentlabels-config)
+#### Gradient Like Effect - [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/reactspeedometer--gradient-effect-with-large-number-of-segments-and-max-segment-labels-config)
 
 ```javascript
 <ReactSpeedometer
