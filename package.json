@@ -76,15 +76,14 @@
     "webpack": "^4.42.0"
   },
   "peerDependencies": {
+    "prop-types": "^15.7.2",
     "react": "^16.3.0",
-    "react-dom": "^16.3.0",
-    "prop-types": "^15.7.2"
+    "react-dom": "^16.3.0"
   },
   "dependencies": {
     "@babel/runtime": "^7.9.0",
     "@babel/runtime-corejs2": "^7.9.0",
     "d3": "^5.9.2",
-    "lodash": "^4.17.14",
     "lodash-es": "^4.17.15",
     "memoize-one": "^5.0.5"
   },
