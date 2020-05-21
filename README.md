@@ -12,11 +12,11 @@
 
 ## Usage:
 
-**NPM:**
-`npm install --save react-d3-speedometer` 
-
 **Yarn:**
 `yarn add react-d3-speedometer` 
+
+**NPM:**
+`npm install --save react-d3-speedometer` 
 
 ```javascript
 // import the component
@@ -24,6 +24,13 @@ import ReactSpeedometer from "react-d3-speedometer"
 // and just use it
 <ReactSpeedometer />
 ```
+
+
+## Ports:
+- Vue - [vue-speedometer](https://github.com/palerdot/vue-speedometer)
+- Svelte - [svelte-speedometer](https://github.com/palerdot/svelte-speedometer)
+
+## Examples:
 
 [Live Examples](https://palerdot.in/react-d3-speedometer/)
 
