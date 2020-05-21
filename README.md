@@ -27,8 +27,8 @@ import ReactSpeedometer from "react-d3-speedometer"
 
 
 ## Ports:
-- Vue - [vue-speedometer](https://github.com/palerdot/vue-speedometer)
-- Svelte - [svelte-speedometer](https://github.com/palerdot/svelte-speedometer)
+- Vue: [vue-speedometer](https://github.com/palerdot/vue-speedometer)
+- Svelte: [svelte-speedometer](https://github.com/palerdot/svelte-speedometer)
 
 ## Examples:
 
