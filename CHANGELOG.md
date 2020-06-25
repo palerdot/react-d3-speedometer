@@ -1,5 +1,8 @@
 # Change Log
 
+## 0.12.0
+- removed `@babel/runtime-corejs2` as dependency. ref: https://github.com/palerdot/react-d3-speedometer/issues/76
+
 ## 0.11.0
 - migrated to `lodash-es` from `lodash` for better tree shaking. Exporting `types` and `themes` from core for better reusablility.
 - removed `lodash` dependency. ref: https://codesandbox.io/s/zen-darkness-c3ev3, https://codesandbox.io/s/gracious-swanson-1rts8
