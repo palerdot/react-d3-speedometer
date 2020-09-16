@@ -1,8 +1,10 @@
 import React, { PureComponent } from "react"
 import PropTypes from "prop-types"
 import { format as d3Format, select as d3Select } from "d3"
+
 import { getConfig, DEFAULT_PROPS, updateConfig } from "./core/config"
 import { render, update } from "./core/render"
+import { CustomSegmentLabelPosition } from "./core/enums"
 
 class ReactSpeedometer extends PureComponent {
   static displayName = "ReactSpeedometer"
@@ -143,3 +145,5 @@ ReactSpeedometer.propTypes = {
 ReactSpeedometer.defaultProps = DEFAULT_PROPS
 
 export default ReactSpeedometer
+
+export { CustomSegmentLabelPosition }
