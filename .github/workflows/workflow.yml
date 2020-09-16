@@ -27,9 +27,6 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Install Prettier
-      run: npm install -g prettier
-
     - name: Run the tests and generate coverage report
       run: npm run testonly -- --coverage
 
