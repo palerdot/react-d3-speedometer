@@ -32,10 +32,11 @@ jobs:
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1.0.13
-      true: 
+      on: 
         pull_request: 
           branches: 
             - master
+            - coverage-fix
         push: 
           branches: 
             - master
