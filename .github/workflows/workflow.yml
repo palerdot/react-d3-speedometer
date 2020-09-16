@@ -1,0 +1,2 @@
+- name: react-d3-speedometer code coverage
+  uses: codecov/codecov-action@v1.0.13
