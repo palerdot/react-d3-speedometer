@@ -1,4 +1,6 @@
 module.exports = {
   transformIgnorePatterns: ["/node_modules/(?!lodash-es).+\\.js$"],
-  collectCoverage: true,
+  verbose: true,
+  // this option will show coverage everytime
+  // collectCoverage: true,
 }

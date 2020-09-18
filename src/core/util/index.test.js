@@ -2,6 +2,8 @@ import * as d3 from "d3"
 
 import { calculateSegmentStops } from "./index"
 import { getNeedleTransition } from "./get-needle-transition"
+import { getConfig, DEFAULT_PROPS } from "../config/"
+import { _renderLabels } from "../render/"
 
 describe("calculate segment data", () => {
   const tickData = [0.33, 0.33, 0.33]
@@ -119,5 +121,87 @@ describe("verify needle transitions", () => {
     expect(d3.easeElasticOut).toEqual(getNeedleTransition("easeElasticOut"))
     expect(d3.easeElasticInOut).toEqual(getNeedleTransition("easeElasticInOut"))
     expect(d3.easeElastic).toEqual(getNeedleTransition("easeElastic"))
+  })
+})
+
+describe("verify configuration", () => {
+  const expected_config = {
+    ringInset: 20,
+    pointerWidth: 10,
+    pointerTailLength: 5,
+    minAngle: -90,
+    maxAngle: 90,
+    labelInset: 10,
+    width: 300,
+    height: 300,
+    paddingHorizontal: 0,
+    paddingVertical: 0,
+    dimensionUnit: "px",
+    ringWidth: 60,
+    minValue: 0,
+    maxValue: 1000,
+    needleColor: "steelblue",
+    majorTicks: 5,
+    customSegmentStops: [],
+    customSegmentLabels: [],
+    maxSegmentLabels: 5,
+    segmentColors: [],
+    needleTransition: "easeQuadInOut",
+    needleTransitionDuration: 500,
+    needleHeightRatio: 0.9,
+    textColor: "#666",
+    currentValueText: "${value}",
+    currentValuePlaceholderStyle: "${value}",
+    labelFontSize: "14px",
+    valueTextFontSize: "16px",
+  }
+
+  test("check default config", () => {
+    const generated_config = getConfig({
+      PROPS: DEFAULT_PROPS,
+      parentWidth: 500,
+      parentHeight: 500,
+    })
+
+    expect(generated_config).toMatchObject(expected_config)
+  })
+
+  test("check config for fluidWidth: true", () => {
+    const PROPS = {
+      ...DEFAULT_PROPS,
+      fluidWidth: true,
+    }
+
+    const expected_fluid_width_config = {
+      ...expected_config,
+      width: 500,
+      height: 500,
+    }
+
+    const generated_config = getConfig({
+      PROPS,
+      parentWidth: 500,
+      parentHeight: 500,
+    })
+
+    expect(generated_config).toMatchObject(expected_fluid_width_config)
+  })
+
+  test("to throw error if invalid 'customSegmentLabels' config", () => {
+    const PROPS = {
+      ...DEFAULT_PROPS,
+      // invalid segment label config to simulate error
+      customSegmentLabels: ["porumai"],
+    }
+
+    const config = getConfig({
+      PROPS,
+      parentWidth: 500,
+      parentHeight: 500,
+    })
+
+    expect(() => {
+      _renderLabels({ config })
+    }).toThrow()
   })
 })
