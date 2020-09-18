@@ -30,96 +30,98 @@ import {
   easeElasticInOut as d3EaseElasticInOut,
   easeElastic as d3EaseElastic,
 } from "d3"
+import { Transition } from "../enums"
+
 // takes a 'transition string' and returns a d3 transition method
 // default is easeLinear
 export function getNeedleTransition(transition) {
   switch (transition) {
-    // ease linear
-    case "easeLinear":
+    // easeLinear
+    case Transition.easeLinear:
       return d3EaseLinear
     // easeQuadIn as d3EaseQuadIn,
-    case "easeQuadIn":
+    case Transition.easeQuadIn:
       return d3EaseQuadIn
     // easeQuadOut as d3EaseQuadOut
-    case "easeQuadOut":
+    case Transition.easeQuadOut:
       return d3EaseQuadOut
     // easeQuadInOut as d3EaseQuadInOut
-    case "easeQuadInOut":
+    case Transition.easeQuadInOut:
       return d3EaseQuadInOut
     // easeCubicIn as d3EaseCubicIn
-    case "easeCubicIn":
+    case Transition.easeCubicIn:
       return d3EaseCubicIn
     // easeCubicOut as d3EaseCubicOut,
-    case "easeCubicOut":
+    case Transition.easeCubicOut:
       return d3EaseCubicOut
     // easeCubicInOut as d3EaseCubicInOut,
-    case "easeCubicInOut":
+    case Transition.easeCubicInOut:
       return d3EaseCubicInOut
     // easePolyIn as d3EasePolyIn,
-    case "easePolyIn":
+    case Transition.easePolyIn:
       return d3EasePolyIn
     // easePolyOut as d3EasePolyOut,
-    case "easePolyOut":
+    case Transition.easePolyOut:
       return d3EasePolyOut
     // easePolyInOut as d3EasePolyInOut,
-    case "easePolyInOut":
+    case Transition.easePolyInOut:
       return d3EasePolyInOut
     // easeSinIn as d3EaseSinIn,
-    case "easeSinIn":
+    case Transition.easeSinIn:
       return d3EaseSinIn
     // easeSinOut as d3EaseSinOut,
-    case "easeSinOut":
+    case Transition.easeSinOut:
       return d3EaseSinOut
     // easeSinInOut as d3EaseSinInOut,
-    case "easeSinInOut":
+    case Transition.easeSinInOut:
       return d3EaseSinInOut
     // easeExpIn as d3EaseExpIn,
-    case "easeExpIn":
+    case Transition.easeExpIn:
       return d3EaseExpIn
     // easeExpOut as d3EaseExpOut,
-    case "easeExpOut":
+    case Transition.easeExpOut:
       return d3EaseExpOut
     // easeExpInOut as d3EaseExpInOut,
-    case "easeExpInOut":
+    case Transition.easeExpInOut:
       return d3EaseExpInOut
     // easeCircleIn as d3EaseCircleIn,
-    case "easeCircleIn":
+    case Transition.easeCircleIn:
       return d3EaseCircleIn
     // easeCircleOut as d3EaseCircleOut,
-    case "easeCircleOut":
+    case Transition.easeCircleOut:
       return d3EaseCircleOut
     // easeCircleInOut as d3EaseCircleInOut,
-    case "easeCircleInOut":
+    case Transition.easeCircleInOut:
       return d3EaseCircleInOut
     // easeBounceIn as d3EaseBounceIn,
-    case "easeBounceIn":
+    case Transition.easeBounceIn:
       return d3EaseBounceIn
     // easeBounceOut as d3EaseBounceOut,
-    case "easeBounceOut":
+    case Transition.easeBounceOut:
       return d3EaseBounceOut
     // easeBounceInOut as d3EaseBounceInOut,
-    case "easeBounceInOut":
+    case Transition.easeBounceInOut:
       return d3EaseBounceInOut
     // easeBackIn as d3EaseBackIn,
-    case "easeBackIn":
+    case Transition.easeBackIn:
       return d3EaseBackIn
     // easeBackOut as d3EaseBackOut,
-    case "easeBackOut":
+    case Transition.easeBackOut:
       return d3EaseBackOut
     // easeBackInOut as d3EaseBackInOut,
-    case "easeBackInOut":
+    case Transition.easeBackInOut:
       return d3EaseBackInOut
     // easeElasticIn as d3EaseElasticIn,
-    case "easeElasticIn":
+    case Transition.easeElasticIn:
       return d3EaseElasticIn
     // easeElasticOut as d3EaseElasticOut,
-    case "easeElasticOut":
+    case Transition.easeElasticOut:
       return d3EaseElasticOut
     // easeElasticInOut as d3EaseElasticInOut,
-    case "easeElasticInOut":
+    case Transition.easeElasticInOut:
       return d3EaseElasticInOut
     // easeElastic as d3EaseElastic,
-    case "easeElastic":
+    case Transition.easeElastic:
       return d3EaseElastic
 
     // if not a valid transition; throw a warning and return the default transition
