@@ -26,6 +26,8 @@ import ReactSpeedometer from "react-d3-speedometer"
 <ReactSpeedometer />
 ```
 
+`react-d3-speedometer` uses [lodash-es](https://www.npmjs.com/package/lodash-es) dependency for better tree shaking. 
+For [nextjs](https://nextjs.org/), please use [next-transpile-modules](https://www.npmjs.com/package/next-transpile-modules), so that ES module exports from `lodash-es` package is properly transpiled.
 
 ## Ports:
 - Vue: [vue-speedometer](https://github.com/palerdot/vue-speedometer)
