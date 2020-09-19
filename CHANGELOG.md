@@ -1,5 +1,8 @@
 # Change Log
 
+## 0.13.1
+- ignore `coverage` folder from npm bundle
+
 ## 0.13.0
 - `CustomSegmentLabelPosition`, `Transition` types for both Typescript and JS. Resolves https://github.com/palerdot/react-d3-speedometer/issues/81
 - `100%` Test coverage
