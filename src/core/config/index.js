@@ -5,6 +5,7 @@ import {
   format as d3Format,
 } from "d3"
 import { calculateSegmentLabelCount } from "../util/"
+import { Transition } from "../../core/enums"
 
 // default props
 export const DEFAULT_PROPS = {
@@ -39,7 +40,8 @@ export const DEFAULT_PROPS = {
   segmentColors: [],
 
   // needle transition type and duration
-  needleTransition: "easeQuadInOut",
+  // needleTransition: "easeQuadInOut",
+  needleTransition: Transition.easeQuadInOut,
   needleTransitionDuration: 500,
   needleHeightRatio: 0.9,
 

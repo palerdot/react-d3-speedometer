@@ -30,130 +30,99 @@ import {
   easeElasticInOut as d3EaseElasticInOut,
   easeElastic as d3EaseElastic,
 } from "d3"
+import { Transition } from "../enums"
+
 // takes a 'transition string' and returns a d3 transition method
 // default is easeLinear
 export function getNeedleTransition(transition) {
   switch (transition) {
-    // ease linear
-    case "easeLinear":
+    // easeLinear
+    case Transition.easeLinear:
       return d3EaseLinear
-      break
     // easeQuadIn as d3EaseQuadIn,
-    case "easeQuadIn":
+    case Transition.easeQuadIn:
       return d3EaseQuadIn
-      break
     // easeQuadOut as d3EaseQuadOut
-    case "easeQuadOut":
+    case Transition.easeQuadOut:
       return d3EaseQuadOut
-      break
     // easeQuadInOut as d3EaseQuadInOut
-    case "easeQuadInOut":
+    case Transition.easeQuadInOut:
       return d3EaseQuadInOut
-      break
     // easeCubicIn as d3EaseCubicIn
-    case "easeCubicIn":
+    case Transition.easeCubicIn:
       return d3EaseCubicIn
-      break
     // easeCubicOut as d3EaseCubicOut,
-    case "easeCubicOut":
+    case Transition.easeCubicOut:
       return d3EaseCubicOut
-      break
     // easeCubicInOut as d3EaseCubicInOut,
-    case "easeCubicInOut":
+    case Transition.easeCubicInOut:
       return d3EaseCubicInOut
-      break
     // easePolyIn as d3EasePolyIn,
-    case "easePolyIn":
+    case Transition.easePolyIn:
       return d3EasePolyIn
-      break
     // easePolyOut as d3EasePolyOut,
-    case "easePolyOut":
+    case Transition.easePolyOut:
       return d3EasePolyOut
-      break
     // easePolyInOut as d3EasePolyInOut,
-    case "easePolyInOut":
+    case Transition.easePolyInOut:
       return d3EasePolyInOut
-      break
     // easeSinIn as d3EaseSinIn,
-    case "easeSinIn":
+    case Transition.easeSinIn:
       return d3EaseSinIn
-      break
     // easeSinOut as d3EaseSinOut,
-    case "easeSinOut":
+    case Transition.easeSinOut:
       return d3EaseSinOut
-      break
     // easeSinInOut as d3EaseSinInOut,
-    case "easeSinInOut":
+    case Transition.easeSinInOut:
       return d3EaseSinInOut
-      break
     // easeExpIn as d3EaseExpIn,
-    case "easeExpIn":
+    case Transition.easeExpIn:
       return d3EaseExpIn
-      break
     // easeExpOut as d3EaseExpOut,
-    case "easeExpOut":
+    case Transition.easeExpOut:
       return d3EaseExpOut
-      break
     // easeExpInOut as d3EaseExpInOut,
-    case "easeExpInOut":
+    case Transition.easeExpInOut:
       return d3EaseExpInOut
-      break
     // easeCircleIn as d3EaseCircleIn,
-    case "easeCircleIn":
+    case Transition.easeCircleIn:
       return d3EaseCircleIn
-      break
     // easeCircleOut as d3EaseCircleOut,
-    case "easeCircleOut":
+    case Transition.easeCircleOut:
       return d3EaseCircleOut
-      break
     // easeCircleInOut as d3EaseCircleInOut,
-    case "easeCircleInOut":
+    case Transition.easeCircleInOut:
       return d3EaseCircleInOut
-      break
     // easeBounceIn as d3EaseBounceIn,
-    case "easeBounceIn":
+    case Transition.easeBounceIn:
       return d3EaseBounceIn
-      break
     // easeBounceOut as d3EaseBounceOut,
-    case "easeBounceOut":
+    case Transition.easeBounceOut:
       return d3EaseBounceOut
-      break
     // easeBounceInOut as d3EaseBounceInOut,
-    case "easeBounceInOut":
+    case Transition.easeBounceInOut:
       return d3EaseBounceInOut
-      break
     // easeBackIn as d3EaseBackIn,
-    case "easeBackIn":
+    case Transition.easeBackIn:
       return d3EaseBackIn
-      break
     // easeBackOut as d3EaseBackOut,
-    case "easeBackOut":
+    case Transition.easeBackOut:
       return d3EaseBackOut
-      break
     // easeBackInOut as d3EaseBackInOut,
-    case "easeBackInOut":
+    case Transition.easeBackInOut:
       return d3EaseBackInOut
-      break
     // easeElasticIn as d3EaseElasticIn,
-    case "easeElasticIn":
+    case Transition.easeElasticIn:
       return d3EaseElasticIn
-      break
     // easeElasticOut as d3EaseElasticOut,
-    case "easeElasticOut":
+    case Transition.easeElasticOut:
       return d3EaseElasticOut
-      break
     // easeElasticInOut as d3EaseElasticInOut,
-    case "easeElasticInOut":
+    case Transition.easeElasticInOut:
       return d3EaseElasticInOut
-      break
     // easeElastic as d3EaseElastic,
-    case "easeElastic":
+    case Transition.easeElastic:
       return d3EaseElastic
-      break
-    // ease elastic transition
-    case "easeElastic":
-      return d3EaseElastic
-      break
 
     // if not a valid transition; throw a warning and return the default transition
     default:
@@ -161,6 +130,5 @@ export function getNeedleTransition(transition) {
         `Warning: Invalid needle transition '${transition}'. Switching to default transition 'easeQuadInOut'`
       )
       return d3EaseQuadInOut
-      break
   }
 }

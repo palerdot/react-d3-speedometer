@@ -101,7 +101,7 @@ function _renderArcs({ config, svg, centerTx }) {
     .attr("d", arc)
 }
 
-function _renderLabels({ config, svg, centerTx, r }) {
+export function _renderLabels({ config, svg, centerTx, r }) {
   const ticks = configureTicks(config)
   const tickData = configureTickData(config)
   const scale = configureScale(config)

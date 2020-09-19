@@ -1,0 +1,35 @@
+name: Upload coverage
+
+on:
+  push:
+    branches: [ master, coverage-fix ]
+  pull_request:
+    branches: [ master, coverage-fix ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run the tests and generate coverage report
+      run: npm run testonly -- --coverage
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1.0.13
+      

@@ -5,3 +5,6 @@ dist
 *.sublime-*
 .DS_Store
 *.code-workspace
+# jest coverage folder
+coverage
+
