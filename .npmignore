@@ -29,3 +29,9 @@ yarn.lock
 
 *.md
 
+# coverage files
+coverage
+
+CHANGELOG
+.github
+
