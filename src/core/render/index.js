@@ -118,9 +118,7 @@ export function _renderLabels({ config, svg, centerTx, r }) {
   // if custom labels present and not valid
   if (isCustomLabelsPresent && !isCustomLabelsValid) {
     throw new Error(
-      `Custom Segment Labels should be an array with length of ${
-        tickData.length
-      }`
+      `Custom Segment Labels should be an array with length of ${tickData.length}`
     )
   }
 
@@ -234,14 +232,14 @@ function _renderCustomSegmentLabels({
       // by default we will show "INSIDE"
       return d.position === "OUTSIDE" ? outerText : innerText
     })
-    .text((d) => d.text || "")
+    .text(d => d.text || "")
     // add class for text label
     .attr("class", "segment-value")
     // styling stuffs
     .style("text-anchor", "middle")
-    .style("font-size", (d) => d.fontSize || config.labelFontSize)
+    .style("font-size", d => d.fontSize || config.labelFontSize)
     .style("font-weight", "bold")
-    .style("fill", (d) => d.color || config.textColor)
+    .style("fill", d => d.color || config.textColor)
 
   // depending on INSIDE/OUTSIDE config calculate the position/rotate/translate
 

@@ -103,7 +103,7 @@ export function calculateTicks(scale, { min, max, segments }) {
     // let us split it ourselves
     const diff = (max - min) / segments
     ticks = [min]
-    _times(segments, (i) => {
+    _times(segments, i => {
       ticks.push(min + (i + 1) * diff)
     })
   }

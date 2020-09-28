@@ -25,7 +25,7 @@ class ReactSpeedometer extends PureComponent {
   }
 
   render = () => {
-    return <div ref={(ref) => (this.gaugeDiv = ref)} />
+    return <div ref={ref => (this.gaugeDiv = ref)} />
   }
 
   componentDidUpdate() {

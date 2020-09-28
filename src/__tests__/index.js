@@ -1,13 +1,14 @@
 import React from "react"
 import isEmpty from "lodash-es/isEmpty"
-// ref: https://github.com/airbnb/enzyme/blob/master/docs/guides/migration-from-2-to-3.md
+
+// ref: https://github.com/enzymejs/enzyme/issues/2429
 import Enzyme from "enzyme"
-import Adapter from "enzyme-adapter-react-16"
+// NOTE: to be replaced with official adapter once released
+import Adapter from "@wojtekmaj/enzyme-adapter-react-17"
 Enzyme.configure({ adapter: new Adapter() })
 
-import { shallow, mount, render } from "enzyme"
+import { shallow, mount } from "enzyme"
 
-// import Button from '../index';
 import ReactSpeedometer from "../index"
 
 // import validators
@@ -333,7 +334,7 @@ describe("<ReactSpeedometer />", () => {
       .find("text.segment-value")
       .get(0).attribs.style
 
-    label_styles.split(";").forEach((style) => {
+    label_styles.split(";").forEach(style => {
       const [key, value] = style.split(":")
       if (isEmpty(key) || isEmpty(value)) {
         return
@@ -349,7 +350,7 @@ describe("<ReactSpeedometer />", () => {
       .find("text.current-value")
       .get(0).attribs.style
 
-    current_value_styles.split(";").forEach((style) => {
+    current_value_styles.split(";").forEach(style => {
       const [key, value] = style.split(":")
       if (isEmpty(key) || isEmpty(value)) {
         return
@@ -487,7 +488,7 @@ describe("Custom segment labels", () => {
       const raw_styles = textNode.attribs.style.split(";")
       let styles = {}
       // construct the styles
-      raw_styles.forEach((style) => {
+      raw_styles.forEach(style => {
         if (style === "") {
           return
         }
