@@ -21,6 +21,7 @@ stories
 .travis.yml
 
 yarn.lock
+yarn-error.log
 
 .nvmrc
 .eslintrc
@@ -34,4 +35,3 @@ coverage
 
 CHANGELOG
 .github
-
