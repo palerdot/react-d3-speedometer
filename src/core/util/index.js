@@ -1,14 +1,14 @@
-import _isNumber from "lodash-es/isNumber"
-import _sum from "lodash-es/sum"
-import isEmpty from "lodash-es/isEmpty"
-import isArray from "lodash-es/isArray"
-import _head from "lodash-es/head"
-import _last from "lodash-es/last"
-import _drop from "lodash-es/drop"
-import _times from "lodash-es/times"
-import _take from "lodash-es/take"
+import _isNumber from 'lodash-es/isNumber'
+import _sum from 'lodash-es/sum'
+import isEmpty from 'lodash-es/isEmpty'
+import isArray from 'lodash-es/isArray'
+import _head from 'lodash-es/head'
+import _last from 'lodash-es/last'
+import _drop from 'lodash-es/drop'
+import _times from 'lodash-es/times'
+import _take from 'lodash-es/take'
 
-import { scaleLinear as d3ScaleLinear } from "d3"
+import { scaleLinear as d3ScaleLinear } from 'd3'
 
 // helper function to calculate array sum till specified index
 export function sumArrayTill(array, index) {
@@ -85,9 +85,7 @@ export function calculateSegmentLabelCount({
 
 // calculate d3 scale
 export function calculateScale({ min, max, segments }) {
-  return d3ScaleLinear()
-    .range([0, 1])
-    .domain([min, max])
+  return d3ScaleLinear().range([0, 1]).domain([min, max])
 }
 
 // calculate ticks
