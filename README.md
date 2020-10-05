@@ -70,7 +70,7 @@ For [nextjs](https://nextjs.org/), please use [next-transpile-modules](https://w
 | customSegmentLabels | Array`<CustomSegmentLabel>` | [] | Takes an array of `CustomSegmentLabel` objects. Each object has following keys for custom rendering of labels - `text`, `fontSize`, `color`, `position: OUTSIDE/INSIDE`. For `position`, there is a helper `CustomSegmentLabelPosition` Object/Type which you can import like `import { CustomSegmentLabelPosition } from 'react-d3-speedometer'`, and use it like `CustomSegmentLabelPosition.Inside / CustomSegmentLabelPosition.Outside`. This works for both JS and Typescript. For `type(script)` definitions, please refer [here](./src/index.d.ts).  |
 | labelFontSize | String         | 14px     | Font size for segment labels/legends |
 | valueTextFontSize | String         | 16px     | Font size for current value text |
-| valueTextFontWeight | String         | bold     | Font weight for current value text. Any valid font weight identifier (500, bold) etc can be used. |
+| valueTextFontWeight | String         | bold     | Font weight for current value text. Any valid font weight identifier (500, bold etc) can be used. |
 | paddingHorizontal | Number         | 0     | Provides right/left space for the label text. Takes a number (without explicit unit, unit will be taken from dimensionUnit config which defaults to px). Helpful when using a bigger font size for label texts. |
 | paddingVertical   | Number         | 0     | Provides top/bottom space for the current value label text below the needle. Takes a number (without explicit unit, unit will be taken from dimensionUnit config which defaults to px). Helpful when using a bigger font size for label texts. |
 
