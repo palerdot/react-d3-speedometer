@@ -1,13 +1,13 @@
-import React, { PureComponent } from "react"
-import PropTypes from "prop-types"
-import { format as d3Format, select as d3Select } from "d3"
+import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
+import { format as d3Format, select as d3Select } from 'd3'
 
-import { getConfig, DEFAULT_PROPS, updateConfig } from "./core/config"
-import { render, update } from "./core/render"
-import { CustomSegmentLabelPosition, Transition } from "./core/enums"
+import { getConfig, DEFAULT_PROPS, updateConfig } from './core/config'
+import { render, update } from './core/render'
+import { CustomSegmentLabelPosition, Transition } from './core/enums'
 
 class ReactSpeedometer extends PureComponent {
-  static displayName = "ReactSpeedometer"
+  static displayName = 'ReactSpeedometer'
 
   constructor(props) {
     super(props)
@@ -25,7 +25,7 @@ class ReactSpeedometer extends PureComponent {
   }
 
   render = () => {
-    return <div ref={(ref) => (this.gaugeDiv = ref)} />
+    return <div ref={ref => (this.gaugeDiv = ref)} />
   }
 
   componentDidUpdate() {
@@ -46,9 +46,7 @@ class ReactSpeedometer extends PureComponent {
     })
 
     // remove existing gauge (if any)
-    d3Select(this.gaugeDiv)
-      .select("svg")
-      .remove()
+    d3Select(this.gaugeDiv).select('svg').remove()
 
     this.d3_refs = render({
       container: this.gaugeDiv,
@@ -64,8 +62,8 @@ class ReactSpeedometer extends PureComponent {
 
   updateReadings() {
     this.config = updateConfig(this.config, {
-      labelFormat: d3Format(this.props.valueFormat || ""),
-      currentValueText: this.props.currentValueText || "${value}",
+      labelFormat: d3Format(this.props.valueFormat || ''),
+      currentValueText: this.props.currentValueText || '${value}',
     })
 
     // updates the readings of the gauge with the current prop value
@@ -108,7 +106,7 @@ ReactSpeedometer.propTypes = {
   customSegmentLabels: PropTypes.arrayOf(
     PropTypes.shape({
       text: PropTypes.string,
-      position: PropTypes.oneOf(["OUTSIDE", "INSIDE"]),
+      position: PropTypes.oneOf(['OUTSIDE', 'INSIDE']),
       fontSize: PropTypes.string,
       color: PropTypes.string,
     })
@@ -139,6 +137,7 @@ ReactSpeedometer.propTypes = {
   // font sizes
   labelFontSize: PropTypes.string.isRequired,
   valueTextFontSize: PropTypes.string.isRequired,
+  valueTextFontWeight: PropTypes.string.isRequired,
 }
 
 // define the default proptypes

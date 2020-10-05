@@ -1,19 +1,19 @@
-import React from "react"
-import ReactSpeedometer from "../index"
+import React from 'react'
+import ReactSpeedometer from '../index'
 // create multiple speedometers
 export default class MultiSpeedoMeters extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       speedometer1: {
-        startColor: "red",
+        startColor: 'red',
         toggleStatus: false,
         value: 10,
         maxValue: 200,
         segments: 1,
       },
       speedometer2: {
-        startColor: "blue",
+        startColor: 'blue',
         toggleStatus: false,
         value: 10,
         maxValue: 40,
@@ -24,14 +24,14 @@ export default class MultiSpeedoMeters extends React.Component {
     this.values = [
       {
         speedometer1: {
-          startColor: "red",
+          startColor: 'red',
           toggleStatus: false,
           value: 10,
           maxValue: 200,
           segments: 1,
         },
         speedometer2: {
-          startColor: "blue",
+          startColor: 'blue',
           toggleStatus: false,
           value: 10,
           maxValue: 40,
@@ -40,14 +40,14 @@ export default class MultiSpeedoMeters extends React.Component {
       },
       {
         speedometer1: {
-          startColor: "orange",
+          startColor: 'orange',
           toggleStatus: false,
           value: 5,
           maxValue: 10,
           segments: 1,
         },
         speedometer2: {
-          startColor: "green",
+          startColor: 'green',
           toggleStatus: false,
           value: 900,
           maxValue: 1000,

@@ -1,12 +1,12 @@
-import memoizeOne from "memoize-one"
-import { range as d3Range, arc as d3Arc } from "d3"
+import memoizeOne from 'memoize-one'
+import { range as d3Range, arc as d3Arc } from 'd3'
 import {
   deg2rad,
   sumArrayTill,
   calculateScale,
   calculateTicks,
   calculateSegmentStops,
-} from "../util"
+} from '../util'
 
 // export memoized functions
 export const configureScale = memoizeOne(_configureScale)
@@ -39,7 +39,7 @@ function _configureTicks(config) {
 }
 
 function _configureTickData(config) {
-  const defaultTickData = d3Range(config.majorTicks).map((d) => {
+  const defaultTickData = d3Range(config.majorTicks).map(d => {
     return 1 / config.majorTicks
   })
 
