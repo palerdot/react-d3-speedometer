@@ -300,6 +300,7 @@ export const CustomizeFontSizesAndSpacing = () => (
     value={333}
     labelFontSize={"31px"}
     valueTextFontSize={"37px"}
+    valueTextFontWeight={"500"}
     paddingHorizontal={17}
     paddingVertical={17}
     currentValueText={"Value: ${value}"}

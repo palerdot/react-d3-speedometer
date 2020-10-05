@@ -266,7 +266,7 @@ function _renderCurrentValueText({ config, svg }) {
       // add text
       .text(config.currentValue)
       .style("font-size", config.valueTextFontSize)
-      .style("font-weight", "bold")
+      .style("font-weight", config.valueTextFontWeight)
       .style("fill", config.textColor)
   )
 }

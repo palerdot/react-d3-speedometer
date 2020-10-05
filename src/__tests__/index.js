@@ -313,9 +313,10 @@ describe("<ReactSpeedometer />", () => {
     )
   })
 
-  test("label and value font sizes", () => {
+  test("label and value font sizes, font weight", () => {
     const labelFontSize = "15px"
     const valueTextFontSize = "23px"
+    const valueTextFontWeight = "500"
 
     const full_dom_wrapper = mount(
       <ReactSpeedometer
@@ -323,6 +324,7 @@ describe("<ReactSpeedometer />", () => {
         needleHeightRatio={0.5}
         labelFontSize={labelFontSize}
         valueTextFontSize={valueTextFontSize}
+        valueTextFontWeight={valueTextFontWeight}
       />
     )
 
@@ -358,6 +360,7 @@ describe("<ReactSpeedometer />", () => {
     })
 
     expect(styles["font-size"]).toEqual(valueTextFontSize)
+    expect(styles["font-weight"]).toEqual(valueTextFontWeight)
   })
 })
 
