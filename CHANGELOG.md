@@ -1,5 +1,8 @@
 # Change Log
 
+## 0.14.1
+- `Typescript` types for `valueTextFontWeight` config/prop
+
 ## 0.14.0
 - `valueTextFontWeight` config/prop to control font weight of current value
 - *dev changes*: prettier changes: `singleQuote: true`, `arrowParens: avoid`. `prettier` upgraded to `v2`
