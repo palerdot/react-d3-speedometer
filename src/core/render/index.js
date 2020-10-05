@@ -2,10 +2,10 @@ import {
   select as d3Select,
   line as d3Line,
   curveMonotoneX as d3CurveMonotoneX,
-} from "d3"
+} from 'd3'
 
-import isEmpty from "lodash-es/isEmpty"
-import isArray from "lodash-es/isArray"
+import isEmpty from 'lodash-es/isEmpty'
+import isArray from 'lodash-es/isArray'
 
 import {
   centerTranslation,
@@ -13,14 +13,14 @@ import {
   calculateNeedleHeight,
   formatCurrentValueText,
   sumArrayTill,
-} from "../util"
-import { getNeedleTransition } from "../util/get-needle-transition"
+} from '../util'
+import { getNeedleTransition } from '../util/get-needle-transition'
 import {
   configureArc,
   configureTicks,
   configureTickData,
   configureScale,
-} from "../config/configure"
+} from '../config/configure'
 
 export const update = ({ d3_refs, newValue, config }) => {
   const scale = configureScale(config)
@@ -33,7 +33,7 @@ export const update = ({ d3_refs, newValue, config }) => {
     .transition()
     .duration(config.needleTransitionDuration)
     .ease(getNeedleTransition(config.needleTransition))
-    .attr("transform", `rotate(${newAngle})`)
+    .attr('transform', `rotate(${newAngle})`)
 
   d3_refs.current_value_text.text(formatCurrentValueText(newValue, config))
 }
@@ -65,13 +65,13 @@ function _renderSVG({ container, config }) {
 
   return (
     d3Select(container)
-      .append("svg:svg")
-      .attr("class", "speedometer")
-      .attr("width", `${width}${config.dimensionUnit}`)
-      .attr("height", `${height}${config.dimensionUnit}`)
+      .append('svg:svg')
+      .attr('class', 'speedometer')
+      .attr('width', `${width}${config.dimensionUnit}`)
+      .attr('height', `${height}${config.dimensionUnit}`)
       // use inline styles so that width/height is not overridden
-      .style("width", `${width}${config.dimensionUnit}`)
-      .style("height", `${height}${config.dimensionUnit}`)
+      .style('width', `${width}${config.dimensionUnit}`)
+      .style('height', `${height}${config.dimensionUnit}`)
   )
 }
 
@@ -80,17 +80,17 @@ function _renderArcs({ config, svg, centerTx }) {
   const arc = configureArc(config)
 
   let arcs = svg
-    .append("g")
-    .attr("class", "arc")
-    .attr("transform", centerTx)
+    .append('g')
+    .attr('class', 'arc')
+    .attr('transform', centerTx)
 
   arcs
-    .selectAll("path")
+    .selectAll('path')
     .data(tickData)
     .enter()
-    .append("path")
-    .attr("class", "speedo-segment")
-    .attr("fill", (d, i) => {
+    .append('path')
+    .attr('class', 'speedo-segment')
+    .attr('fill', (d, i) => {
       // if custom segment colors is present just use it
       if (!isEmpty(config.segmentColors) && config.segmentColors[i]) {
         return config.segmentColors[i]
@@ -98,7 +98,7 @@ function _renderArcs({ config, svg, centerTx }) {
 
       return config.arcColorFn(d * i)
     })
-    .attr("d", arc)
+    .attr('d', arc)
 }
 
 export function _renderLabels({ config, svg, centerTx, r }) {
@@ -142,15 +142,15 @@ export function _renderLabels({ config, svg, centerTx, r }) {
 
   // normal label rendering
   let lg = svg
-    .append("g")
-    .attr("class", "label")
-    .attr("transform", centerTx)
+    .append('g')
+    .attr('class', 'label')
+    .attr('transform', centerTx)
 
-  lg.selectAll("text")
+  lg.selectAll('text')
     .data(ticks)
     .enter()
-    .append("text")
-    .attr("transform", (d, i) => {
+    .append('text')
+    .attr('transform', (d, i) => {
       const ratio =
         config.customSegmentStops.length === 0
           ? scale(d)
@@ -162,13 +162,13 @@ export function _renderLabels({ config, svg, centerTx, r }) {
     })
     .text(config.labelFormat)
     // add class for text label
-    .attr("class", "segment-value")
+    .attr('class', 'segment-value')
     // styling stuffs
-    .style("text-anchor", "middle")
-    .style("font-size", config.labelFontSize)
-    .style("font-weight", "bold")
+    .style('text-anchor', 'middle')
+    .style('font-size', config.labelFontSize)
+    .style('font-weight', 'bold')
     // .style("fill", "#666");
-    .style("fill", config.textColor)
+    .style('fill', config.textColor)
 }
 
 // helper function to render 'custom segment labels'
@@ -214,15 +214,15 @@ function _renderCustomSegmentLabels({
   const position = outerRadius - (outerRadius - innerRadius) / 2
 
   let lg = svg
-    .append("g")
-    .attr("class", "label")
-    .attr("transform", centerTx)
+    .append('g')
+    .attr('class', 'label')
+    .attr('transform', centerTx)
 
-  lg.selectAll("text")
+  lg.selectAll('text')
     .data(customSegmentLabels)
     .enter()
-    .append("text")
-    .attr("transform", (d, i) => {
+    .append('text')
+    .attr('transform', (d, i) => {
       const newAngle = newAngles[i]
 
       const outerText = `rotate(${newAngle}) translate(0, ${config.labelInset -
@@ -232,16 +232,16 @@ function _renderCustomSegmentLabels({
         position})`
 
       // by default we will show "INSIDE"
-      return d.position === "OUTSIDE" ? outerText : innerText
+      return d.position === 'OUTSIDE' ? outerText : innerText
     })
-    .text((d) => d.text || "")
+    .text((d) => d.text || '')
     // add class for text label
-    .attr("class", "segment-value")
+    .attr('class', 'segment-value')
     // styling stuffs
-    .style("text-anchor", "middle")
-    .style("font-size", (d) => d.fontSize || config.labelFontSize)
-    .style("font-weight", "bold")
-    .style("fill", (d) => d.color || config.textColor)
+    .style('text-anchor', 'middle')
+    .style('font-size', (d) => d.fontSize || config.labelFontSize)
+    .style('font-weight', 'bold')
+    .style('fill', (d) => d.color || config.textColor)
 
   // depending on INSIDE/OUTSIDE config calculate the position/rotate/translate
 
@@ -255,19 +255,19 @@ function _renderCurrentValueText({ config, svg }) {
 
   return (
     svg
-      .append("g")
-      .attr("transform", `translate(${translateX}, ${translateY})`)
-      .append("text")
+      .append('g')
+      .attr('transform', `translate(${translateX}, ${translateY})`)
+      .append('text')
       // add class for the text
-      .attr("class", "current-value")
-      .attr("text-anchor", "middle")
+      .attr('class', 'current-value')
+      .attr('text-anchor', 'middle')
       // position the text 23pt below
-      .attr("y", 23)
+      .attr('y', 23)
       // add text
       .text(config.currentValue)
-      .style("font-size", config.valueTextFontSize)
-      .style("font-weight", config.valueTextFontWeight)
-      .style("fill", config.textColor)
+      .style('font-size', config.valueTextFontSize)
+      .style('font-weight', config.valueTextFontWeight)
+      .style('fill', config.textColor)
   )
 }
 
@@ -288,14 +288,14 @@ function _renderNeedle({ config, svg, r, centerTx }) {
   const pointerLine = d3Line().curve(d3CurveMonotoneX)
 
   let pg = svg
-    .append("g")
+    .append('g')
     .data([lineData])
-    .attr("class", "pointer")
-    .attr("transform", centerTx)
-    .style("fill", config.needleColor)
+    .attr('class', 'pointer')
+    .attr('transform', centerTx)
+    .style('fill', config.needleColor)
 
   return pg
-    .append("path")
-    .attr("d", pointerLine)
-    .attr("transform", `rotate(${config.minAngle})`)
+    .append('path')
+    .attr('d', pointerLine)
+    .attr('transform', `rotate(${config.minAngle})`)
 }

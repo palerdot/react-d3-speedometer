@@ -1,5 +1,5 @@
-import React from "react"
-import ReactSpeedometer from "../index"
+import React from 'react'
+import ReactSpeedometer from '../index'
 // a custom button with state to demonstrate force rendering
 export default class SpeedoButton extends React.Component {
   constructor(props) {
@@ -7,7 +7,7 @@ export default class SpeedoButton extends React.Component {
     this.state = {
       toggleStatus: false,
       value: 111,
-      startColor: "blue",
+      startColor: 'blue',
       segments: 5,
       width: 300,
       height: 300,
@@ -16,14 +16,14 @@ export default class SpeedoButton extends React.Component {
     this.values = [
       {
         value: 111,
-        startColor: "blue",
+        startColor: 'blue',
         segments: 5,
         width: 300,
         height: 300,
       },
       {
         value: 222,
-        startColor: "orange",
+        startColor: 'orange',
         segments: 10,
         width: 400,
         height: 400,
@@ -35,7 +35,7 @@ export default class SpeedoButton extends React.Component {
     return (
       <div
         style={{
-          color: "#DEDEDE",
+          color: '#DEDEDE',
         }}
       >
         <h4>
@@ -68,7 +68,7 @@ export default class SpeedoButton extends React.Component {
           segments={this.state.segments}
           width={this.state.width}
           height={this.state.height}
-          textColor={"#AAA"}
+          textColor={'#AAA'}
         />
       </div>
     )

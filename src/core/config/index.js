@@ -3,9 +3,9 @@ import {
   interpolateHsl as d3InterpolateHsl,
   rgb as d3Rgb,
   format as d3Format,
-} from "d3"
-import { calculateSegmentLabelCount } from "../util/"
-import { Transition } from "../../core/enums"
+} from 'd3'
+import { calculateSegmentLabelCount } from '../util/'
+import { Transition } from '../../core/enums'
 
 // default props
 export const DEFAULT_PROPS = {
@@ -21,7 +21,7 @@ export const DEFAULT_PROPS = {
   paddingVertical: 0,
 
   fluidWidth: false,
-  dimensionUnit: "px",
+  dimensionUnit: 'px',
 
   // segments to show in the speedometer
   segments: 5,
@@ -33,9 +33,9 @@ export const DEFAULT_PROPS = {
   customSegmentLabels: [],
 
   // color strings
-  needleColor: "steelblue",
-  startColor: "#FF471A",
-  endColor: "#33CC33",
+  needleColor: 'steelblue',
+  startColor: '#FF471A',
+  endColor: '#33CC33',
   // custom segment colors; by default off
   segmentColors: [],
 
@@ -48,23 +48,23 @@ export const DEFAULT_PROPS = {
   ringWidth: 60,
 
   // text color (for both showing current value and segment values)
-  textColor: "#666",
+  textColor: '#666',
 
   // label format => https://github.com/d3/d3-format
   // by default ""; takes valid input for d3 format
-  valueFormat: "",
+  valueFormat: '',
 
   // value text string format; by default it just shows the value
   // takes es6 template string as input with a default ${value}
-  currentValueText: "${value}",
+  currentValueText: '${value}',
   // specifies the style of the placeholder for current value
   // change it some other format like "#{value}" and use it in current value text as => "Current Value: #{value}"
-  currentValuePlaceholderStyle: "${value}",
+  currentValuePlaceholderStyle: '${value}',
 
   // font sizes (and other styles)
-  labelFontSize: "14px",
-  valueTextFontSize: "16px",
-  valueTextFontWeight: "bold", // any valid font weight string
+  labelFontSize: '14px',
+  valueTextFontSize: '16px',
+  valueTextFontWeight: 'bold', // any valid font weight string
 }
 
 // default config
