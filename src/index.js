@@ -25,7 +25,7 @@ class ReactSpeedometer extends PureComponent {
   }
 
   render = () => {
-    return <div ref={(ref) => (this.gaugeDiv = ref)} />
+    return <div ref={ref => (this.gaugeDiv = ref)} />
   }
 
   componentDidUpdate() {
@@ -46,9 +46,7 @@ class ReactSpeedometer extends PureComponent {
     })
 
     // remove existing gauge (if any)
-    d3Select(this.gaugeDiv)
-      .select('svg')
-      .remove()
+    d3Select(this.gaugeDiv).select('svg').remove()
 
     this.d3_refs = render({
       container: this.gaugeDiv,

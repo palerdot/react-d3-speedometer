@@ -79,10 +79,7 @@ function _renderArcs({ config, svg, centerTx }) {
   const tickData = configureTickData(config)
   const arc = configureArc(config)
 
-  let arcs = svg
-    .append('g')
-    .attr('class', 'arc')
-    .attr('transform', centerTx)
+  let arcs = svg.append('g').attr('class', 'arc').attr('transform', centerTx)
 
   arcs
     .selectAll('path')
@@ -118,9 +115,7 @@ export function _renderLabels({ config, svg, centerTx, r }) {
   // if custom labels present and not valid
   if (isCustomLabelsPresent && !isCustomLabelsValid) {
     throw new Error(
-      `Custom Segment Labels should be an array with length of ${
-        tickData.length
-      }`
+      `Custom Segment Labels should be an array with length of ${tickData.length}`
     )
   }
 
@@ -141,10 +136,7 @@ export function _renderLabels({ config, svg, centerTx, r }) {
   }
 
   // normal label rendering
-  let lg = svg
-    .append('g')
-    .attr('class', 'label')
-    .attr('transform', centerTx)
+  let lg = svg.append('g').attr('class', 'label').attr('transform', centerTx)
 
   lg.selectAll('text')
     .data(ticks)
@@ -213,10 +205,7 @@ function _renderCustomSegmentLabels({
 
   const position = outerRadius - (outerRadius - innerRadius) / 2
 
-  let lg = svg
-    .append('g')
-    .attr('class', 'label')
-    .attr('transform', centerTx)
+  let lg = svg.append('g').attr('class', 'label').attr('transform', centerTx)
 
   lg.selectAll('text')
     .data(customSegmentLabels)
@@ -225,23 +214,24 @@ function _renderCustomSegmentLabels({
     .attr('transform', (d, i) => {
       const newAngle = newAngles[i]
 
-      const outerText = `rotate(${newAngle}) translate(0, ${config.labelInset -
-        r})`
-      const innerText = `rotate(${newAngle}) translate(0, ${config.labelInset /
-        2 -
-        position})`
+      const outerText = `rotate(${newAngle}) translate(0, ${
+        config.labelInset - r
+      })`
+      const innerText = `rotate(${newAngle}) translate(0, ${
+        config.labelInset / 2 - position
+      })`
 
       // by default we will show "INSIDE"
       return d.position === 'OUTSIDE' ? outerText : innerText
     })
-    .text((d) => d.text || '')
+    .text(d => d.text || '')
     // add class for text label
     .attr('class', 'segment-value')
     // styling stuffs
     .style('text-anchor', 'middle')
-    .style('font-size', (d) => d.fontSize || config.labelFontSize)
+    .style('font-size', d => d.fontSize || config.labelFontSize)
     .style('font-weight', 'bold')
-    .style('fill', (d) => d.color || config.textColor)
+    .style('fill', d => d.color || config.textColor)
 
   // depending on INSIDE/OUTSIDE config calculate the position/rotate/translate
 

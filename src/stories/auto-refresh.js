@@ -11,7 +11,7 @@ class AutoRefresh extends React.Component {
   }
   componentDidMount = () => {
     setInterval(() => {
-      this.setState((prevState) => ({
+      this.setState(prevState => ({
         opacity: prevState.opacity === 1 ? 0.9 : 1,
       }))
     }, 3333)

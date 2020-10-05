@@ -39,7 +39,7 @@ function _configureTicks(config) {
 }
 
 function _configureTickData(config) {
-  const defaultTickData = d3Range(config.majorTicks).map((d) => {
+  const defaultTickData = d3Range(config.majorTicks).map(d => {
     return 1 / config.majorTicks
   })
 
