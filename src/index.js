@@ -137,6 +137,7 @@ ReactSpeedometer.propTypes = {
   // font sizes
   labelFontSize: PropTypes.string.isRequired,
   valueTextFontSize: PropTypes.string.isRequired,
+  valueTextFontWeight: PropTypes.string.isRequired,
 }
 
 // define the default proptypes

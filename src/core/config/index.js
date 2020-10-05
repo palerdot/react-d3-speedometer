@@ -61,9 +61,10 @@ export const DEFAULT_PROPS = {
   // change it some other format like "#{value}" and use it in current value text as => "Current Value: #{value}"
   currentValuePlaceholderStyle: '${value}',
 
-  // font sizes
+  // font sizes (and other styles)
   labelFontSize: '14px',
   valueTextFontSize: '16px',
+  valueTextFontWeight: 'bold', // any valid font weight string
 }
 
 // default config
@@ -133,9 +134,10 @@ export const getConfig = ({ PROPS, parentWidth, parentHeight }) => {
     // placeholder style for 'currentValue'
     currentValuePlaceholderStyle: PROPS.currentValuePlaceholderStyle,
 
-    // font sizes
+    // font sizes (and other styles)
     labelFontSize: PROPS.labelFontSize,
     valueTextFontSize: PROPS.valueTextFontSize,
+    valueTextFontWeight: PROPS.valueTextFontWeight,
   }
 
   return Object.assign({}, DEFAULT_CONFIG, config)
