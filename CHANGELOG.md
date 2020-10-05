@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.14.0
+- `valueTextFontWeight` config/prop to control font weight of current value
+- *dev changes*: 'singleQuote: true' for prettier config 
+
 ## 0.13.1
 - ignore `coverage` folder from npm bundle
 
