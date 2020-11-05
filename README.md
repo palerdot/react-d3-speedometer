@@ -1,6 +1,8 @@
 # react-d3-speedometer
 
-**react-d3-speedometer** is a react component library for showing speedometer like gauge using d3.
+> React library for showing speedometer like gauge using d3.
+
+![react-d3-speedometer](https://raw.githubusercontent.com/palerdot/react-d3-speedometer/master/speedo.gif)
 
 [![Build Status](https://travis-ci.org/palerdot/react-d3-speedometer.svg?branch=master)](https://travis-ci.org/palerdot/react-d3-speedometer)
 [![Codecov](https://img.shields.io/codecov/c/gh/palerdot/react-d3-speedometer)](https://codecov.io/gh/palerdot/react-d3-speedometer)
@@ -9,18 +11,35 @@
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 
+**Note**: `v1.x` is compatible with `React 17`. Please use latest `v0.x` (`v0.14.1` at the time of writing) if you are using `React 16`.
 
 [![NPM](https://nodei.co/npm/react-d3-speedometer.png)](https://npmjs.org/package/react-d3-speedometer)
 
-![react-d3-speedometer](https://raw.githubusercontent.com/palerdot/react-d3-speedometer/master/speedo.gif)
 
-## Usage:
+# `react-d3-speedometer`
+
+- [Getting Started](#getting-started)
+- [Configuration Options](#configuration-options)
+- [Examples](#examples)
+- [FAQ](#faq)
+- [Ports](#ports)
+
+## Getting Started:
+
+Install with `yarn` or `npm`.
 
 **Yarn:**
-`yarn add react-d3-speedometer` 
+```
+yarn add react-d3-speedometer
+```
 
-**NPM:**
-`npm install --save react-d3-speedometer` 
+**npm:**
+
+```
+npm install --save react-d3-speedometer
+``` 
+
+And, use it like
 
 ```javascript
 // import the component
@@ -28,17 +47,6 @@ import ReactSpeedometer from "react-d3-speedometer"
 // and just use it
 <ReactSpeedometer />
 ```
-
-`react-d3-speedometer` uses [lodash-es](https://www.npmjs.com/package/lodash-es) dependency for better tree shaking. 
-For [nextjs](https://nextjs.org/), please use [next-transpile-modules](https://www.npmjs.com/package/next-transpile-modules), so that ES module exports from `lodash-es` package is properly transpiled.
-
-## Ports:
-- Vue: [vue-speedometer](https://github.com/palerdot/vue-speedometer)
-- Svelte: [svelte-speedometer](https://github.com/palerdot/svelte-speedometer)
-
-## Examples:
-
-[Live Examples](https://palerdot.in/react-d3-speedometer/)
 
 ## Configuration Options:
 
@@ -249,6 +257,27 @@ You can give a value between `0` and `1` to control the needle height.
 />
 ```
 
+### FAQ:
+
+
+1) How to use with [nextjs](https://nextjs.org/)?
+
+    `react-d3-speedometer` uses [lodash-es](https://www.npmjs.com/package/lodash-es) dependency for better tree shaking. For [nextjs](https://nextjs.org/), please use [next-transpile-modules](https://www.npmjs.com/package/next-transpile-modules), so that ES module exports from `lodash-es` package is properly transpiled.
+
+2) How to use with `React 17`?
+
+    Please use latest `v1.x` (`v1.0.0` at the time of writing). `v1.x` is compatible with `React 17`.
+
+3) How to use with `React 16`?
+
+    Please use latest `v0.x` (`v0.14.x` at the time of writing). `v0.x` is compatible with `React 16`.
+
+---
+
+## Ports:
+- Vue: [vue-speedometer](https://github.com/palerdot/vue-speedometer)
+- Svelte: [svelte-speedometer](https://github.com/palerdot/svelte-speedometer)
+
 ---
 
 ### Todos:
@@ -280,6 +309,8 @@ npm test
 - [`v0.7.0`] Custom segment stops. [Live Example](https://palerdot.in/react-d3-speedometer/?path=/story/react-d3-speedometer--custom-segment-stops)
 - [`v0.6.0`] Custom segment colors. [Live Example](https://codesandbox.io/s/relaxed-silence-c3qkb)
 
+---
+
 #### Changelog:
 
 [View Changelog](CHANGELOG.md)
@@ -287,15 +318,16 @@ npm test
 ---
 
 #### Credits:
-`react-d3-speedometer` was started as a react port of the following d3 snippet - [http://bl.ocks.org/msqr/3202712](http://bl.ocks.org/msqr/3202712). Component template bootstrapped with [React CDK](https://github.com/storybooks/react-cdk). Also, many thanks to `d3` and `react` ecosystem contributors.
+`react-d3-speedometer` was started as a react port of the following d3 snippet - [http://bl.ocks.org/msqr/3202712](http://bl.ocks.org/msqr/3202712). Component template was initially bootstrapped with [React CDK](https://github.com/storybooks/react-cdk). Also, many thanks to `react` and `d3` ecosystem contributors.
 
 ---
 
 #### Contributing:
-PRs are welcome. Please create a issue/bugfix/feature branch and create an issue with your branch details. Probably I will create a similar branch in the upstream repo so that PRs can be raised against that branch instead of `master`.
+PRs are welcome. Please create a issue/bugfix/feature branch and create an issue with your branch details. Probably I will create a similar branch in the upstream repo so that PRs can be raised against that branch instead of `master`. `master-v0.x` is the main branch for `React 16` compatible changes.
 
 #### Notes
-- `0.x` versions are compatible with React & React DOM Versions (16.x)
+- `1.x` versions are compatible with React & React DOM Versions `v17.x`
+- `0.x` versions are compatible with React & React DOM Versions `v16.x`
 For every subsequent major react upgrade, `react-d3-speedometer` will be bumped to next major versions. For example `1.x` will be compatible with `React 17.x` so on and so forth ...
 
 For similar library for VueJS, please check out [vue-speedometer](https://github.com/palerdot/vue-speedometer)
