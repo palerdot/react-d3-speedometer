@@ -20,7 +20,7 @@
 
 - [Install](#install)
 - [Usage](#usage)
-- [Configuration Options](#options)
+- [Configuration Options](#configuration-options)
 - [Examples](#examples)
 - [FAQ](#faq)
 - [Ports](#ports)
