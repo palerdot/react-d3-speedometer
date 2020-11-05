@@ -18,14 +18,15 @@
 
 # `react-d3-speedometer`
 
-- [Install](#install)
-- [Usage](#usage)
+- [Getting Started](#getting-started)
 - [Configuration Options](#configuration-options)
 - [Examples](#examples)
 - [FAQ](#faq)
 - [Ports](#ports)
 
-## Install:
+## Getting Started:
+
+Install with `yarn` or `npm`.
 
 **Yarn:**
 ```
@@ -38,7 +39,7 @@ yarn add react-d3-speedometer
 npm install --save react-d3-speedometer
 ``` 
 
-## Usage:
+And, use it like
 
 ```javascript
 // import the component
