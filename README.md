@@ -323,7 +323,7 @@ npm test
 ---
 
 #### Contributing:
-PRs are welcome. Please create a issue/bugfix/feature branch and create an issue with your branch details. Probably I will create a similar branch in the upstream repo so that PRs can be raised against that branch instead of `master`. `master-v0.x` is the main branch for `React 16` compatible changes.
+PRs are welcome. Please create a issue/bugfix/feature branch and create an issue with your branch details. Probably I will create a similar branch in the upstream repo so that PRs can be raised against that branch instead of `master`. [master-v0.x](https://github.com/palerdot/react-d3-speedometer/tree/master-v0.x) is the main branch for `React 16` compatible changes.
 
 #### Notes
 - `1.x` versions are compatible with React & React DOM Versions `v17.x`
