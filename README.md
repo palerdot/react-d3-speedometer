@@ -1,5 +1,7 @@
 # react-d3-speedometer
 
+**NOTE:** This is the main branch for `v16 React` support.
+
 **react-d3-speedometer** is a react component library for showing speedometer like gauge using d3.
 
 [![Build Status](https://travis-ci.org/palerdot/react-d3-speedometer.svg?branch=master)](https://travis-ci.org/palerdot/react-d3-speedometer)
