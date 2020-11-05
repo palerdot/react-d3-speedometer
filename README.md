@@ -330,7 +330,9 @@ PRs are welcome. Please create a issue/bugfix/feature branch and create an issue
 - `0.x` versions are compatible with React & React DOM Versions `v16.x`
 For every subsequent major react upgrade, `react-d3-speedometer` will be bumped to next major versions. For example `1.x` will be compatible with `React 17.x` so on and so forth ...
 
-For similar library for VueJS, please check out [vue-speedometer](https://github.com/palerdot/vue-speedometer)
+For similar library for VueJS, please check out [vue-speedometer](https://github.com/palerdot/vue-speedometer).
+
+For similar library for Svelte, please check out [svelte-speedometer](https://github.com/palerdot/svelte-speedometer).
 
 #### License:
 
