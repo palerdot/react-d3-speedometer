@@ -48,6 +48,8 @@ import ReactSpeedometer from "react-d3-speedometer"
 <ReactSpeedometer />
 ```
 
+[Live Examples](https://palerdot.in/react-d3-speedometer)
+
 ## Configuration Options:
 
 | prop        | type           | default  | comments |
