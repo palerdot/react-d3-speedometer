@@ -1,13 +1,14 @@
 import React from 'react'
 import isEmpty from 'lodash-es/isEmpty'
-// ref: https://github.com/airbnb/enzyme/blob/master/docs/guides/migration-from-2-to-3.md
+
+// ref: https://github.com/enzymejs/enzyme/issues/2429
 import Enzyme from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
+// NOTE: to be replaced with official adapter once released
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17'
 Enzyme.configure({ adapter: new Adapter() })
 
-import { shallow, mount, render } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 
-// import Button from '../index';
 import ReactSpeedometer from '../index'
 
 // import validators

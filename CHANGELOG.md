@@ -8,6 +8,9 @@
 - *dev changes*: prettier changes: `singleQuote: true`, `arrowParens: avoid`. `prettier` upgraded to `v2`
 - *dev changes*: `jest v26`
 
+## 1.0.0-rc.0
+- First `1.0` Release candidate with `React 17` support
+
 ## 0.13.1
 - ignore `coverage` folder from npm bundle
 
