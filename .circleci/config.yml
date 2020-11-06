@@ -4,7 +4,8 @@ jobs:
   test:
     executor:
       name: node/default
-      tag: '13'
+      # ref: https://hub.docker.com/r/cimg/node/tags
+      tag: 'lts'
     steps:
       - checkout
       - node/install-packages:
