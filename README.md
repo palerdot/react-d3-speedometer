@@ -4,7 +4,7 @@
 
 ![react-d3-speedometer](https://raw.githubusercontent.com/palerdot/react-d3-speedometer/master/speedo.gif)
 
-[![Build Status](https://travis-ci.org/palerdot/react-d3-speedometer.svg?branch=master)](https://travis-ci.org/palerdot/react-d3-speedometer)
+[![CircleCI Build Status](https://circleci.com/gh/palerdot/react-d3-speedometer.svg?style=shield)](https://circleci.com/gh/palerdot/react-d3-speedometer)
 [![Codecov](https://img.shields.io/codecov/c/gh/palerdot/react-d3-speedometer)](https://codecov.io/gh/palerdot/react-d3-speedometer)
 [![npm](https://img.shields.io/npm/dt/react-d3-speedometer.svg)](https://www.npmjs.com/package/react-d3-speedometer)
 [![npm version](https://badge.fury.io/js/react-d3-speedometer.svg)](https://www.npmjs.com/package/react-d3-speedometer)
