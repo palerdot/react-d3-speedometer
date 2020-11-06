@@ -1,7 +1,21 @@
-version: 2.1
+# ref: https://circleci.com/docs/2.0/orb-intro/#section=configuration
+# https://circleci.com/developer/orbs/orb/circleci/node
+jobs:
+  test:
+    executor:
+      name: node/default
+      tag: '13'
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: yarn
+      - run:
+          command: yarn test
+          name: Run YARN tests
 orbs:
-  node: circleci/node@3.0.0
+  node: circleci/node@x.y
+version: 2.1
 workflows:
-  node-tests:
+  test_react_d3_speedometer:
     jobs:
-      - node/test
+      - test
