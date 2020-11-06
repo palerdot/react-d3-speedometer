@@ -1,0 +1,22 @@
+# ref: https://circleci.com/docs/2.0/orb-intro/#section=configuration
+# https://circleci.com/developer/orbs/orb/circleci/node
+jobs:
+  test:
+    executor:
+      name: node/default
+      # ref: https://hub.docker.com/r/cimg/node/tags
+      tag: 'lts'
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: yarn
+      - run:
+          command: yarn test
+          name: Run YARN tests
+orbs:
+  node: circleci/node@4.1
+version: 2.1
+workflows:
+  test_react_d3_speedometer:
+    jobs:
+      - test
