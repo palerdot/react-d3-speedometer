@@ -13,7 +13,7 @@ jobs:
           command: yarn test
           name: Run YARN tests
 orbs:
-  node: circleci/node@x.y
+  node: circleci/node@4.1
 version: 2.1
 workflows:
   test_react_d3_speedometer:
