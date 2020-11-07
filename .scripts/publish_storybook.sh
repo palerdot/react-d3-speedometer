@@ -9,7 +9,7 @@ set -e # exit with nonzero exit code if anything fails
 
 # get GIT url
 
-GIT_URL=`git config --get remote.origin.url`
+GIT_URL=$(git config --get remote.origin.url)
 if [[ $GIT_URL == "" ]]; then
   echo "This project is not configured with a remote git repo".
   exit 1
@@ -44,4 +44,4 @@ cd ..
 rm -rf .out
 
 echo ""
-echo "=> Storybook deployed to: `node .scripts/get_gh_pages_url.js $GIT_URL`"
+echo "=> Storybook deployed to: $(node .scripts/get_gh_pages_url.js $GIT_URL)"
