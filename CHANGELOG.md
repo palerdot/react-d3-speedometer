@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.0.0 (v17 React support)
+- `React v17` and `v6 d3` support. **No Breaking Changes.**
+
 ## 0.14.1
 - `Typescript` types for `valueTextFontWeight` config/prop
 
