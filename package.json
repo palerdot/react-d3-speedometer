@@ -77,7 +77,6 @@
     "webpack": "^4.42.0"
   },
   "peerDependencies": {
-    "prop-types": "^15.7.2",
     "react": "^17.0.0",
     "react-dom": "^17.0.0"
   },
@@ -85,7 +84,8 @@
     "@babel/runtime": "^7.9.0",
     "d3": "^6.2.0",
     "lodash-es": "^4.17.15",
-    "memoize-one": "^5.0.5"
+    "memoize-one": "^5.0.5",
+    "prop-types": "^15.7.2"
   },
   "main": "dist/index.js",
   "engines": {

@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.0.1
+- `PropTypes` moved to `dependencies` from `peerDependencies`. ref - https://github.com/facebook/prop-types#how-to-depend-on-this-package
+
 ## 1.0.0 (v17 React support)
 - `React v17` and `v6 d3` support. **No Breaking Changes.**
 
