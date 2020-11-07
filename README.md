@@ -304,6 +304,8 @@ npm test
 ---
 
 #### Feature Updates:
+- [`v1.0.0`] `React v17` support. `d3 v6` support. [Live Example](https://codesandbox.io/s/kind-breeze-esuge?file=/src/App.js) 
+
 - [`v0.14.0`] `valueTextFontWeight` config to control font weight of current value
 - [`v0.10.0`] Custom labels. [Live Example](https://codesandbox.io/s/vibrant-platform-cesh3)
 - [`v0.9.0`] `Typescript` support
