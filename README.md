@@ -264,7 +264,11 @@ You can give a value between `0` and `1` to control the needle height.
 
 1) How to use with [nextjs](https://nextjs.org/)?
 
-    `react-d3-speedometer` uses [lodash-es](https://www.npmjs.com/package/lodash-es) dependency for better tree shaking. For [nextjs](https://nextjs.org/), please use [next-transpile-modules](https://www.npmjs.com/package/next-transpile-modules), so that ES module exports from `lodash-es` package is properly transpiled.
+
+    `react-d3-speedometer` uses [lodash-es](https://www.npmjs.com/package/lodash-es) dependency for better tree shaking. For [nextjs](https://nextjs.org/), please use [next-transpile-modules](https://www.npmjs.com/package/next-transpile-modules), so that ES module exports from `lodash-es` package is properly transpiled. You can also `nextjs` dynamic imports - https://nextjs.org/docs/advanced-features/dynamic-import#with-no-ssr
+
+
+Please refer to this issue for more details on how to make this library work with `next.js` - https://github.com/palerdot/react-d3-speedometer/issues/89
 
 2) How to use with `React 17`?
 
