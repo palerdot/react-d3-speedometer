@@ -261,15 +261,16 @@ export const ConfigureNeedleLengthAndFontSizes = () => (
   />
 )
 
-export const GradientEffectWithLargeNumberOfSegmentsAndMaxSegmentLabelsConfig = () => (
-  <ReactSpeedometer
-    needleHeightRatio={0.7}
-    maxSegmentLabels={5}
-    segments={5555}
-    value={333}
-    textColor={textColor}
-  />
-)
+export const GradientEffectWithLargeNumberOfSegmentsAndMaxSegmentLabelsConfig =
+  () => (
+    <ReactSpeedometer
+      needleHeightRatio={0.7}
+      maxSegmentLabels={5}
+      segments={5555}
+      value={333}
+      textColor={textColor}
+    />
+  )
 
 export const NoSegmentLabels = () => (
   <div>

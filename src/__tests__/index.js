@@ -84,6 +84,23 @@ describe('<ReactSpeedometer />', () => {
     expect(spy).toHaveBeenCalled()
   })
 
+  //default aria-label
+  test('default aria-label', () => {
+    const full_dom_wrapper = mount(<ReactSpeedometer />)
+      .render()
+      .find('.speedometer')
+    expect(full_dom_wrapper.prop('aria-label')).toBe('React d3 speedometer')
+  })
+
+  //aria-label when using svgAriaLabel
+  test('should change aria-label when svgAriaLabel is used', () => {
+    const testCase = 'user input'
+    const full_dom_wrapper = mount(<ReactSpeedometer svgAriaLabel={testCase} />)
+      .render()
+      .find('.speedometer')
+    expect(full_dom_wrapper.prop('aria-label')).toBe(testCase)
+  })
+
   // should smoothly animate only the current value; not other breaking changes
   test('smooth update of values', () => {
     const value = 333

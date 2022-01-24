@@ -62,6 +62,7 @@ function _renderSVG({ container, config }) {
   // calculate width and height
   const width = config.width + 2 * config.paddingHorizontal
   const height = config.height + 2 * config.paddingVertical
+  const svgAriaLabel = config.svgAriaLabel
 
   return (
     d3Select(container)
@@ -69,8 +70,9 @@ function _renderSVG({ container, config }) {
       .attr('class', 'speedometer')
       .attr('width', `${width}${config.dimensionUnit}`)
       .attr('height', `${height}${config.dimensionUnit}`)
-      .attr('role','img')
-      .attr('aria-label','React Speedometer')
+      .attr('role', 'img')
+      .attr('focusable', 'false')
+      .attr('aria-label', svgAriaLabel)
       // use inline styles so that width/height is not overridden
       .style('width', `${width}${config.dimensionUnit}`)
       .style('height', `${height}${config.dimensionUnit}`)
