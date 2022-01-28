@@ -66,9 +66,8 @@ export const DEFAULT_PROPS = {
   valueTextFontSize: '16px',
   valueTextFontWeight: 'bold', // any valid font weight string
 
-  // accessibility   
+  // accessibility
   svgAriaLabel: 'React d3 speedometer', // aria-label of speedometer
-
 }
 
 // default config
@@ -146,7 +145,6 @@ export const getConfig = ({ PROPS, parentWidth, parentHeight }) => {
     // accessibility
     //svg aria-label config
     svgAriaLabel: PROPS.svgAriaLabel,
-    
   }
 
   return Object.assign({}, DEFAULT_CONFIG, config)
