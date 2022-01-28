@@ -23,9 +23,6 @@ export const DEFAULT_PROPS = {
   fluidWidth: false,
   dimensionUnit: 'px',
 
-  // aria-label of speedometer
-  svgAriaLabel: 'React d3 speedometer',
-
   // segments to show in the speedometer
   segments: 5,
   // maximum segment label to be shown
@@ -68,6 +65,10 @@ export const DEFAULT_PROPS = {
   labelFontSize: '14px',
   valueTextFontSize: '16px',
   valueTextFontWeight: 'bold', // any valid font weight string
+
+  // accessibility   
+  svgAriaLabel: 'React d3 speedometer', // aria-label of speedometer
+
 }
 
 // default config
@@ -90,9 +91,6 @@ export const getConfig = ({ PROPS, parentWidth, parentHeight }) => {
     // else if width/height given it is used; else our default
     width: PROPS.fluidWidth ? parentWidth : PROPS.width,
     height: PROPS.fluidWidth ? parentHeight : PROPS.height,
-
-    //svg aria-label config
-    svgAriaLabel: PROPS.svgAriaLabel,
 
     // text padding horizontal/vertical
     paddingHorizontal: PROPS.paddingHorizontal,
@@ -144,6 +142,11 @@ export const getConfig = ({ PROPS, parentWidth, parentHeight }) => {
     labelFontSize: PROPS.labelFontSize,
     valueTextFontSize: PROPS.valueTextFontSize,
     valueTextFontWeight: PROPS.valueTextFontWeight,
+
+    // accessibility
+    //svg aria-label config
+    svgAriaLabel: PROPS.svgAriaLabel,
+    
   }
 
   return Object.assign({}, DEFAULT_CONFIG, config)
