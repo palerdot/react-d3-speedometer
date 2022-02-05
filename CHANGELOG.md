@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.0.2
+- `svgAriaLabel` prop for accessibility. More details - https://github.com/palerdot/react-d3-speedometer/issues/135
+
 ## 1.0.1
 - `PropTypes` moved to `dependencies` from `peerDependencies`. ref: https://github.com/facebook/prop-types#how-to-depend-on-this-package. sandbox: https://codesandbox.io/s/kind-breeze-esuge?file=/src/App.js 
 
