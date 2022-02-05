@@ -69,6 +69,9 @@ function _renderSVG({ container, config }) {
       .attr('class', 'speedometer')
       .attr('width', `${width}${config.dimensionUnit}`)
       .attr('height', `${height}${config.dimensionUnit}`)
+      .attr('role', 'img')
+      .attr('focusable', 'false')
+      .attr('aria-label', config.svgAriaLabel)
       // use inline styles so that width/height is not overridden
       .style('width', `${width}${config.dimensionUnit}`)
       .style('height', `${height}${config.dimensionUnit}`)
