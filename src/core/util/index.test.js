@@ -1,4 +1,34 @@
-import * as d3 from 'd3'
+import {
+  easeLinear as d3EaseLinear,
+  easeQuadIn as d3EaseQuadIn,
+  easeQuadOut as d3EaseQuadOut,
+  easeQuadInOut as d3EaseQuadInOut,
+  easeCubicIn as d3EaseCubicIn,
+  easeCubicOut as d3EaseCubicOut,
+  easeCubicInOut as d3EaseCubicInOut,
+  easePolyIn as d3EasePolyIn,
+  easePolyOut as d3EasePolyOut,
+  easePolyInOut as d3EasePolyInOut,
+  easeSinIn as d3EaseSinIn,
+  easeSinOut as d3EaseSinOut,
+  easeSinInOut as d3EaseSinInOut,
+  easeExpIn as d3EaseExpIn,
+  easeExpOut as d3EaseExpOut,
+  easeExpInOut as d3EaseExpInOut,
+  easeCircleIn as d3EaseCircleIn,
+  easeCircleOut as d3EaseCircleOut,
+  easeCircleInOut as d3EaseCircleInOut,
+  easeBounceIn as d3EaseBounceIn,
+  easeBounceOut as d3EaseBounceOut,
+  easeBounceInOut as d3EaseBounceInOut,
+  easeBackIn as d3EaseBackIn,
+  easeBackOut as d3EaseBackOut,
+  easeBackInOut as d3EaseBackInOut,
+  easeElasticIn as d3EaseElasticIn,
+  easeElasticOut as d3EaseElasticOut,
+  easeElasticInOut as d3EaseElasticInOut,
+  easeElastic as d3EaseElastic,
+} from 'd3-ease'
 
 import { calculateSegmentStops } from './index'
 import { getNeedleTransition } from './get-needle-transition'
@@ -92,35 +122,35 @@ describe('calculate segment data', () => {
 
 describe('verify needle transitions', () => {
   test('needle transitions', () => {
-    expect(d3.easeLinear).toEqual(getNeedleTransition('easeLinear'))
-    expect(d3.easeQuadIn).toEqual(getNeedleTransition('easeQuadIn'))
-    expect(d3.easeQuadOut).toEqual(getNeedleTransition('easeQuadOut'))
-    expect(d3.easeQuadInOut).toEqual(getNeedleTransition('easeQuadInOut'))
-    expect(d3.easeCubicIn).toEqual(getNeedleTransition('easeCubicIn'))
-    expect(d3.easeCubicOut).toEqual(getNeedleTransition('easeCubicOut'))
-    expect(d3.easeCubicInOut).toEqual(getNeedleTransition('easeCubicInOut'))
-    expect(d3.easePolyIn).toEqual(getNeedleTransition('easePolyIn'))
-    expect(d3.easePolyOut).toEqual(getNeedleTransition('easePolyOut'))
-    expect(d3.easePolyInOut).toEqual(getNeedleTransition('easePolyInOut'))
-    expect(d3.easeSinIn).toEqual(getNeedleTransition('easeSinIn'))
-    expect(d3.easeSinOut).toEqual(getNeedleTransition('easeSinOut'))
-    expect(d3.easeSinInOut).toEqual(getNeedleTransition('easeSinInOut'))
-    expect(d3.easeExpIn).toEqual(getNeedleTransition('easeExpIn'))
-    expect(d3.easeExpOut).toEqual(getNeedleTransition('easeExpOut'))
-    expect(d3.easeExpInOut).toEqual(getNeedleTransition('easeExpInOut'))
-    expect(d3.easeCircleIn).toEqual(getNeedleTransition('easeCircleIn'))
-    expect(d3.easeCircleOut).toEqual(getNeedleTransition('easeCircleOut'))
-    expect(d3.easeCircleInOut).toEqual(getNeedleTransition('easeCircleInOut'))
-    expect(d3.easeBounceIn).toEqual(getNeedleTransition('easeBounceIn'))
-    expect(d3.easeBounceOut).toEqual(getNeedleTransition('easeBounceOut'))
-    expect(d3.easeBounceInOut).toEqual(getNeedleTransition('easeBounceInOut'))
-    expect(d3.easeBackIn).toEqual(getNeedleTransition('easeBackIn'))
-    expect(d3.easeBackOut).toEqual(getNeedleTransition('easeBackOut'))
-    expect(d3.easeBackInOut).toEqual(getNeedleTransition('easeBackInOut'))
-    expect(d3.easeElasticIn).toEqual(getNeedleTransition('easeElasticIn'))
-    expect(d3.easeElasticOut).toEqual(getNeedleTransition('easeElasticOut'))
-    expect(d3.easeElasticInOut).toEqual(getNeedleTransition('easeElasticInOut'))
-    expect(d3.easeElastic).toEqual(getNeedleTransition('easeElastic'))
+    expect(d3EaseLinear).toEqual(getNeedleTransition('easeLinear'))
+    expect(d3EaseQuadIn).toEqual(getNeedleTransition('easeQuadIn'))
+    expect(d3EaseQuadOut).toEqual(getNeedleTransition('easeQuadOut'))
+    expect(d3EaseQuadInOut).toEqual(getNeedleTransition('easeQuadInOut'))
+    expect(d3EaseCubicIn).toEqual(getNeedleTransition('easeCubicIn'))
+    expect(d3EaseCubicOut).toEqual(getNeedleTransition('easeCubicOut'))
+    expect(d3EaseCubicInOut).toEqual(getNeedleTransition('easeCubicInOut'))
+    expect(d3EasePolyIn).toEqual(getNeedleTransition('easePolyIn'))
+    expect(d3EasePolyOut).toEqual(getNeedleTransition('easePolyOut'))
+    expect(d3EasePolyInOut).toEqual(getNeedleTransition('easePolyInOut'))
+    expect(d3EaseSinIn).toEqual(getNeedleTransition('easeSinIn'))
+    expect(d3EaseSinOut).toEqual(getNeedleTransition('easeSinOut'))
+    expect(d3EaseSinInOut).toEqual(getNeedleTransition('easeSinInOut'))
+    expect(d3EaseExpIn).toEqual(getNeedleTransition('easeExpIn'))
+    expect(d3EaseExpOut).toEqual(getNeedleTransition('easeExpOut'))
+    expect(d3EaseExpInOut).toEqual(getNeedleTransition('easeExpInOut'))
+    expect(d3EaseCircleIn).toEqual(getNeedleTransition('easeCircleIn'))
+    expect(d3EaseCircleOut).toEqual(getNeedleTransition('easeCircleOut'))
+    expect(d3EaseCircleInOut).toEqual(getNeedleTransition('easeCircleInOut'))
+    expect(d3EaseBounceIn).toEqual(getNeedleTransition('easeBounceIn'))
+    expect(d3EaseBounceOut).toEqual(getNeedleTransition('easeBounceOut'))
+    expect(d3EaseBounceInOut).toEqual(getNeedleTransition('easeBounceInOut'))
+    expect(d3EaseBackIn).toEqual(getNeedleTransition('easeBackIn'))
+    expect(d3EaseBackOut).toEqual(getNeedleTransition('easeBackOut'))
+    expect(d3EaseBackInOut).toEqual(getNeedleTransition('easeBackInOut'))
+    expect(d3EaseElasticIn).toEqual(getNeedleTransition('easeElasticIn'))
+    expect(d3EaseElasticOut).toEqual(getNeedleTransition('easeElasticOut'))
+    expect(d3EaseElasticInOut).toEqual(getNeedleTransition('easeElasticInOut'))
+    expect(d3EaseElastic).toEqual(getNeedleTransition('easeElastic'))
   })
 })
 

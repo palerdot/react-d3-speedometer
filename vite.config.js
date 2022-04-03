@@ -25,4 +25,7 @@ module.exports = defineConfig({
       },
     },
   },
+  test: {
+    globals: true,
+  },
 })

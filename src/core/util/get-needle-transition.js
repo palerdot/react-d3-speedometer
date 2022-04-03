@@ -1,5 +1,4 @@
 import {
-  // importing all the easing functions
   easeLinear as d3EaseLinear,
   easeQuadIn as d3EaseQuadIn,
   easeQuadOut as d3EaseQuadOut,
