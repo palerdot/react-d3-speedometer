@@ -1,5 +1,6 @@
 import memoizeOne from 'memoize-one'
-import { range as d3Range, arc as d3Arc } from 'd3'
+import { range as d3Range } from 'd3-array'
+import { arc as d3Arc } from 'd3-shape'
 import {
   deg2rad,
   sumArrayTill,

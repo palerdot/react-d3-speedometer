@@ -29,7 +29,7 @@ import {
   easeElasticOut as d3EaseElasticOut,
   easeElasticInOut as d3EaseElasticInOut,
   easeElastic as d3EaseElastic,
-} from 'd3'
+} from 'd3-ease'
 import { Transition } from '../enums'
 
 // takes a 'transition string' and returns a d3 transition method

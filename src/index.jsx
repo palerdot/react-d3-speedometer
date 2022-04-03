@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { format as d3Format, select as d3Select } from 'd3'
+import { format as d3Format } from 'd3-format'
+import { select as d3Select } from 'd3-selection'
 
 import { getConfig, DEFAULT_PROPS, updateConfig } from './core/config'
 import { render, update } from './core/render'
