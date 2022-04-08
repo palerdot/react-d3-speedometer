@@ -1,9 +1,31 @@
 import path from 'path'
-import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite'
+import { nodeResolve } from '@rollup/plugin-node-resolve'
+import { terser } from 'rollup-plugin-terser'
+
+const devMode = process.env.NODE_ENV === 'development'
+
+// ref: https://blog.openreplay.com/the-ultimate-guide-to-getting-started-with-the-rollup-js-javascript-bundler
+function terserConfig() {
+  return terser({
+    ecma: 2020,
+
+    mangle: { toplevel: true },
+
+    compress: {
+      module: true,
+      toplevel: true,
+      unsafe_arrows: true,
+      drop_console: !devMode,
+      drop_debugger: !devMode,
+    },
+
+    output: { quote_style: 1 },
+  })
+}
 
 // ref: https://vitejs.dev/guide/build.html#library-mode
-
 module.exports = defineConfig({
   plugins: [react()],
   build: {
@@ -22,10 +44,22 @@ module.exports = defineConfig({
         globals: {
           react: 'React',
         },
+        sourcemap: devMode ? 'inline' : false,
+        plugins: [terserConfig()],
       },
+      // ref: https://blog.logrocket.com/does-my-bundle-look-big-in-this/
+      treeshake: {
+        moduleSideEffects: false,
+      },
+      // IMPORTANT: This plugins is different from output plugins
+      plugins: [nodeResolve()],
     },
   },
   test: {
     globals: true,
+    include: [
+      '**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}',
+      '**/__tests__/**',
+    ],
   },
 })
