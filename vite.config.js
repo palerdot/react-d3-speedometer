@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import { terser } from 'rollup-plugin-terser'
+import analyze from 'rollup-plugin-analyzer'
 
 const devMode = process.env.NODE_ENV === 'development'
 
@@ -52,7 +53,12 @@ module.exports = defineConfig({
         moduleSideEffects: false,
       },
       // IMPORTANT: This plugins is different from output plugins
-      plugins: [nodeResolve()],
+      plugins: [
+        nodeResolve({}),
+        analyze({
+          summaryOnly: true,
+        }),
+      ],
     },
   },
   test: {
