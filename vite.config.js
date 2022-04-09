@@ -54,7 +54,7 @@ module.exports = defineConfig({
       },
       // IMPORTANT: This plugins is different from output plugins
       plugins: [
-        nodeResolve({}),
+        nodeResolve(),
         analyze({
           summaryOnly: true,
         }),

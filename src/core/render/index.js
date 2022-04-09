@@ -1,5 +1,6 @@
 import { line as d3Line, curveMonotoneX as d3CurveMonotoneX } from 'd3-shape'
 import { select as d3Select } from 'd3-selection'
+import 'd3-transition'
 
 import isEmpty from 'lodash-es/isEmpty'
 import isArray from 'lodash-es/isArray'
