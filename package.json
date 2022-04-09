@@ -43,7 +43,10 @@
     "storybook": "start-storybook --port 6006",
     "publish-storybook": "bash .scripts/publish_storybook.sh",
     "dev": "vite",
-    "build": "NODE_ENV=production vite build && cp ./src/index.d.ts ./dist/",
+    "build": "npm run build:main && npm run build:slim && npm run copy:types",
+    "build:main": "NODE_ENV=production vite build",
+    "build:slim": "NODE_ENV=production vite build -c slim.config.js",
+    "copy:types": "cp ./src/index.d.ts ./dist/",
     "preview": "vite preview",
     "build-storybook": "build-storybook"
   },

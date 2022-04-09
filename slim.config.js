@@ -1,3 +1,7 @@
+// IMPORTANT: Slim config by externalizing 'd3'
+// There are bunch of 'd3-*' modules that are dependencies for 'react-d3-speedometer'
+// If the project already uses them as dependencies, they can use the slim build
+
 import path from 'path'
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
@@ -30,24 +34,41 @@ function terserConfig() {
 module.exports = defineConfig({
   plugins: [react()],
   build: {
+    outDir: path.resolve(__dirname, 'dist/slim'),
     lib: {
       entry: path.resolve(__dirname, 'src/index.jsx'),
       name: 'ReactSpeedometer',
-      fileName: format => `react-d3-speedometer.${format}.js`,
+      formats: ['es'],
+      // fileName: format => `react-d3-speedometer.${format}.js`,
+      fileName: () => 'index.js',
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
       // into your library
-      external: ['react', 'react-dom'],
+      external: [
+        'react',
+        'react-dom',
+        'd3-array',
+        'd3-color',
+        'd3-ease',
+        'd3-format',
+        'd3-interpolate',
+        'd3-scale',
+        'd3-selection',
+        'd3-shape',
+        'd3-transition',
+      ],
       output: {
         // Provide global variables to use in the UMD build
         // for externalized deps
         globals: {
           react: 'React',
         },
+        extend: true,
         sourcemap: devMode ? 'inline' : false,
         plugins: [terserConfig()],
       },
+
       // ref: https://blog.logrocket.com/does-my-bundle-look-big-in-this/
       treeshake: {
         moduleSideEffects: false,
