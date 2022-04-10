@@ -8,7 +8,7 @@ import ReactSpeedometer from '../index'
 
 // SVG JSDOM issues: https://github.com/jsdom/jsdom/issues/2531
 
-describe('react-d3-speedometer works fine', () => {
+describe('<ReactSpeedometer />', () => {
   test('Default value is displayed correctly', () => {
     const { container } = render(<ReactSpeedometer />)
     expect(container.querySelector('text.current-value')).toHaveTextContent('0')
@@ -95,5 +95,246 @@ describe('react-d3-speedometer works fine', () => {
       .querySelectorAll('path.speedo-segment')[0]
       .getAttribute('fill')
     expect(updatedFill).toEqual(defaultStartColor)
+  })
+
+  // if force render is present, it should re render the whole component
+  test('should rerender the whole component when "forceRender: true" ', () => {
+    const { container, rerender } = render(<ReactSpeedometer />)
+    expect(container.querySelectorAll('path.speedo-segment')).toHaveLength(5)
+    // change the props and give 'rerender' true
+    // rerender the element with updated props
+    // ref: https://testing-library.com/docs/example-update-props/
+    rerender(<ReactSpeedometer segments={10} forceRender={true} />)
+    expect(container.querySelectorAll('path.speedo-segment')).toHaveLength(10)
+    // now change the forceRender option to false
+    rerender(<ReactSpeedometer segments={15} forceRender={false} />)
+    // the segments should remain in 10
+    expect(container.querySelectorAll('path.speedo-segment')).toHaveLength(10)
+  })
+
+  // check the format of the values
+  test('should display the format of the values correctly', () => {
+    // checking the default value
+    const { container, rerender } = render(<ReactSpeedometer />)
+    expect(container.querySelector('text.current-value')).toHaveTextContent('0')
+    // setting label format to "d" and verifying the resulting value
+    let passed_value = 477.7,
+      transformed_value = '478'
+    // change the props
+    rerender(<ReactSpeedometer value={passed_value} valueFormat={'d'} />)
+    expect(container.querySelector('text.current-value')).toHaveTextContent(
+      transformed_value
+    )
+  })
+
+  // check the custom value text
+  test('should display custom current text value', () => {
+    // checking the default value
+    const { container, rerender } = render(
+      <ReactSpeedometer value={333} currentValueText={'Porumai: ${value}'} />
+    )
+    expect(container.querySelector('text.current-value')).toHaveTextContent(
+      'Porumai: 333'
+    )
+    // change props to another text
+    rerender(
+      <ReactSpeedometer
+        value={555}
+        currentValueText={'Current Value: ${value}'}
+      />
+    )
+    // test current value text reflects our new props
+    expect(container.querySelector('text.current-value')).toHaveTextContent(
+      'Current Value: 555'
+    )
+  })
+
+  // it should not break on invalid needle transition
+  test('should not break on invalid needle transition', () => {
+    const { container } = render(
+      <ReactSpeedometer needleTransition="porumaiTransition" />
+    )
+    expect(container.querySelectorAll('path.speedo-segment')).toHaveLength(5)
+  })
+
+  // [d3-scale][bug]: https://github.com/d3/d3-scale/issues/149
+  // [fix] should render segments correctly when multiple speedometers are rendered
+  test('should correctly show the ticks when multiple speedometers are rendered', () => {
+    const { container } = render(
+      <div>
+        <div>
+          <ReactSpeedometer value={10} maxValue={200} segments={1} />
+          <ReactSpeedometer value={10} maxValue={40} segments={1} />
+          <ReactSpeedometer value={10} maxValue={30} segments={1} />
+        </div>
+      </div>
+    )
+    expect(container.querySelectorAll('text.segment-value')).toHaveLength(6)
+  })
+
+  test('should correctly take current Value placeholder from passed props', () => {
+    const current_value = 333
+    const { container } = render(
+      <div>
+        <ReactSpeedometer
+          value={current_value}
+          currentValuePlaceholderStyle={'#{value}'}
+          currentValueText={'#{value}'}
+        />
+      </div>
+    )
+    expect(container.querySelector('text.current-value')).toHaveTextContent(
+      current_value.toString()
+    )
+  })
+
+  test('label and value font sizes, font weight', () => {
+    const labelFontSize = '15px'
+    const valueTextFontSize = '23px'
+    const valueTextFontWeight = '500'
+
+    const { container } = render(
+      <ReactSpeedometer
+        value={333}
+        needleHeightRatio={0.5}
+        labelFontSize={labelFontSize}
+        valueTextFontSize={valueTextFontSize}
+        valueTextFontWeight={valueTextFontWeight}
+      />
+    )
+    const cssValues =
+      container.querySelector('text.segment-value').style['_values']
+
+    expect(cssValues['font-size']).toEqual(labelFontSize)
+
+    const styles =
+      container.querySelector('text.current-value').style['_values']
+
+    expect(styles['font-size']).toEqual(valueTextFontSize)
+    expect(styles['font-weight']).toEqual(valueTextFontWeight)
+  })
+})
+
+describe('Custom Segment Colors', () => {
+  test('custom segment colors works as expected', () => {
+    const segmentColors = ['red', 'blue', 'green']
+    const { container } = render(
+      <ReactSpeedometer segments={3} segmentColors={segmentColors} />
+    )
+
+    const segments = container.querySelectorAll('path.speedo-segment')
+
+    segmentColors.forEach((color, index) => {
+      const segment = segments[index]
+      expect(segment.getAttribute('fill')).toEqual(color)
+    })
+  })
+
+  test('6 custom segment colors', () => {
+    const segmentColors = [
+      '#e60000',
+      '#e67300',
+      '#e6e600',
+      '#bcf5bc',
+      '#228b22',
+      '#ff6347',
+    ]
+    const { container } = render(
+      <ReactSpeedometer
+        segments={6}
+        segmentColors={segmentColors}
+        minValue={0}
+        maxValue={10}
+        value={10}
+        currentValueText={`1.5%`}
+        height={200}
+      />
+    )
+    const segments = container.querySelectorAll('path.speedo-segment')
+
+    segmentColors.forEach((color, index) => {
+      const segment = segments[index]
+      expect(segment.getAttribute('fill')).toEqual(color)
+    })
+  })
+
+  test('custom segment colors with custom segment stops ', () => {
+    const segmentColors = ['firebrick', 'tomato', 'gold', 'limegreen']
+    const { container } = render(
+      <ReactSpeedometer
+        needleHeightRatio={0.7}
+        maxSegmentLabels={5}
+        segments={3}
+        customSegmentStops={[0, 500, 750, 900, 1000]}
+        segmentColors={segmentColors}
+        value={333}
+      />
+    )
+    const segments = container.querySelectorAll('path.speedo-segment')
+
+    segmentColors.forEach((color, index) => {
+      const segment = segments[index]
+      expect(segment.getAttribute('fill')).toEqual(color)
+    })
+  })
+})
+
+describe('Custom segment labels', () => {
+  test('custom text labels and value text are shown correctly', () => {
+    const currentValueText = 'Happiness Level'
+
+    const customSegmentLabels = [
+      {
+        text: 'Very Bad',
+        position: 'INSIDE',
+        color: '#555',
+      },
+      {
+        text: 'Bad',
+        position: 'INSIDE',
+        color: '#555',
+      },
+      {
+        text: 'Ok',
+        position: 'INSIDE',
+        color: '#555',
+        fontSize: '19px',
+      },
+      {
+        text: 'Good',
+        position: 'INSIDE',
+        color: '#555',
+      },
+      {
+        text: 'Very Good',
+        position: 'INSIDE',
+        color: '#555',
+      },
+    ]
+
+    const { container } = render(
+      <ReactSpeedometer
+        width={500}
+        needleHeightRatio={0.7}
+        value={777}
+        currentValueText={currentValueText}
+        customSegmentLabels={customSegmentLabels}
+        ringWidth={47}
+      />
+    )
+
+    const textNodes = container.querySelectorAll('text.segment-value')
+
+    customSegmentLabels.forEach((label, index) => {
+      const textNode = textNodes[index]
+      const styles = textNode.style['_values']
+
+      expect(textNode.textContent).toEqual(label.text)
+      expect(styles['fill']).toEqual(label.color)
+
+      if (label.fontSize) {
+        expect(styles['font-size']).toEqual(label.fontSize)
+      }
+    })
   })
 })
