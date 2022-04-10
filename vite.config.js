@@ -64,9 +64,11 @@ module.exports = defineConfig({
   },
   test: {
     globals: true,
+    setupFiles: ['./setupVitest.js'],
     include: [
-      '**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}',
-      '**/__tests__/**',
+      // '**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}',
+      // '**/__tests__/*.{test}.{js,jsx}',
+      '**/__tests__/*.test.{js,jsx}',
     ],
   },
 })

@@ -17,125 +17,7 @@ import { shallow, mount } from 'enzyme'
 
 import ReactSpeedometer from '../index'
 
-// import validators
-import {
-  calculateNeedleHeight,
-  calculateScale,
-  calculateTicks,
-  calculateSegmentLabelCount,
-} from '../core/util'
-
 describe('<ReactSpeedometer />', () => {
-  // test if it has the parent div component for the "svg"
-  test('should render one parent div component', () => {
-    // a wrapper that does not render the child components
-    // ref: http://airbnb.io/enzyme/
-    // const wrapper = shallow(<ReactSpeedometer />);
-    // ref: VERSION 3 API change - https://github.com/airbnb/enzyme/blob/master/docs/guides/migration-from-2-to-3.md#lifecycle-methods
-    const wrapper = shallow(<ReactSpeedometer />, {
-      disableLifecycleMethods: true,
-    })
-    expect(wrapper.find('div')).toHaveLength(1)
-  })
-
-  // test if we component did mount is called
-  test('componentDidMount => called once', () => {
-    // ref: http://airbnb.io/enzyme/
-    const didMountSpy = vi.spyOn(
-      ReactSpeedometer.prototype,
-      'componentDidMount'
-    )
-    const wrapper = mount(<ReactSpeedometer />)
-    expect(didMountSpy).toHaveBeenCalled()
-  })
-
-  // test if we have the 'svg.speedometer'
-  test('svg.speedometer is present', () => {
-    // ref: http://airbnb.io/enzyme/
-    const full_dom_wrapper = mount(<ReactSpeedometer />).render()
-    expect(full_dom_wrapper.find('svg.speedometer').length).toBe(1)
-  })
-
-  // check if the default segments is 5 by counting 'speedo-segment'
-  test('by default we should have 5 segments', () => {
-    const full_dom_wrapper = mount(<ReactSpeedometer />).render()
-    expect(full_dom_wrapper.find('path.speedo-segment').length).toBe(5)
-  })
-
-  // check the text color of the current value is the default (#666)
-  test('should have the default text color for current value', () => {
-    const full_dom_wrapper = mount(<ReactSpeedometer />).render()
-    expect(full_dom_wrapper.find('text.current-value').css('fill')).toBe('#666')
-  })
-
-  // should take the color given by us in 'textColor'
-  test('should have the text color given by us => steelblue ', () => {
-    const full_dom_wrapper = mount(
-      <ReactSpeedometer textColor="steelblue" />
-    ).render()
-    expect(full_dom_wrapper.find('text.current-value').css('fill')).toBe(
-      'steelblue'
-    )
-  })
-
-  // make sure 'componentDidUpdate' is called
-  test('should call componentDidUpdate', () => {
-    const full_dom_wrapper = mount(<ReactSpeedometer />)
-    const spy = jest.spyOn(ReactSpeedometer.prototype, 'componentDidUpdate')
-    // set some props
-    full_dom_wrapper.setProps({
-      segments: 11,
-    })
-    // check if 'componentDidUpdate' gets called
-    expect(spy).toHaveBeenCalled()
-  })
-
-  // default aria-label
-  test('Default aria-label', () => {
-    const full_dom_wrapper = mount(<ReactSpeedometer />)
-      .render()
-      .find('.speedometer')
-    expect(full_dom_wrapper.prop('aria-label')).toBe('React d3 speedometer')
-  })
-
-  // aria-label when using svgAriaLabel
-  test('Custom aria-label when svgAriaLabel is used', () => {
-    const svgAriaLabel = 'My custom SVG aria label'
-    const full_dom_wrapper = mount(
-      <ReactSpeedometer svgAriaLabel={svgAriaLabel} />
-    )
-      .render()
-      .find('.speedometer')
-    expect(full_dom_wrapper.prop('aria-label')).toBe(svgAriaLabel)
-  })
-
-  // should smoothly animate only the current value; not other breaking changes
-  test('smooth update of values', () => {
-    const value = 333
-    const updatedValue = 470
-    const full_dom_wrapper = mount(<ReactSpeedometer value={value} />)
-    expect(full_dom_wrapper.render().find('text.current-value').text()).toBe(
-      value.toString()
-    )
-    // confirm if our start color is the default
-    expect(
-      full_dom_wrapper.render().find('path.speedo-segment').get(0).attribs.fill
-    ).toBe(`rgb(255, 71, 26)`) // rgb value of our default 'startColor'
-    // set updated props
-    full_dom_wrapper.setProps({
-      value: updatedValue,
-      startColor: 'red',
-    })
-    // confirm if our value is updated
-    expect(full_dom_wrapper.render().find('text.current-value').text()).toBe(
-      updatedValue.toString()
-    )
-    // confirm our start color is intact
-    expect(
-      full_dom_wrapper.render().find('path.speedo-segment').get(0).attribs.fill
-    ).toBe(`rgb(255, 71, 26)`) // rgb value of our default 'startColor'
-  })
-
   // if force render is present, it should re render the whole component
   test('should rerender the whole component when "forceRender: true" ', () => {
     const full_dom_wrapper = mount(<ReactSpeedometer />)
@@ -225,19 +107,6 @@ describe('<ReactSpeedometer />', () => {
     expect(full_dom_wrapper.render().find('text.segment-value').length).toBe(6)
   })
 
-  test('should throw error on invalid needle height', () => {
-    expect(() =>
-      calculateNeedleHeight({ heightRatio: 1.1, radius: 2 })
-    ).toThrowError()
-    // this one should not throw and should return some value
-    expect(() =>
-      calculateNeedleHeight({ heightRatio: 0.9, radius: 2 })
-    ).not.toThrowError()
-    expect(typeof calculateNeedleHeight({ heightRatio: 0.9, radius: 2 })).toBe(
-      'number'
-    )
-  })
-
   test('should correctly take current Value placeholder from passed props', () => {
     const current_value = 333
     const full_dom_wrapper = mount(
@@ -251,64 +120,6 @@ describe('<ReactSpeedometer />', () => {
     )
     expect(full_dom_wrapper.render().find('text.current-value').text()).toEqual(
       current_value.toString()
-    )
-  })
-
-  test('scale and ticks works properly', () => {
-    const min = 0
-    const max = 1000
-    const segments = 1000
-    const max_segment_labels = 10
-
-    const full_dom_wrapper = mount(
-      <ReactSpeedometer
-        segments={segments}
-        maxSegmentLabels={max_segment_labels}
-      />
-    )
-
-    const scale1 = calculateScale({ min, max, segments })
-    const ticks1 = calculateTicks(scale1, { min, max, segments })
-
-    const scale2 = calculateScale({ min, max, segments: max_segment_labels })
-    const ticks2 = calculateTicks(scale2, {
-      min,
-      max,
-      segments: max_segment_labels,
-    })
-
-    const scale3 = calculateScale({ min, max, segments: 1 })
-    const ticks3 = calculateTicks(scale3, { min, max, segments: 1 })
-
-    expect(ticks2.length).toBeLessThan(ticks1.length)
-    expect(ticks3.length).toBe(2)
-
-    expect(full_dom_wrapper.render().find('text.segment-value').length).toBe(
-      ticks2.length
-    )
-  })
-
-  test("'maxSegmentLabels' config with no labels ", () => {
-    const min = 0
-    const max = 1000
-    let segments = 1000
-    let max_segment_labels = 0
-    let label_count = calculateSegmentLabelCount({
-      maxSegmentLabelCount: max_segment_labels,
-      segmentCount: segments,
-    })
-
-    const full_dom_wrapper = mount(
-      <ReactSpeedometer
-        segments={segments}
-        maxSegmentLabels={max_segment_labels}
-      />
-    )
-
-    const scale1 = calculateScale({ min, max, segments })
-    const ticks1 = calculateTicks(scale1, { min, max, segments: label_count })
-    expect(full_dom_wrapper.render().find('text.segment-value').length).toBe(
-      max_segment_labels
     )
   })
 
