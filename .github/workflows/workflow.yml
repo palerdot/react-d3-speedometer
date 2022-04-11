@@ -26,17 +26,18 @@ jobs:
 
     # we are using --force so that mismatching peer dependencies is ignored
     - name: Install dependencies
-      run: npm install --force
+      run: yarn 
 
     # ref: https://github.com/cypress-io/github-action
     - name: Setup cypress
       uses: cypress-io/github-action@v2
       with:
+        runTests: false
         browser: chrome
         headless: true
 
     - name: Run the tests and generate coverage report
-      run: npm run full-test 
+      run: yarn full-test 
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1.0.13
