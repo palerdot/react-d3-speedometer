@@ -9,6 +9,7 @@
   "files": [
     "dist"
   ],
+  "types": "./dist/index.d.ts",
   "main": "./dist/react-d3-speedometer.es.js",
   "module": "./dist/react-d3-speedometer.es.js",
   "exports": {
