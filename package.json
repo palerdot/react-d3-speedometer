@@ -9,7 +9,7 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/react-d3-speedometer.umd.js",
+  "main": "./dist/react-d3-speedometer.es.js",
   "module": "./dist/react-d3-speedometer.es.js",
   "exports": {
     ".": {
