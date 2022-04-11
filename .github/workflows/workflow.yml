@@ -24,8 +24,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
+    # we are using --force so that mismatching peer dependencies is ignored
     - name: Install dependencies
-      run: npm install
+      run: npm install --force
 
     # ref: https://github.com/cypress-io/github-action
     - name: Setup cypress
