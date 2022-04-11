@@ -69,6 +69,7 @@ module.exports = defineConfig({
       // '**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}',
       // '**/__tests__/*.{test}.{js,jsx}',
       '**/__tests__/*.test.{js,jsx}',
+      '**/*.test.js',
     ],
   },
 })

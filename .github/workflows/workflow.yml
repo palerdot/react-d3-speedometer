@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version: [16.x]
 
     steps:
     - name: Checkout repository
@@ -27,8 +27,15 @@ jobs:
     - name: Install dependencies
       run: npm install
 
+    # ref: https://github.com/cypress-io/github-action
+    - name: Setup cypress
+      uses: cypress-io/github-action@v2
+      with:
+        browser: chrome
+        headless: true
+
     - name: Run the tests and generate coverage report
-      run: npm run testonly -- --coverage
+      run: npm run full-test 
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1.0.13
