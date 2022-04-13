@@ -55,7 +55,7 @@
     "copy:types": "cp ./src/index.d.ts ./dist/",
     "preview": "vite preview",
     "build-storybook": "build-storybook",
-    "prepublish": "npm run build"
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "@cypress/react": "^5.12.4",
