@@ -16,6 +16,9 @@
     ".": {
       "import": "./dist/react-d3-speedometer.es.js",
       "require": "./dist/react-d3-speedometer.umd.js"
+    },
+    "./slim": {
+      "import": "./dist/slim/index.js"
     }
   },
   "repository": {
