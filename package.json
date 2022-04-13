@@ -54,7 +54,8 @@
     "build:slim": "NODE_ENV=production vite build -c slim.config.js",
     "copy:types": "cp ./src/index.d.ts ./dist/",
     "preview": "vite preview",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "prepublish": "npm run build"
   },
   "devDependencies": {
     "@cypress/react": "^5.12.4",
