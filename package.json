@@ -68,7 +68,7 @@
     "eslint-plugin-react": "^7.12.4",
     "git-url-parse": "^11.1.2",
     "jest": "^26.5.0",
-    "jsdom": "^14.0.0",
+    "jsdom": "^16.5.0",
     "prettier": "^2.1.2",
     "react": "^17.0.1",
     "react-addons-test-utils": "^15.6.2",
