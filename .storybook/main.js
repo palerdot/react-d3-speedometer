@@ -23,5 +23,7 @@ module.exports = {
   framework: '@storybook/react',
   core: {
     builder: '@storybook/builder-vite',
+    // ref: https://storybook.js.org/docs/react/configure/telemetry
+    disableTelemetry: true, // 👈 Disables telemetry
   },
 }
