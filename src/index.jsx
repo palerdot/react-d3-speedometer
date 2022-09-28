@@ -3,7 +3,12 @@ import PropTypes from 'prop-types'
 import { format as d3Format } from 'd3-format'
 import { select as d3Select } from 'd3-selection'
 
-import { getConfig, DEFAULT_PROPS, updateConfig } from './core/config'
+import {
+  getConfig,
+  DEFAULT_PROPS,
+  updateConfig,
+  defaultSegmentValueFormatter,
+} from './core/config'
 import { render, update } from './core/render'
 import { CustomSegmentLabelPosition, Transition } from './core/enums'
 
@@ -64,6 +69,9 @@ class ReactSpeedometer extends PureComponent {
   updateReadings() {
     this.config = updateConfig(this.config, {
       labelFormat: d3Format(this.props.valueFormat || ''),
+      // consider custom value formatter if changed
+      segmentValueFormatter:
+        this.props.segmentValueFormatter || defaultSegmentValueFormatter,
       currentValueText: this.props.currentValueText || '${value}',
     })
 
@@ -130,6 +138,8 @@ ReactSpeedometer.propTypes = {
 
   // d3 format identifier is generally a string; default "" (empty string)
   valueFormat: PropTypes.string.isRequired,
+  // segment value formatter; default: value => value
+  segmentValueFormatter: PropTypes.func,
   // value text format
   currentValueText: PropTypes.string.isRequired,
   // placeholder style for current value
@@ -139,6 +149,9 @@ ReactSpeedometer.propTypes = {
   labelFontSize: PropTypes.string.isRequired,
   valueTextFontSize: PropTypes.string.isRequired,
   valueTextFontWeight: PropTypes.string.isRequired,
+
+  // accessiblity props
+  svgAriaLabel: PropTypes.string,
 }
 
 // define the default proptypes

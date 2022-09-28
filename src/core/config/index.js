@@ -6,6 +6,8 @@ import { format as d3Format } from 'd3-format'
 import { calculateSegmentLabelCount } from '../util/'
 import { Transition } from '../../core/enums'
 
+export const defaultSegmentValueFormatter = value => value
+
 // default props
 export const DEFAULT_PROPS = {
   value: 0,
@@ -52,6 +54,9 @@ export const DEFAULT_PROPS = {
   // label format => https://github.com/d3/d3-format
   // by default ""; takes valid input for d3 format
   valueFormat: '',
+  // function to customize value
+  // this is applied after d3Format(valueFormat)
+  segmentValueFormatter: defaultSegmentValueFormatter,
 
   // value text string format; by default it just shows the value
   // takes es6 template string as input with a default ${value}
@@ -131,6 +136,8 @@ export const getConfig = ({ PROPS, parentWidth, parentHeight }) => {
     textColor: PROPS.textColor,
     // label format
     labelFormat: d3Format(PROPS.valueFormat),
+    // custom value formatter
+    segmentValueFormatter: PROPS.segmentValueFormatter,
     // value text string (template string)
     currentValueText: PROPS.currentValueText,
     // placeholder style for 'currentValue'

@@ -127,6 +127,23 @@ describe('<ReactSpeedometer />', () => {
     )
   })
 
+  // custom value formatter
+  test('should render with custom segmentValueFormatter correctly', () => {
+    const segmentValueFormatter = value => `${value}%`
+
+    const { container } = render(
+      <ReactSpeedometer
+        value={314}
+        segmentValueFormatter={segmentValueFormatter}
+      />
+    )
+
+    const textNodes = container.querySelectorAll('text.segment-value')
+    textNodes.forEach(node => {
+      expect(node.textContent).toEqual(segmentValueFormatter(node.__data__))
+    })
+  })
+
   // check the custom value text
   test('should display custom current text value', () => {
     // checking the default value
