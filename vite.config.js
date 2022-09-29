@@ -44,6 +44,7 @@ module.exports = defineConfig({
         // for externalized deps
         globals: {
           react: 'React',
+          window: 'window',
         },
         sourcemap: devMode ? 'inline' : false,
         plugins: [terserConfig()],
