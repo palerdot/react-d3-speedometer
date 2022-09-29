@@ -282,6 +282,24 @@ describe('<ReactSpeedometer />', () => {
     )
   })
 
+  // custom value formatter
+  test('should render with custom segmentValueFormatter correctly', () => {
+    const segmentValueFormatter = value => `${value}%`
+
+    const full_dom_wrapper = mount(
+      <ReactSpeedometer
+        value={314}
+        segmentValueFormatter={segmentValueFormatter}
+      />
+    )
+
+    // const textNodes = container.querySelectorAll('text.segment-value')
+    const textNodes = full_dom_wrapper.render().find('text.segment-value')
+    textNodes.forEach(node => {
+      expect(node.textContent).toEqual(segmentValueFormatter(node.__data__))
+    })
+  })
+
   test("'maxSegmentLabels' config with no labels ", () => {
     const min = 0
     const max = 1000
