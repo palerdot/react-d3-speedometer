@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.1.0
+- `segmentValueFormatter` prop for customizing segment values.
+
 ## 1.0.2
 - `svgAriaLabel` prop for accessibility. More details - https://github.com/palerdot/react-d3-speedometer/issues/135
 
