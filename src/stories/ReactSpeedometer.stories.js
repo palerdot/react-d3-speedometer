@@ -33,7 +33,6 @@ export const ConfiguringValues = () => (
     startColor="green"
     segments={10}
     endColor="blue"
-    textColor="grey"
     textColor={textColor}
   />
 )
@@ -226,6 +225,38 @@ export const ConfiguringTheFormatForValuesDisplayed = () => (
       textColor={textColor}
     />
   </>
+)
+
+function segmentValueFormatter(value) {
+  if (value < 200) {
+    return `${value} 😒`
+  }
+  if (value < 400) {
+    return `${value} 😐`
+  }
+  if (value < 600) {
+    return `${value} 😌`
+  }
+  if (value < 800) {
+    return `${value} 😊`
+  }
+  if (value < 900) {
+    return `${value} 😉`
+  }
+
+  return `${value} 😇`
+}
+
+// custom value formatter
+export const CustomSegmentValueFormatter = () => (
+  <ReactSpeedometer
+    value={333}
+    needleColor="steelblue"
+    segmentValueFormatter={segmentValueFormatter}
+    textColor={'#eee'}
+    paddingHorizontal={34}
+    paddingVertical={34}
+  />
 )
 
 export const CustomCurrentValueText = () => (

@@ -155,7 +155,12 @@ export function _renderLabels({ config, svg, centerTx, r }) {
 
       return `rotate(${newAngle}) translate(0, ${config.labelInset - r})`
     })
-    .text(config.labelFormat)
+    // first labelFormat is applied via d3Format
+    // then we will apply custom 'segmentValueFormatter' function
+    // .text(config.labelFormat)
+    .text(value => {
+      return config.segmentValueFormatter(config.labelFormat(value))
+    })
     // add class for text label
     .attr('class', 'segment-value')
     // styling stuffs

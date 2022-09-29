@@ -73,6 +73,8 @@ declare module 'react-d3-speedometer' {
     textColor?: string
 
     valueFormat?: string
+    segmentValueFormatter?: (value: string) => string
+
     currentValueText?: string
     currentValuePlaceholderStyle?: string
 
