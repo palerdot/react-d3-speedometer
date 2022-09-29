@@ -295,9 +295,13 @@ describe('<ReactSpeedometer />', () => {
 
     // const textNodes = container.querySelectorAll('text.segment-value')
     const textNodes = full_dom_wrapper.render().find('text.segment-value')
-    textNodes.forEach(node => {
-      expect(node.textContent).toEqual(segmentValueFormatter(node.__data__))
-    })
+    const expected = [0, 200, 400, 600, 800, 1000]
+    for (let i = 0; i < textNodes.length; i++) {
+      const node = textNodes.get(i)
+      const data = node.children[0].data
+      const expectedValue = expected[i]
+      expect(data).toEqual(segmentValueFormatter(expectedValue))
+    }
   })
 
   test("'maxSegmentLabels' config with no labels ", () => {
