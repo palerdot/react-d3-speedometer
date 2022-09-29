@@ -1,4 +1,5 @@
 // ref: https://github.com/storybookjs/builder-vite/blob/main/examples/react-18/.storybook/main.js
+const { mergeConfig } = require('vite')
 
 module.exports = {
   features: {
@@ -6,13 +7,19 @@ module.exports = {
   },
   async viteFinal(config, { configType }) {
     // customize the Vite config here
-    return {
-      ...config,
+    // return {
+    //   ...config,
+    //   define: {
+    //     ...config.define,
+    //     global: 'window',
+    //   },
+    // }
+    return mergeConfig(config, {
       define: {
         ...config.define,
         global: 'window',
       },
-    }
+    })
   },
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
