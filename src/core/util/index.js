@@ -135,5 +135,5 @@ export function centerTranslation(r, paddingHorizontal, paddingVertical) {
 }
 
 export function getRadius(config) {
-  return config.width / 2
+  return config.radius
 }

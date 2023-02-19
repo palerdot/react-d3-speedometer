@@ -149,6 +149,7 @@ ReactSpeedometer.propTypes = {
   labelFontSize: PropTypes.string.isRequired,
   valueTextFontSize: PropTypes.string.isRequired,
   valueTextFontWeight: PropTypes.string.isRequired,
+  valueTextBelowPos: PropTypes.number.isRequired,
 
   // accessiblity props
   svgAriaLabel: PropTypes.string,
