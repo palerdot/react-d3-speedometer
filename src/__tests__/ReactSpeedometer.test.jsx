@@ -1,5 +1,5 @@
 /**
- * @vitest-environment jsdom
+ * @vitest-environment happy-dom
  */
 
 import React from 'react'
@@ -35,17 +35,16 @@ describe('<ReactSpeedometer />', () => {
   // check the text color of the current value is the default (#666)
   test('should have the default text color for current value', () => {
     const { container } = render(<ReactSpeedometer />)
-    const cssValues =
-      container.querySelector('text.current-value').style['_values']
+    const cssValues = container.querySelector('text.current-value').style
     expect(cssValues['fill']).toBe('#666')
   })
 
   // should take the color given by us in 'textColor'
   test('should have the text color given by us => steelblue ', () => {
     const { container } = render(<ReactSpeedometer textColor={'steelblue'} />)
-    const cssValues =
-      container.querySelector('text.current-value').style['_values']
-    expect(cssValues['fill']).toBe('steelblue')
+    const elem = container.querySelector('text.current-value')
+    const style = elem.style
+    expect(style.fill).toBe('steelblue')
   })
 
   // default aria-label
@@ -219,16 +218,13 @@ describe('<ReactSpeedometer />', () => {
         valueTextFontWeight={valueTextFontWeight}
       />
     )
-    const cssValues =
-      container.querySelector('text.segment-value').style['_values']
+    const cssValues = container.querySelector('text.segment-value').style
+    expect(cssValues.fontSize).toEqual(labelFontSize)
 
-    expect(cssValues['font-size']).toEqual(labelFontSize)
+    const styles = container.querySelector('text.current-value').style
 
-    const styles =
-      container.querySelector('text.current-value').style['_values']
-
-    expect(styles['font-size']).toEqual(valueTextFontSize)
-    expect(styles['font-weight']).toEqual(valueTextFontWeight)
+    expect(styles.fontSize).toEqual(valueTextFontSize)
+    expect(styles.fontWeight).toEqual(valueTextFontWeight)
   })
 })
 
@@ -344,13 +340,13 @@ describe('Custom segment labels', () => {
 
     customSegmentLabels.forEach((label, index) => {
       const textNode = textNodes[index]
-      const styles = textNode.style['_values']
+      const styles = textNode.style
 
       expect(textNode.textContent).toEqual(label.text)
       expect(styles['fill']).toEqual(label.color)
 
       if (label.fontSize) {
-        expect(styles['font-size']).toEqual(label.fontSize)
+        expect(styles.fontSize).toEqual(label.fontSize)
       }
     })
   })
