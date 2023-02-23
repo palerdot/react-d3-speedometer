@@ -7,13 +7,11 @@ module.exports = {
   },
   async viteFinal(config, { configType }) {
     // customize the Vite config here
-    // return {
-    //   ...config,
-    //   define: {
-    //     ...config.define,
-    //     global: 'window',
-    //   },
-    // }
+    // https://github.com/storybookjs/builder-vite/issues/237#issuecomment-1047819614
+    const { dirname } = require('path')
+    // https://github.com/eirslett/storybook-builder-vite/issues/55
+    config.root = dirname(require.resolve('@storybook/builder-vite'))
+
     return mergeConfig(config, {
       define: {
         ...config.define,
