@@ -2,16 +2,17 @@
 
 > React library for showing speedometer like gauge using d3.
 
-![react-d3-speedometer](https://raw.githubusercontent.com/palerdot/react-d3-speedometer/master/speedo.gif)
+
+![react-d3-speedometer](./speedo.gif)
 
 [![CircleCI Build Status](https://circleci.com/gh/palerdot/react-d3-speedometer.svg?style=svg)](https://circleci.com/gh/palerdot/react-d3-speedometer)
 [![Codecov](https://img.shields.io/codecov/c/gh/palerdot/react-d3-speedometer)](https://codecov.io/gh/palerdot/react-d3-speedometer)
-[![npm](https://img.shields.io/npm/v/react-d3-speedometer)](https://www.npmjs.com/package/react-d3-speedometer)
+[![npm](https://img.shields.io/npm/v/react-d3-speedometer/next?style=flat-square)](https://www.npmjs.com/package/react-d3-speedometer)
 [![npm](https://img.shields.io/npm/dt/react-d3-speedometer.svg)](https://www.npmjs.com/package/react-d3-speedometer)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 
-**Note**: `v1.x` is compatible with `React 17`. Please use latest `v0.x` (`v0.14.1` at the time of writing) if you are using `React 16`.
+**Note**: `v2.x` is compatible with `React v18`. `v1.x` is compatible with `React 17`. Please use latest `v0.x` (`v0.14.1` at the time of writing) if you are using `React 16`.
 
 [![NPM](https://nodei.co/npm/react-d3-speedometer.png)](https://npmjs.org/package/react-d3-speedometer)
 
@@ -45,6 +46,16 @@ And, use it like
 // import the component
 import ReactSpeedometer from "react-d3-speedometer"
 // and just use it
+<ReactSpeedometer />
+```
+
+### Slim Build:
+
+There is a `Slim` build available without bundling `d3`. This project uses `d3` *micro bundles*. If your project also uses `d3` *microbundles*, you can opt for **slim build**. Necessary `d3` dependencies required for slim build to work are - `d3-array`, `d3-color`, `d3-ease`, `d3-format`, `d3-interpolate`, `d3-scale`, `d3-selection`, `d3-shape`, `d3-transition`. 
+```javascript
+// sample slim build usage
+import ReactSpeedometer from "react-d3-speedometer/slim"
+// and use it
 <ReactSpeedometer />
 ```
 

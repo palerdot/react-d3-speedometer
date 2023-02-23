@@ -1,9 +1,8 @@
-import {
-  scaleQuantize as d3ScaleQuantize,
-  interpolateHsl as d3InterpolateHsl,
-  rgb as d3Rgb,
-  format as d3Format,
-} from 'd3'
+import { scaleQuantize as d3ScaleQuantize } from 'd3-scale'
+import { interpolateHsl as d3InterpolateHsl } from 'd3-interpolate'
+import { rgb as d3Rgb } from 'd3-color'
+import { format as d3Format } from 'd3-format'
+
 import { calculateSegmentLabelCount } from '../util/'
 import { Transition } from '../../core/enums'
 

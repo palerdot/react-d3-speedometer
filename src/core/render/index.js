@@ -1,8 +1,6 @@
-import {
-  select as d3Select,
-  line as d3Line,
-  curveMonotoneX as d3CurveMonotoneX,
-} from 'd3'
+import { line as d3Line, curveMonotoneX as d3CurveMonotoneX } from 'd3-shape'
+import { select as d3Select } from 'd3-selection'
+import { transition } from 'd3-transition'
 
 import isEmpty from 'lodash-es/isEmpty'
 import isArray from 'lodash-es/isArray'
@@ -22,6 +20,11 @@ import {
   configureScale,
 } from '../config/configure'
 
+// ref: https://stackoverflow.com/a/64596738/1410291
+function constructTransition({ duration, ease }) {
+  return transition().duration(duration).ease(ease)
+}
+
 export const update = ({ d3_refs, newValue, config }) => {
   const scale = configureScale(config)
   const ratio = scale(newValue)
@@ -30,9 +33,12 @@ export const update = ({ d3_refs, newValue, config }) => {
   const newAngle = config.minAngle + ratio * range
   // update the pointer
   d3_refs.pointer
-    .transition()
-    .duration(config.needleTransitionDuration)
-    .ease(getNeedleTransition(config.needleTransition))
+    .transition(
+      constructTransition({
+        duration: config.needleTransitionDuration,
+        ease: getNeedleTransition(config.needleTransition),
+      })
+    )
     .attr('transform', `rotate(${newAngle})`)
 
   d3_refs.current_value_text.text(formatCurrentValueText(newValue, config))
