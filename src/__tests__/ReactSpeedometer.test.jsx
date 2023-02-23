@@ -6,7 +6,10 @@ import React from 'react'
 import { render, act, screen } from '@testing-library/react'
 import ReactSpeedometer from '../index'
 
-// SVG JSDOM issues: https://github.com/jsdom/jsdom/issues/2531
+afterAll(async () => {
+  // cancel async tasks to ignore svg errors
+  await happyDOM.cancelAsync()
+})
 
 describe('<ReactSpeedometer />', () => {
   test('Default value is displayed correctly', () => {
