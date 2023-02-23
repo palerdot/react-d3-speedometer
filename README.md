@@ -11,7 +11,7 @@
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 
-**Note**: `v1.x` is compatible with `React 17`. Please use latest `v0.x` (`v0.14.1` at the time of writing) if you are using `React 16`.
+**Note**: `v1.x` is compatible with `React 17`. Please use `v2.x` if you are using `React 18`. Please use latest `v0.x` (`v0.14.1` at the time of writing) if you are using `React 16`.
 
 [![NPM](https://nodei.co/npm/react-d3-speedometer.png)](https://npmjs.org/package/react-d3-speedometer)
 
