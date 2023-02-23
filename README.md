@@ -2,7 +2,8 @@
 
 > React library for showing speedometer like gauge using d3.
 
-![react-d3-speedometer](https://raw.githubusercontent.com/palerdot/react-d3-speedometer/master/speedo.gif)
+
+![react-d3-speedometer](./speedo.gif)
 
 [![CircleCI Build Status](https://circleci.com/gh/palerdot/react-d3-speedometer.svg?style=svg)](https://circleci.com/gh/palerdot/react-d3-speedometer)
 [![Codecov](https://img.shields.io/codecov/c/gh/palerdot/react-d3-speedometer)](https://codecov.io/gh/palerdot/react-d3-speedometer)
@@ -11,7 +12,7 @@
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 
-**Note**: `v2.x` (`now in RC - v2.1.0-rc.0`) is compatible with `React v18`. `v1.x` is compatible with `React 17`. Please use latest `v0.x` (`v0.14.1` at the time of writing) if you are using `React 16`.
+**Note**: `v2.x` is compatible with `React v18`. `v1.x` is compatible with `React 17`. Please use latest `v0.x` (`v0.14.1` at the time of writing) if you are using `React 16`.
 
 [![NPM](https://nodei.co/npm/react-d3-speedometer.png)](https://npmjs.org/package/react-d3-speedometer)
 
