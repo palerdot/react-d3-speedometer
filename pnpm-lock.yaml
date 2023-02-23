@@ -19,6 +19,7 @@ specifiers:
   '@testing-library/jest-dom': ^5.16.4
   '@testing-library/react': ^13.0.0
   '@vitejs/plugin-react': ^3.1.0
+  '@vitest/coverage-c8': ^0.28.5
   cypress: ^12.6.0
   cypress-jest-adapter: ^0.1.1
   d3-array: ^3.1.4
@@ -85,6 +86,7 @@ devDependencies:
   '@testing-library/jest-dom': 5.16.5
   '@testing-library/react': 13.4.0_biqbaboplfbrettd7655fr4n2y
   '@vitejs/plugin-react': 3.1.0_vite@4.1.4
+  '@vitest/coverage-c8': 0.28.5_happy-dom@8.7.1
   cypress: 12.6.0
   cypress-jest-adapter: 0.1.1_jest@26.6.3
   eslint: 5.16.0
@@ -4727,6 +4729,27 @@ packages:
       vite: 4.1.4
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /@vitest/coverage-c8/0.28.5_happy-dom@8.7.1:
+    resolution: {integrity: sha512-zCNyurjudoG0BAqAgknvlBhkV2V9ZwyYLWOAGtHSDhL/St49MJT+V2p1G0yPaoqBbKOTATVnP5H2p1XL15H75g==}
+    dependencies:
+      c8: 7.13.0
+      picocolors: 1.0.0
+      std-env: 3.3.2
+      vitest: 0.28.5_happy-dom@8.7.1
+    transitivePeerDependencies:
+      - '@edge-runtime/vm'
+      - '@vitest/browser'
+      - '@vitest/ui'
+      - happy-dom
+      - jsdom
+      - less
+      - sass
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
     dev: true
 
   /@vitest/expect/0.28.5:
