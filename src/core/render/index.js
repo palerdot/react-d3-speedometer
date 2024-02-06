@@ -1,4 +1,4 @@
-import { line as d3Line, curveMonotoneX as d3CurveMonotoneX } from 'd3-shape'
+import { line as d3Line } from 'd3-shape'
 import { select as d3Select } from 'd3-selection'
 import { transition } from 'd3-transition'
 
@@ -228,12 +228,10 @@ function _renderCustomSegmentLabels({
     .attr('transform', (d, i) => {
       const newAngle = newAngles[i]
 
-      const outerText = `rotate(${newAngle}) translate(0, ${
-        config.labelInset - r
-      })`
-      const innerText = `rotate(${newAngle}) translate(0, ${
-        config.labelInset / 2 - position
-      })`
+      const outerText = `rotate(${newAngle}) translate(0, ${config.labelInset - r
+        })`
+      const innerText = `rotate(${newAngle}) translate(0, ${config.labelInset / 2 - position
+        })`
 
       // by default we will show "INSIDE"
       return d.position === 'OUTSIDE' ? outerText : innerText
@@ -289,7 +287,13 @@ function _renderNeedle({ config, svg, r, centerTx }) {
     [config.pointerWidth / 2, 0],
   ]
 
-  const pointerLine = d3Line().curve(d3CurveMonotoneX)
+  const pathData = [
+    'M', lineData[0][0], lineData[0][1], // Move to the start point
+    'L', lineData[1][0], lineData[1][1],
+    'L', lineData[2][0], lineData[2][1],
+    'a', config.pointerWidth / 2, config.pointerWidth / 2, 0, 1, 0, config.pointerWidth, 0,  // relative
+
+  ].join(' ');
 
   let pg = svg
     .append('g')
@@ -300,6 +304,6 @@ function _renderNeedle({ config, svg, r, centerTx }) {
 
   return pg
     .append('path')
-    .attr('d', pointerLine)
+    .attr('d', pathData)
     .attr('transform', `rotate(${config.minAngle})`)
 }
