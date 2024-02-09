@@ -1,5 +1,8 @@
 # Change Log
 
+## 2.2.0
+- `React 18` compatible `v2.0` version generally available
+
 ## 2.1.0-rc.0 (`next`, `React 18`)
 - `segmentValueFormatter` function prop for customizing segment values.
 
