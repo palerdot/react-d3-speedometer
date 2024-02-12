@@ -14,6 +14,7 @@
   "module": "./dist/react-d3-speedometer.es.js",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/react-d3-speedometer.es.js",
       "require": "./dist/react-d3-speedometer.umd.js"
     },
