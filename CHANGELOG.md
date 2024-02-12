@@ -1,5 +1,8 @@
 # Change Log
 
+## 2.2.1
+- Add `types` export to package.json (https://github.com/palerdot/react-d3-speedometer/pull/182)
+
 ## 2.2.0
 - `React 18` compatible `v2.0` version generally available
 
