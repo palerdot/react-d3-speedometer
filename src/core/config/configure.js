@@ -58,7 +58,7 @@ function _configureArc(config) {
   const tickData = configureTickData(config)
 
   const range = config.maxAngle - config.minAngle
-  const r = config.width / 2
+  const r = config.radius
 
   const arc = d3Arc()
     .innerRadius(r - config.ringWidth - config.ringInset)

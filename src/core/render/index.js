@@ -67,7 +67,8 @@ export const render = ({ container, config }) => {
 function _renderSVG({ container, config }) {
   // calculate width and height
   const width = config.width + 2 * config.paddingHorizontal
-  const height = config.height + 2 * config.paddingVertical
+  const height =
+    config.height + 2 * config.paddingVertical + config.valueTextBelowPos
 
   return (
     d3Select(container)
@@ -253,9 +254,9 @@ function _renderCustomSegmentLabels({
 }
 
 function _renderCurrentValueText({ config, svg }) {
-  const translateX = (config.width + 2 * config.paddingHorizontal) / 2
+  const translateX = config.radius + config.paddingHorizontal
   // move the current value text down depending on padding vertical
-  const translateY = (config.width + 4 * config.paddingVertical) / 2
+  const translateY = config.radius + 2 * config.paddingVertical
 
   return (
     svg
@@ -266,7 +267,7 @@ function _renderCurrentValueText({ config, svg }) {
       .attr('class', 'current-value')
       .attr('text-anchor', 'middle')
       // position the text 23pt below
-      .attr('y', 23)
+      .attr('y', config.valueTextBelowPos)
       // add text
       .text(config.currentValue)
       .style('font-size', config.valueTextFontSize)

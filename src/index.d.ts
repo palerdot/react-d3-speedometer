@@ -85,6 +85,7 @@ declare module 'react-d3-speedometer' {
     labelFontSize?: string
     valueTextFontSize?: string
     valueTextFontWeight?: string
+    valueTextBelowPos?: number
 
     paddingHorizontal?: number
     paddingVertical?: number
