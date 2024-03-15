@@ -72,6 +72,8 @@ export const DEFAULT_PROPS = {
 
   // Accessibility related props
   svgAriaLabel: 'React d3 speedometer', // aria-label of speedometer
+
+  onSegmentClick: () => {}, // Default no-op function
 }
 
 // default config
@@ -150,6 +152,8 @@ export const getConfig = ({ PROPS, parentWidth, parentHeight }) => {
 
     // Accessibility related props
     svgAriaLabel: PROPS.svgAriaLabel, // aria-label of speedometer
+
+    onSegmentClick: PROPS.onSegmentClick,
   }
 
   return Object.assign({}, DEFAULT_CONFIG, config)
