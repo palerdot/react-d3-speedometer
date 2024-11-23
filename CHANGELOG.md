@@ -1,5 +1,9 @@
 # Change Log
 
+## `v3.0.0-rc.0`
+
+- `React 19 rc` support and `Next 15` support
+
 ## 2.2.1
 - Add `types` export to package.json (https://github.com/palerdot/react-d3-speedometer/pull/182)
 
