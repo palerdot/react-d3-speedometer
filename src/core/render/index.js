@@ -219,7 +219,26 @@ function _renderCustomSegmentLabels({
 
   const position = outerRadius - (outerRadius - innerRadius) / 2
 
-  let lg = svg.append('g').attr('class', 'label').attr('transform', centerTx)
+  let lg;
+  if (config.showSegmentLabelsOnlyOnHover) {
+    lg = svg.append('g')
+      .attr('class', 'label custom-segment-labels')
+      .attr('transform', centerTx)
+      .style('opacity', 0) // Start with labels hidden
+
+    // Add hover events to the parent SVG
+    svg
+      .on('mouseenter', () => {
+        lg.style('opacity', 1)
+          .style('transition', 'opacity 0.2s ease-in-out')
+      })
+      .on('mouseleave', () => {
+        lg.style('opacity', 0)
+          .style('transition', 'opacity 0.2s ease-in-out')
+      })
+  } else {
+    lg = svg.append('g').attr('class', 'label').attr('transform', centerTx)
+  }
 
   lg.selectAll('text')
     .data(customSegmentLabels)

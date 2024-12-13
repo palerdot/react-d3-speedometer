@@ -82,6 +82,8 @@ declare module 'react-d3-speedometer' {
 
     customSegmentLabels?: CustomSegmentLabel[]
 
+    showSegmentLabelsOnlyOnHover?: boolean
+
     labelFontSize?: string
     valueTextFontSize?: string
     valueTextFontWeight?: string
