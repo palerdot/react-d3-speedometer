@@ -141,7 +141,9 @@ export function _renderLabels({ config, svg, centerTx, r }) {
       range,
     })
     // do not proceed
-    return
+    if (!config.showStopsAndCustomSegmentLabels) {
+      return
+    }
   }
 
   // normal label rendering
