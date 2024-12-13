@@ -32,6 +32,8 @@ export const DEFAULT_PROPS = {
 
   // custom segment labels
   customSegmentLabels: [],
+  // show custom segment labels and stops
+  showStopsAndCustomSegmentLabels: false,
 
   // color strings
   needleColor: 'steelblue',
@@ -116,6 +118,8 @@ export const getConfig = ({ PROPS, parentWidth, parentHeight }) => {
 
     // custom segment labels
     customSegmentLabels: PROPS.customSegmentLabels,
+    // show custom segment labels and stops
+    showStopsAndCustomSegmentLabels: PROPS.showStopsAndCustomSegmentLabels,
 
     // max segment labels
     maxSegmentLabels: calculateSegmentLabelCount({
