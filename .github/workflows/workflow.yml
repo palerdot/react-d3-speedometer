@@ -51,7 +51,7 @@ jobs:
         runTests: false
         browser: chrome
         headless: true
-        cache-key: cypress-${{ runner.os }}-cypress-${{ hashFiles('pnpm-lock.yaml') }}
+        # cache-key: cypress-${{ runner.os }}-cypress-${{ hashFiles('pnpm-lock.yaml') }}
 
     - name: Run the tests and generate coverage report
       run: pnpm run full-test 
