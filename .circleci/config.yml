@@ -9,10 +9,10 @@ jobs:
     steps:
       - checkout
       - node/install-packages:
-          pkg-manager: yarn
+          pkg-manager: pnpm
       - run:
-          command: yarn test
-          name: Run YARN tests
+          command: pnpm test
+          name: Run pnpm tests
 orbs:
   node: circleci/node@4.1
 version: 2.1
