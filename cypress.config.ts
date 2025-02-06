@@ -5,7 +5,7 @@ export default defineConfig({
 
   component: {
     setupNodeEvents(on, config) {},
-    specPattern: "src/__tests__/**/*.spec.js*",
+    specPattern: "src/__tests__/**/*.spec.{js,jsx}",
     devServer: {
       framework: "react",
       bundler: "vite",

@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react'
-import { mount } from '@cypress/react'
+import { mount } from 'cypress/react'
 import ReactSpeedometer from '../index'
 
 function ForceRender() {
