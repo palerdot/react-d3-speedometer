@@ -33,7 +33,7 @@ jobs:
 
     # ref: https://github.com/cypress-io/github-action
     - name: Setup cypress
-      uses: cypress-io/github-action@v2
+      uses: cypress-io/github-action@v6
       with:
         runTests: false
         browser: chrome
