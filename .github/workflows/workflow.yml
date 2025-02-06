@@ -32,9 +32,8 @@ jobs:
       uses: actions/cache@v4
       with:
         path: ~/.cache/Cypress
-        key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
+        key: cypress-${{ runner.os }}-cypress-${{ hashFiles('pnpm-lock.yaml') }}
 
-    # we are using --force so that mismatching peer dependencies is ignored
     - name: Install dependencies
       run: pnpm install
 
