@@ -2,16 +2,15 @@ name: Test Coverage
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 env:
   CYPRESS_CACHE_FOLDER: /home/runner/.cache/Cypress
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -19,46 +18,54 @@ jobs:
         node-version: [20.x]
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Set pnpm as package manager
-      uses: pnpm/action-setup@v4
+      - name: Set pnpm as package manager
+        uses: pnpm/action-setup@v4
 
-    - name: Set up Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'pnpm'
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
 
-    # - name: Get pnpm store directory
-    #   shell: bash
-    #   run: |
-    #     echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
 
-    # - name: Setup pnpm cache
-    #   uses: actions/cache@v4
-    #   with:
-    #     path: ${{ env.STORE_PATH }}
-    #     key: ${{ runner.os }}-pnpm-store-${{ hashFiles('pnpm-lock.yaml') }}
-    #     restore-keys: |
-    #       ${{ runner.os }}-pnpm-store-
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ${{ env.STORE_PATH }}
+            node_modules
+            /home/runner/.cache/Cypress
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
 
-    - name: Install dependencies
-      run: CYPRESS_CACHE_FOLDER=/home/runner/.cache/Cypress pnpm install
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
-    # ref: https://github.com/cypress-io/github-action
-    - name: Setup cypress
-      uses: cypress-io/github-action@v6
-      with:
-        runTests: false
-        browser: chrome
-        headless: true
-        # cache-key: cypress-${{ runner.os }}-cypress-${{ hashFiles('pnpm-lock.yaml') }}
-        # cache-key: ${{ runner.os }}-pnpm-store-${{ hashFiles('pnpm-lock.yaml') }}
+      - name: Cypress install
+        run: pnpm cypress install
 
-    - name: Run the tests and generate coverage report
-      run: CYPRESS_CACHE_FOLDER=/home/runner/.cache/Cypress pnpm run full-test 
+      # ref: https://github.com/cypress-io/github-action
+      - name: Setup cypress
+        uses: cypress-io/github-action@v6
+        with:
+          install: false
+          runTests: false
+          browser: chrome
+          headless: true
+          # cache-key: cypress-${{ runner.os }}-cypress-${{ hashFiles('pnpm-lock.yaml') }}
+          cache-key: ${{ runner.os }}-pnpm-store-${{ hashFiles('pnpm-lock.yaml') }}
 
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v2
+      - name: Run the tests and generate coverage report
+        run: pnpm run full-test
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
+
