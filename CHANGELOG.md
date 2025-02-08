@@ -1,5 +1,9 @@
 # Change Log
 
+## `v3.1.0`
+
+- Public release for `React 19`
+
 ## `v3.0.0-rc.0`
 
 - `React 19 rc` support and `Next 15` support
