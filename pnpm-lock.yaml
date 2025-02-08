@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      cypress:
-        specifier: ^14.0.2
-        version: 14.0.2
       d3-array:
         specifier: ^3.1.4
         version: 3.2.4
@@ -99,6 +96,9 @@ importers:
       '@vitest/coverage-v8':
         specifier: ^3.0.5
         version: 3.0.5(vitest@3.0.5(@types/node@22.13.1)(happy-dom@8.9.0(encoding@0.1.13))(jsdom@16.7.0)(terser@5.38.1))
+      cypress:
+        specifier: ^14.0.2
+        version: 14.0.2
       cypress-jest-adapter:
         specifier: ^0.1.1
         version: 0.1.1(jest@26.6.3)
