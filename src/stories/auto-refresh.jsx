@@ -21,7 +21,7 @@ class AutoRefresh extends React.Component {
     return (
       <div
         style={{
-          background: '#2e3440',
+          // background: '#2e3440',
           background: '#2a2744',
         }}
       >

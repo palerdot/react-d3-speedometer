@@ -1,4 +1,4 @@
-import { addons } from '@storybook/addons'
+import { addons } from '@storybook/manager-api'
 import { themes, create } from '@storybook/theming'
 
 import speedoTheme from '../src/core/theme'

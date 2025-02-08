@@ -1,6 +1,6 @@
 import React from 'react'
-import { Button } from '@storybook/react/demo'
-import { storiesOf } from '@storybook/react'
+// import { Button } from '@storybook/react/demo'
+// import { storiesOf } from '@storybook/react'
 
 // DEVELOPMENT
 import ReactSpeedometer from '../index'
