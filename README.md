@@ -5,7 +5,6 @@
 
 ![react-d3-speedometer](./speedo.gif)
 
-[![CircleCI Build Status](https://circleci.com/gh/palerdot/react-d3-speedometer.svg?style=svg)](https://circleci.com/gh/palerdot/react-d3-speedometer)
 [![Codecov](https://img.shields.io/codecov/c/gh/palerdot/react-d3-speedometer)](https://codecov.io/gh/palerdot/react-d3-speedometer)
 [![npm](https://img.shields.io/npm/v/react-d3-speedometer/latest?style=flat-square)](https://www.npmjs.com/package/react-d3-speedometer)
 [![npm](https://img.shields.io/npm/dt/react-d3-speedometer.svg)](https://www.npmjs.com/package/react-d3-speedometer)
