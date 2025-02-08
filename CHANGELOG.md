@@ -1,6 +1,6 @@
 # Change Log
 
-## `v3.1.0`
+## `v3.1.0` / `v3.1.1`
 
 - Public release for `React 19`
 
