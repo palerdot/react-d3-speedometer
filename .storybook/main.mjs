@@ -1,7 +1,4 @@
-// ref: https://github.com/storybookjs/builder-vite/blob/main/examples/react-18/.storybook/main.js
-const { mergeConfig } = require('vite')
-
-module.exports = {
+export default {
   features: {},
 
   // async viteFinal(config, { configType }) {
