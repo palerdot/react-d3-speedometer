@@ -1,5 +1,9 @@
 # Change Log
 
+## `v3.1.2`
+
+- Bump min `lodash-es` version to `v4.17.23`.
+
 ## `v3.1.0` / `v3.1.1`
 
 - Public release for `React 19`
