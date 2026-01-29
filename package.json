@@ -1,6 +1,6 @@
 {
   "name": "react-d3-speedometer",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "React library for showing speedometer like gauge using d3.",
   "author": {
     "name": "palerdot",
