@@ -112,7 +112,7 @@
     "d3-selection": "^3.0.0",
     "d3-shape": "^3.2.0",
     "d3-transition": "^3.0.1",
-    "lodash-es": "^4.17.21",
+    "lodash-es": "^4.17.23",
     "memoize-one": "^6.0.0",
     "prop-types": "^15.8.1"
   },
