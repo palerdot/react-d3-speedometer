@@ -105,6 +105,30 @@ function _renderArcs({ config, svg, centerTx }) {
       return config.arcColorFn(d * i)
     })
     .attr('d', arc)
+    .attr('data-label', (d, i) => {
+      return config.customSegmentLabels[i]?.text || 'Default Label';
+    })
+    .attr('data-sstop', (d, i) => {
+      const startStop = config.customSegmentStops[i];
+      const endStop = config.customSegmentStops[i + 1];
+    
+      // Check if startStop or endStop are undefined, null, or not numbers
+      if (typeof startStop !== 'number' || startStop === null || isNaN(startStop) ||
+          typeof endStop !== 'number' || endStop === null || isNaN(endStop)) {
+        // Provide a default value or skip setting the attribute
+        return 'unknown'; 
+      } else {
+        // Both startStop and endStop are valid numbers
+        return `${startStop}-${endStop}`;
+      }
+    })
+    .on('click', function (event, d) {
+      const label = event.target.getAttribute('data-label');
+      const value = event.target.getAttribute('data-sstop');
+      if (config.onSegmentClick) {
+        config.onSegmentClick(label,value);
+      }
+    });
 }
 
 export function _renderLabels({ config, svg, centerTx, r }) {
