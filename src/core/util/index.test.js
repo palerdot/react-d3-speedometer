@@ -184,6 +184,7 @@ describe('verify configuration', () => {
     currentValuePlaceholderStyle: '${value}',
     labelFontSize: '14px',
     valueTextFontSize: '16px',
+    valueTextBelowPos: 23,
   }
 
   test('check default config', () => {
@@ -196,7 +197,7 @@ describe('verify configuration', () => {
     expect(generated_config).toMatchObject(expected_config)
   })
 
-  test('check config for fluidWidth: true', () => {
+  test('check config for fluidWidth: true, width == height', () => {
     const PROPS = {
       ...DEFAULT_PROPS,
       fluidWidth: true,
@@ -205,12 +206,54 @@ describe('verify configuration', () => {
     const expected_fluid_width_config = {
       ...expected_config,
       width: 500,
-      height: 500,
+      height: 250,
     }
 
     const generated_config = getConfig({
       PROPS,
       parentWidth: 500,
+      parentHeight: 500,
+    })
+
+    expect(generated_config).toMatchObject(expected_fluid_width_config)
+  })
+
+  test('check config for fluidWidth: true, width < height', () => {
+    const PROPS = {
+      ...DEFAULT_PROPS,
+      fluidWidth: true,
+    }
+
+    const expected_fluid_width_config = {
+      ...expected_config,
+      width: 454,
+      height: 227,
+    }
+
+    const generated_config = getConfig({
+      PROPS,
+      parentWidth: 500,
+      parentHeight: 250,
+    })
+
+    expect(generated_config).toMatchObject(expected_fluid_width_config)
+  })
+
+  test('check config for fluidWidth: true, width > height', () => {
+    const PROPS = {
+      ...DEFAULT_PROPS,
+      fluidWidth: true,
+    }
+
+    const expected_fluid_width_config = {
+      ...expected_config,
+      width: 250,
+      height: 125,
+    }
+
+    const generated_config = getConfig({
+      PROPS,
+      parentWidth: 250,
       parentHeight: 500,
     })
 

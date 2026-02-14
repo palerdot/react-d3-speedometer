@@ -69,6 +69,7 @@ export const DEFAULT_PROPS = {
   labelFontSize: '14px',
   valueTextFontSize: '16px',
   valueTextFontWeight: 'bold', // any valid font weight string
+  valueTextBelowPos: 23, // pt value to position the text below the gauge
 
   // Accessibility related props
   svgAriaLabel: 'React d3 speedometer', // aria-label of speedometer
@@ -88,12 +89,24 @@ const DEFAULT_CONFIG = {
 }
 
 export const getConfig = ({ PROPS, parentWidth, parentHeight }) => {
+  let width = PROPS.width
+  let height = PROPS.height
+  let radius = width / 2
+
+  if (PROPS.fluidWidth) {
+    width = Math.min(parentWidth, (parentHeight - PROPS.valueTextBelowPos) * 2)
+    height = Math.min(parentWidth / 2, parentHeight - PROPS.valueTextBelowPos)
+    radius = Math.min(height, width)
+  }
+
   const config = {
     // width/height config
     // if fluidWidth; width/height taken from the parent of the ReactSpeedometer
     // else if width/height given it is used; else our default
-    width: PROPS.fluidWidth ? parentWidth : PROPS.width,
-    height: PROPS.fluidWidth ? parentHeight : PROPS.height,
+    width: width,
+    height: height,
+
+    radius: radius,
 
     // text padding horizontal/vertical
     paddingHorizontal: PROPS.paddingHorizontal,
@@ -147,6 +160,7 @@ export const getConfig = ({ PROPS, parentWidth, parentHeight }) => {
     labelFontSize: PROPS.labelFontSize,
     valueTextFontSize: PROPS.valueTextFontSize,
     valueTextFontWeight: PROPS.valueTextFontWeight,
+    valueTextBelowPos: PROPS.valueTextBelowPos,
 
     // Accessibility related props
     svgAriaLabel: PROPS.svgAriaLabel, // aria-label of speedometer
